@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773749053838",
+    "project_id": "dermaseer-auth",
+    "storage_bucket": "dermaseer-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773749053838:android:17066b41b33d73ecda2cdf",
+        "android_client_info": {
+          "package_name": "com.dermaseer.dermaseer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773749053838-n6gk8e157a6etepp9sh1l0e9q5j213hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0h1nULZZYPEwYs2mmnZE8NOELGx6kWxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773749053838-n6gk8e157a6etepp9sh1l0e9q5j213hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
