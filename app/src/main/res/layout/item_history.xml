@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/date_scan"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardHistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardHistory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:contentPadding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_view"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/history_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/acneTotal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CustomHistoryImage"
+                tools:srcCompat="@drawable/noimage" />
+
+            <TextView
+                android:id="@+id/acneTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/acne_number_title"
+                android:textColor="@color/text_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/image_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/acneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/acne_number"
+                android:textColor="@color/text_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/acneTotal"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/acneTypeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/acne_type_title"
+                android:textColor="@color/text_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/image_view"
+                app:layout_constraintTop_toBottomOf="@id/acneNumber" />
+
+            <TextView
+                android:id="@+id/acneType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/acne_type"
+                android:textColor="@color/text_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/acneTypeTitle"
+                app:layout_constraintTop_toBottomOf="@id/acneNumber" />
+
+            <ImageView
+                android:id="@+id/icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/arrowhistory"
+                android:src="@drawable/arrow_right_01_stroke_rounded"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
