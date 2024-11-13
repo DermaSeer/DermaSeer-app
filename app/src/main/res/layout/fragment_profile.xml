@@ -1,14 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_blue"
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/profile_appbar_title"
+                app:titleCentered="true"
+                app:titleTextAppearance="@style/CustomToolbarTitle" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_margin="16dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivUserPhoto"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@drawable/unknownperson"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/CircleImageProfile" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivUserPhoto"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/user_name"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvUserEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/user_email"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
+
+                    <TextView
+                        android:id="@+id/tvUserAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/user_age"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvUserEmail" />
+
+                    <TextView
+                        android:id="@+id/tvUserGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/user_gender"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvUserAge" />
+
+                    <ImageView
+                        android:id="@+id/ivEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@string/image_edit_profile_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/pencil_edit_02_stroke_rounded" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/settingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/setting_title"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cardProfile"
+            app:layout_constraintTop_toBottomOf="@+id/cardProfile" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLanguage"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:minHeight="48dp"
+            android:padding="16dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_language"
+                    app:srcCompat="@drawable/language_24px"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/language"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ivChangeLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/change_language_button"
+                    android:src="@drawable/arrow_right_02_stroke_rounded" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDeleteAccount"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:minHeight="48dp"
+            android:padding="16dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardLanguage">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_language"
+                    app:srcCompat="@drawable/delete_24px"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/delete_account"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ivDeleteAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/delete_account_button"
+                    android:src="@drawable/arrow_right_02_stroke_rounded" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/signOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/sign_out"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardDeleteAccount"
+            app:layout_constraintVertical_bias="0.1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
