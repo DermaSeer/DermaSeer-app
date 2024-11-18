@@ -1,38 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/date_scan"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardHistory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="170dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="28dp"
-        android:background="#4D4D4D"
-        app:layout_constraintBottom_toTopOf="@id/cardHistory"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvDate" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardHistory"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
@@ -40,9 +16,8 @@
         android:clickable="true"
         android:focusable="true"
         app:contentPadding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -124,5 +99,26 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/date_scan"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/cardHistory"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="170dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="28dp"
+        android:background="#4D4D4D"
+        app:layout_constraintTop_toTopOf="@id/tvDate"
+        app:layout_constraintBottom_toBottomOf="@id/tvDate"
+        app:layout_constraintStart_toEndOf="@id/tvDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

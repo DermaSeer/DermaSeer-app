@@ -31,20 +31,28 @@
                 app:titleTextAppearance="@style/CustomToolbarTitle" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ImageView
-            android:id="@+id/ivPreview"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_image"
+            android:layout_width="320dp"
             android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="52dp"
-            android:contentDescription="@string/image_preview_foto"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            android:layout_marginVertical="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout"
             app:layout_constraintBottom_toTopOf="@id/ivPreviewText"
-            tools:srcCompat="@drawable/noimage" />
+            app:layout_constraintHeight_percent="0.7">
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/image_preview_foto"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/noimage" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/ivPreviewText"
@@ -59,7 +67,7 @@
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivPreview"
+            app:layout_constraintTop_toBottomOf="@id/card_image"
             app:layout_constraintBottom_toTopOf="@id/btnRetake"
             tools:ignore="SmallSp" />
 
@@ -67,7 +75,9 @@
             android:id="@+id/btnRetake"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="3dp"
             android:backgroundTint="@color/red"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/retake"
@@ -82,7 +92,8 @@
             android:id="@+id/btnAnalyze"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="@color/primary_blue"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/analyze"
@@ -90,8 +101,8 @@
             app:cornerRadius="12dp"
             app:layout_constraintStart_toEndOf="@id/btnRetake"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivPreviewText" />
+            app:layout_constraintBottom_toBottomOf="@id/btnRetake"
+            app:layout_constraintTop_toTopOf="@id/btnRetake" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,4 +11,5 @@
     <color name="form_blue">#D2E3FF</color>
     <color name="indicator_blue">#4D438BFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="grey">#E6E6E6</color>
 </resources>

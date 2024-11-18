@@ -45,7 +45,7 @@
     <string name="edit_name_title">Nama</string>
     <string name="edit_email_title">Email</string>
     <string name="edit_age_title">Umur</string>
-    <string name="Gender">Jenis Kelaming</string>
+    <string name="Gender">Jenis Kelamin</string>
     <string name="man_radio">Laki-laki</string>
     <string name="woman_radio">Perempuan</string>
     <string name="save">Simpan</string>
@@ -59,4 +59,24 @@
     <string name="buy_now">Beli Sekarang</string>
     <string name="price_of_product">Rp.100.000</string>
     <string name="detail_product_appbar_label">Detail Produk</string>
+    <string name="ayo_lengkapi_data_dirimu">Ayo lengkapi data dirimu</string>
+    <string name="harap_isi_data_berikut_dengan_benar">Harap isi data berikut dengan benar</string>
+    <string name="nama">Nama</string>
+    <string name="usia">Usia</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="laki_laki">Laki-laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="simpan">Simpan</string>
+    <string name="save_profile_info">*Kamu dapat mengubahnya di halaman profil</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="signin_title">Mari atasi masalah wajahmu</string>
+    <string name="signin_subtitle">Sudahkah kamu menemukan solusi yang tepat untuk permasalahan wajahmu? Jika belum ayo cari tahu bersama kami!</string>
+    <string name="artikel_kesehatan">Artikel Kesehatan</string>
+    <string name="produk_perawatan">Produk Perawatan</string>
+    <string name="riwayat_terbaru">Riwayat Terbaru</string>
+    <string name="moisturizer">Moisturizer</string>
+    <string name="toner">Toner</string>
+    <string name="serum">Serum</string>
+    <string name="facewash">Facewash</string>
+    <string name="sunscreen">Sunscreen</string>
 </resources>

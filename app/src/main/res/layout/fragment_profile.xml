@@ -34,27 +34,24 @@
             android:id="@+id/cardProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_margin="16dp">
+            android:layout_margin="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="24dp">
+                android:padding="12dp">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivUserPhoto"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@drawable/unknownperson"
+                    android:src="@drawable/unknownperson"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -129,8 +126,8 @@
                         android:id="@+id/ivEditProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:contentDescription="@string/image_edit_profile_button"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -142,7 +139,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/settingTitle"
+            android:id="@+id/tv_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -150,24 +147,26 @@
             android:text="@string/setting_title"
             android:textColor="@color/text_black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/cardProfile"
             app:layout_constraintTop_toBottomOf="@+id/cardProfile" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardLanguage"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_margin="16dp"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:minHeight="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            app:cardElevation="2dp"
             android:padding="16dp"
             app:cardCornerRadius="16dp"
+            app:strokeWidth="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingTitle">
+            app:layout_constraintTop_toBottomOf="@+id/tv_setting">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -180,6 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/icon_language"
+                    app:tint="@color/text_black"
                     app:srcCompat="@drawable/language_24px"/>
 
                 <TextView
@@ -188,8 +188,9 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:text="@string/language"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/text_black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/ivChangeLanguage"
@@ -200,18 +201,21 @@
                     android:src="@drawable/arrow_right_02_stroke_rounded" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardDeleteAccount"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="16dp"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:minHeight="48dp"
+            android:backgroundTint="@color/white"
+            app:cardElevation="2dp"
             android:padding="16dp"
             app:cardCornerRadius="16dp"
+            app:strokeWidth="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardLanguage">
@@ -226,6 +230,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:tint="@color/text_black"
                     android:contentDescription="@string/icon_language"
                     app:srcCompat="@drawable/delete_24px"/>
 
@@ -235,8 +240,9 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:text="@string/delete_account"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/text_black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/ivDeleteAccount"
@@ -247,10 +253,10 @@
                     android:src="@drawable/arrow_right_02_stroke_rounded" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <Button
-            android:id="@+id/signOutButton"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_signout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"

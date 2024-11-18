@@ -62,13 +62,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="@color/form_blue"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeWidth="0dp"
-            app:boxCornerRadiusBottomEnd="14dp"
-            app:boxCornerRadiusBottomStart="14dp"
-            app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editUserNameTitle">
@@ -78,6 +71,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/user_name"
+                android:background="@drawable/input_layout_background"
+                android:textColor="@color/text_grey"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,13 +97,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="@color/form_blue"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeWidth="0dp"
-            app:boxCornerRadiusBottomEnd="14dp"
-            app:boxCornerRadiusBottomStart="14dp"
-            app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editUserEmailTitle">
@@ -118,6 +106,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/user_email"
+                android:background="@drawable/input_layout_background"
+                android:textColor="@color/text_grey"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,17 +128,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editUserAge"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="@color/form_blue"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeWidth="0dp"
-            app:boxCornerRadiusBottomEnd="14dp"
-            app:boxCornerRadiusBottomStart="14dp"
-            app:boxCornerRadiusTopEnd="14dp"
-            app:boxCornerRadiusTopStart="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editUserAgeTitle">
@@ -157,7 +140,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
+                android:background="@drawable/input_layout_background"
                 android:hint="@string/user_age"
+                android:textColor="@color/text_grey"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,36 +160,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editUserAge" />
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/radioMan"
+        <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/man_radio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editUserGenderTitle" />
+            app:layout_constraintTop_toBottomOf="@id/editUserGenderTitle">
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/radioWoman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/woman_radio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioMan" />
+            <RadioButton
+                android:id="@+id/radio_man"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/laki_laki"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioWoman"
-            app:layout_constraintVertical_bias="1.0" />
+            <RadioButton
+                android:id="@+id/radio_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/perempuan"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp" />
+
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
