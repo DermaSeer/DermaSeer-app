@@ -15,4 +15,34 @@
         parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/indicator_blue</item>
     </style>
+
+    <style name="FabShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomTextAppearance.BottomNavigation" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="CustomToolbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CircleImageProfile" parent="Widget.MaterialComponents.ShapeableImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="strokeColor">@color/primary_blue</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+    <style name="CustomHistoryImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 </resources>
