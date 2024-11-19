@@ -1,18 +1,39 @@
 package com.dermaseer.dermaseer
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dermaseer.dermaseer.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
    private lateinit var binding: ActivityMainBinding
+
+   private val requestPermissionLauncher =
+      registerForActivityResult(
+         ActivityResultContracts.RequestPermission()
+      ) { isGranted: Boolean ->
+         if (isGranted) {
+            Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+         } else {
+            Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+         }
+      }
+
+   private fun allPermissionsGranted() =
+      ContextCompat.checkSelfPermission(
+         this,
+         Manifest.permission.CAMERA
+      ) == PackageManager.PERMISSION_GRANTED
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -39,6 +60,14 @@ class MainActivity : AppCompatActivity() {
          }
       }
       binding.navView.setupWithNavController(navController)
+
+      binding.fabScan.setOnClickListener {
+         if (allPermissionsGranted()) {
+            navController.navigate(R.id.cameraFragment)
+         } else {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+         }
+      }
    }
 
    @Deprecated("Deprecated in Java")

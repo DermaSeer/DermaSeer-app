@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.dermaseer.dermaseer.ui.splash.SplashFragment"
@@ -126,6 +126,12 @@
         <action
             android:id="@+id/action_photoPreviewFragment_to_scanResultFragment"
             app:destination="@id/scanResultFragment" />
+        <action
+            android:id="@+id/action_photoPreviewFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/photoPreviewFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/scanResultFragment"
