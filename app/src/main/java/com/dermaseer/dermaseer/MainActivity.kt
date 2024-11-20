@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
          insets
       }
       binding.navView.menu.getItem(2).isEnabled = false
+      binding.navView.menu.getItem(2).title = "Scan"
       val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
       val navController = navHostFragment.navController
       navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -75,13 +76,13 @@ class MainActivity : AppCompatActivity() {
       val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
       val currentFragmentId = navHostFragment.navController.currentDestination?.id
 
-      if (currentFragmentId == R.id.homeFragment ||
-         currentFragmentId == R.id.articleFragment ||
-         currentFragmentId == R.id.historyFragment ||
-         currentFragmentId == R.id.profileFragment) {
-         finish()
-      } else {
-         super.onBackPressed()
+      when (currentFragmentId) {
+         R.id.homeFragment,
+         R.id.articleFragment,
+         R.id.historyFragment,
+         R.id.profileFragment,
+         R.id.onBoardingFragment -> { finish() }
+         else -> super.onBackPressed()
       }
    }
 }

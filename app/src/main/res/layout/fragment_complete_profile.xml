@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/input_layout_background"
-                android:hint="Nama"
+                android:hint="Fufufafa"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/input_layout_background"
-                android:hint="Nama"
+                android:hint="20"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />

@@ -2,6 +2,7 @@
     <string name="app_name">DermaSeer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_web_client_id">773749053838-n6gk8e157a6etepp9sh1l0e9q5j213hp.apps.googleusercontent.com</string>
     <string name="image_product_list">image product list</string>
     <string name="product_name">Product Name</string>
     <string name="product_price">Product Price</string>

@@ -40,7 +40,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:shapeAppearance="@style/CircleImageProfile"
-            tools:srcCompat="@drawable/unknownperson" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/unknownperson" />
 
         <TextView
             android:id="@+id/editUserNameTitle"
@@ -187,6 +188,19 @@
                 android:textSize="12sp" />
 
         </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="14sp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/simpan" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

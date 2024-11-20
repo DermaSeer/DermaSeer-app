@@ -52,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/next_button"
+        android:fontFamily="@font/poppins_bold"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
