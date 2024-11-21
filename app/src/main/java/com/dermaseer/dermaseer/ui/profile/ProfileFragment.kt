@@ -1,7 +1,9 @@
 package com.dermaseer.dermaseer.ui.profile
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +47,7 @@ class ProfileFragment : Fragment() {
       navController = Navigation.findNavController(view)
       binding.btnSignout.setOnClickListener { signOut() }
       editProfile()
+      changeLanguage()
    }
 
    private fun signOut() {
@@ -82,6 +85,12 @@ class ProfileFragment : Fragment() {
    private fun editProfile() {
       binding.ivEditProfile.setOnClickListener {
          navController.navigate(R.id.action_profileFragment_to_editProfileFragment)
+      }
+   }
+
+   private fun changeLanguage(){
+      binding.cardLanguage.setOnClickListener {
+         startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
       }
    }
 
