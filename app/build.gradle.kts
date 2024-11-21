@@ -20,6 +20,8 @@ android {
       versionName = "1.0"
 
       testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+      buildConfigField("String", "BASE_URL", "\"https://dermaseer-api-342493525024.asia-southeast1.run.app\"")
+
    }
 
    buildTypes {
@@ -70,6 +72,8 @@ dependencies {
    implementation(libs.okhttp)
    debugImplementation(libs.library)
    releaseImplementation(libs.library.no.op)
+   implementation(libs.logging.interceptor)
+
 
    // Lifecycle
    implementation(libs.androidx.lifecycle.viewmodel.ktx)
