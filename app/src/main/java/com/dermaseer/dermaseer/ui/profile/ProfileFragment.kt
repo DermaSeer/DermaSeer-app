@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -20,14 +21,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
    private var _binding: FragmentProfileBinding? = null
    private val binding get() = _binding!!
    private lateinit var navController: NavController
-   private lateinit var auth: FirebaseAuth
+   private val profileViewModel: ProfileViewModel by viewModels()
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -45,36 +48,21 @@ class ProfileFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
-      binding.btnSignout.setOnClickListener { signOut() }
+      binding.btnSignout.setOnClickListener {
+         profileViewModel.signOut(
+            onSignOutSuccess = { navigatePage() },
+            onSignOutFailure = {
+               Log.e("TestLogout", "${it?.message}")
+            },
+            context = requireContext()
+         )
+      }
       editProfile()
       changeLanguage()
    }
 
-   private fun signOut() {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-         viewLifecycleOwner.lifecycleScope.launch {
-            val credentialManager = CredentialManager.create(requireContext())
-            auth.signOut()
-            credentialManager.clearCredentialState(ClearCredentialStateRequest())
-            navigatePage()
-         }
-      } else {
-         val googleSignInClient = GoogleSignIn.getClient(requireContext(), GoogleSignInOptions.DEFAULT_SIGN_IN)
-         googleSignInClient.signOut()
-            .addOnCompleteListener(requireActivity()) { task ->
-               if (task.isSuccessful) {
-                  FirebaseAuth.getInstance().signOut()
-                  navigatePage()
-                  Log.d(TAG, "Signed out from Google")
-               } else {
-                  Log.e(TAG, "Failed to sign out from Google", task.exception)
-               }
-            }
-      }
-   }
-
    private fun navigatePage() {
-      if (FirebaseAuth.getInstance().currentUser == null) {
+      if (profileViewModel.isUserSignedOut()) {
          navController.navigate(R.id.action_profileFragment_to_onBoardingFragment)
          Snackbar.make(binding.root, "Sign out Success", Snackbar.LENGTH_SHORT).show()
       } else {

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
    alias(libs.plugins.android.application)
    alias(libs.plugins.kotlin.android)
@@ -20,8 +22,9 @@ android {
       versionName = "1.0"
 
       testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-      buildConfigField("String", "BASE_URL", "\"https://dermaseer-api-342493525024.asia-southeast1.run.app\"")
-
+      val properties = Properties()
+      properties.load(project.rootProject.file("local.properties").inputStream())
+      buildConfigField("String", "BASE_URL", properties.getProperty("BASE_URL"))
    }
 
    buildTypes {
