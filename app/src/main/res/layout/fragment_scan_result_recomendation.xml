@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/primary_blue"
             app:navigationIcon="@drawable/cancel_01_stroke_rounded"
-            app:title="@string/scan_reslut_appbar_title"
+            app:title="@string/recommendation_result"
             app:titleCentered="true"
             app:titleTextAppearance="@style/CustomToolbarTitle" />
     </com.google.android.material.appbar.AppBarLayout>
