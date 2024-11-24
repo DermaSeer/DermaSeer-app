@@ -2,23 +2,52 @@ package com.dermaseer.dermaseer.ui.profile
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
+import com.dermaseer.dermaseer.data.remote.models.DeleteUserResponse
+import com.dermaseer.dermaseer.data.remote.models.UserResponse
+import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
    private val authPreferences: AuthPreferences,
    private val auth: FirebaseAuth,
-   private val googleSignInClient: GoogleSignInClient
+   private val googleSignInClient: GoogleSignInClient,
+   private val userRepository: UserRepository
 ): ViewModel() {
+
+   private var _userData = MutableLiveData<UserResponse>()
+   val userData: LiveData<UserResponse> = _userData
+
+   private var _deleteUserResponse = MutableLiveData<DeleteUserResponse>()
+   val deleteUserResponse: LiveData<DeleteUserResponse> = _deleteUserResponse
+
+   init {
+      getUserData()
+   }
+
+   private fun getUserData() {
+      viewModelScope.launch {
+         try {
+            _userData.value = userRepository.getCurrentUser()
+         } catch (e: HttpException) {
+            Log.e("GetUser", "Error")
+         }
+      }
+   }
 
    fun signOut(onSignOutSuccess: () -> Unit, onSignOutFailure: (Exception?) -> Unit, context: Context) {
       viewModelScope.launch {
@@ -42,6 +71,16 @@ class ProfileViewModel @Inject constructor(
             }
          } catch (e: Exception) {
             onSignOutFailure(e)
+         }
+      }
+   }
+
+   fun deleteUserAccount() {
+      viewModelScope.launch(Dispatchers.IO) {
+         try {
+            _deleteUserResponse.value = userRepository.deleteUser()
+         } catch (e: HttpException) {
+            Log.e("DeleteError", e.message())
          }
       }
    }

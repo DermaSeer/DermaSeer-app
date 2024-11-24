@@ -72,14 +72,16 @@
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="6dp"
+            app:endIconMode="clear_text"
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="Masukkan namamu..."
+                android:inputType="text"
                 android:background="@drawable/input_layout_background"
-                android:hint="Fufufafa"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />
@@ -113,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/input_layout_background"
-                android:hint="20"
+                android:hint="Masukkan usiamu..."
+                android:inputType="number"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />
