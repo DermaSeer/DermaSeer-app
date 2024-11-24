@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ProductService {
    @GET(ApiConstant.GET_PRODUCT_BY_CATEGORY)
-   fun getProductByCategory(
+   suspend fun getProductByCategory(
       @Header("Authorization") token: String,
       @Query("category") category: String
    ): ProductResponse

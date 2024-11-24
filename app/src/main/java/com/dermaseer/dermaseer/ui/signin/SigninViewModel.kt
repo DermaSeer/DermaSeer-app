@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
-import com.dermaseer.dermaseer.data.remote.models.UserResponse
 import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.dermaseer.dermaseer.ui.signin.SigninFragment.Companion.TAG
 import com.dermaseer.dermaseer.utils.SigninState
@@ -40,23 +39,10 @@ class SigninViewModel @Inject constructor(
    private val authPreferences: AuthPreferences,
    private val auth: FirebaseAuth,
    private val credentialManager: CredentialManager,
-   private val userRepository: UserRepository
 ): ViewModel() {
    private var _signinState = MutableLiveData<SigninState>()
    val signinState: LiveData<SigninState> = _signinState
 
-   private var _userData = MutableLiveData<UserResponse>()
-   val userData: LiveData<UserResponse> = _userData
-
-   private fun checkCurrentUser() {
-      viewModelScope.launch {
-         try {
-            _userData.value = userRepository.getCurrentUser()
-         } catch (e: HttpException) {
-            Log.e("GetUser", e.message())
-         }
-      }
-   }
 
    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
    fun signInWithCredentialManager(context: Context) {
@@ -74,8 +60,8 @@ class SigninViewModel @Inject constructor(
               .build()
 
            val result = credentialManager.getCredential(context, request)
-           val idToken = extractToken(result)
-           firebaseAuthWithGoogle(idToken)
+           val token = extractToken(result)
+           firebaseAuthWithGoogle(token)
         } catch (e: GetCredentialException) {
            _signinState.value = SigninState.Error(e.message ?: "Unknown error")
         }
@@ -108,10 +94,7 @@ class SigninViewModel @Inject constructor(
             if (task.isSuccessful) {
                Log.d(TAG, "signInWithCredential:success")
                val user: FirebaseUser? = auth.currentUser
-               user?.getIdToken(true)?.addOnSuccessListener { result ->
-                  val refreshToken = result.token
-                  saveToken(refreshToken)
-               }
+               saveToken(idToken)
                _signinState.value = SigninState.Success(user)
             } else {
                Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -119,10 +102,9 @@ class SigninViewModel @Inject constructor(
          }
    }
 
-   private fun saveToken(refreshToken: String?) {
+   private fun saveToken(token: String) {
       viewModelScope.launch {
-         authPreferences.saveAuthToken(refreshToken)
-         checkCurrentUser()
+         authPreferences.saveAuthToken(token)
       }
    }
 

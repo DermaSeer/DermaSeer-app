@@ -10,29 +10,28 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
-import com.dermaseer.dermaseer.databinding.ItemArticleBinding
+import com.dermaseer.dermaseer.databinding.ItemArticleHomeBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class ArticleAdapter :
-    ListAdapter<ArticleResponse.Data, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
+class ArticleHomeAdapter :
+    ListAdapter<ArticleResponse.Data, ArticleHomeAdapter.ArticleHomeViewHolder>(ArticleDiffCallback()) {
 
-    class ArticleViewHolder(private val binding: ItemArticleBinding) :
+    class ArticleHomeViewHolder(private val binding: ItemArticleHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(article: ArticleResponse.Data) {
-            binding.tvArticleTitle.text = article.title ?: "Untitled"
-            binding.tvArticleDescription.text = article.content ?: "No description available"
-            Glide.with(binding.ivArticleImage.context)
+        fun bindArticle(article: ArticleResponse.Data) {
+            Glide.with(binding.ivArticle.context)
                 .load(article.imageUrl)
-                .into(binding.ivArticleImage)
+                .into(binding.ivArticle)
 
-            binding.icArrow.setOnClickListener {
+            binding.ivArticle.setOnClickListener {
                 article.url?.let { url ->
                     val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
                         "https://$url"
                     } else {
                         url
                     }
-
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
                     try {
                         binding.root.context.startActivity(intent)
@@ -45,21 +44,34 @@ class ArticleAdapter :
                     }
                 }
             }
-
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ArticleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHomeViewHolder {
         val binding =
-            ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleViewHolder(binding)
+            ItemArticleHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ArticleHomeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: ArticleHomeViewHolder, position: Int) {
+        val sortedArticles = currentList.sortedByDescending { article ->
+            val publishDateStr = article.publishDate?.toString()
+            try {
+                if (!publishDateStr.isNullOrEmpty()) {
+                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(
+                        publishDateStr
+                    )
+                } else {
+                    null
+                }
+            } catch (e: Exception) {
+                null
+            }
+        }.take(3)
+
+        if (position < sortedArticles.size) {
+            holder.bindArticle(sortedArticles[position])
+        }
     }
 
     class ArticleDiffCallback : DiffUtil.ItemCallback<ArticleResponse.Data>() {

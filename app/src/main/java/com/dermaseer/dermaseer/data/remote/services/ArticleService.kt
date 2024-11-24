@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ArticleService {
    @GET(ApiConstant.GET_ALL_ARTICLE)
-   fun getAllArticle(
+   suspend fun getAllArticle(
       @Header("Authorization") token: String
    ): ArticleResponse
 }
