@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_blue">#438BFF</color>
+    <color name="background_white">#F5F4FF</color>
+    <color name="text_black">#31393C</color>
+    <color name="text_grey">#4D4D4D</color>
+    <color name="green">#04A74D</color>
+    <color name="red">#FB4C42</color>
+    <color name="form_blue">#D2E3FF</color>
+    <color name="indicator_blue">#4D438BFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="grey">#E6E6E6</color>
 </resources>
