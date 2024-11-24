@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
+import com.dermaseer.dermaseer.data.remote.models.UserResponse
+import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.dermaseer.dermaseer.ui.signin.SigninFragment.Companion.TAG
 import com.dermaseer.dermaseer.utils.SigninState
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -30,16 +32,31 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
 class SigninViewModel @Inject constructor(
    private val authPreferences: AuthPreferences,
    private val auth: FirebaseAuth,
-   private val credentialManager: CredentialManager
+   private val credentialManager: CredentialManager,
+   private val userRepository: UserRepository
 ): ViewModel() {
    private var _signinState = MutableLiveData<SigninState>()
    val signinState: LiveData<SigninState> = _signinState
+
+   private var _userData = MutableLiveData<UserResponse>()
+   val userData: LiveData<UserResponse> = _userData
+
+   private fun checkCurrentUser() {
+      viewModelScope.launch {
+         try {
+            _userData.value = userRepository.getCurrentUser()
+         } catch (e: HttpException) {
+            Log.e("GetUser", e.message())
+         }
+      }
+   }
 
    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
    fun signInWithCredentialManager(context: Context) {
@@ -57,8 +74,8 @@ class SigninViewModel @Inject constructor(
               .build()
 
            val result = credentialManager.getCredential(context, request)
-           val token = extractToken(result)
-           firebaseAuthWithGoogle(token)
+           val idToken = extractToken(result)
+           firebaseAuthWithGoogle(idToken)
         } catch (e: GetCredentialException) {
            _signinState.value = SigninState.Error(e.message ?: "Unknown error")
         }
@@ -91,7 +108,10 @@ class SigninViewModel @Inject constructor(
             if (task.isSuccessful) {
                Log.d(TAG, "signInWithCredential:success")
                val user: FirebaseUser? = auth.currentUser
-               saveToken(idToken)
+               user?.getIdToken(true)?.addOnSuccessListener { result ->
+                  val refreshToken = result.token
+                  saveToken(refreshToken)
+               }
                _signinState.value = SigninState.Success(user)
             } else {
                Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -99,9 +119,10 @@ class SigninViewModel @Inject constructor(
          }
    }
 
-   private fun saveToken(token: String) {
+   private fun saveToken(refreshToken: String?) {
       viewModelScope.launch {
-         authPreferences.saveAuthToken(token)
+         authPreferences.saveAuthToken(refreshToken)
+         checkCurrentUser()
       }
    }
 
