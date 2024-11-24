@@ -30,6 +30,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -45,15 +46,20 @@ class SigninViewModel @Inject constructor(
    private var _signinState = MutableLiveData<SigninState>()
    val signinState: LiveData<SigninState> = _signinState
 
-   private var _userData = MutableLiveData<UserResponse>()
-   val userData: LiveData<UserResponse> = _userData
+   private var _checkUserResponse = MutableLiveData<UserResponse>()
+   val checkUserResponse: LiveData<UserResponse> = _checkUserResponse
 
    private fun checkCurrentUser() {
       viewModelScope.launch {
          try {
-            _userData.value = userRepository.getCurrentUser()
+            _checkUserResponse.value = userRepository.getCurrentUser()
          } catch (e: HttpException) {
-            Log.e("GetUser", e.message())
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = errorBody?.let {
+               Gson().fromJson(it, UserResponse::class.java)
+            } ?: UserResponse(success = false, data = null, message = null)
+            _checkUserResponse.value = errorResponse
+            Log.e("LoginError", "HTTP error: ${e.message}")
          }
       }
    }

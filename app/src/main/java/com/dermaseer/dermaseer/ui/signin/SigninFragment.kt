@@ -3,6 +3,7 @@ package com.dermaseer.dermaseer.ui.signin
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,8 +88,15 @@ class SigninFragment : Fragment() {
 
    private fun navigatePage(currentUser: FirebaseUser?) {
       if (currentUser != null) {
-         navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
-         Snackbar.make(binding.root, "Sign in success", Snackbar.LENGTH_SHORT).show()
+         signinViewModel.checkUserResponse.observe(viewLifecycleOwner) { user ->
+            Log.d("CheckUserData", "${user.success}")
+            if (user.success == true) {
+               navController.navigate(R.id.action_signinFragment_to_homeFragment)
+            } else {
+               navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
+            }
+            Snackbar.make(binding.root, "Sign in success", Snackbar.LENGTH_SHORT).show()
+         }
       }
    }
 
