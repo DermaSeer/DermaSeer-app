@@ -1,18 +1,18 @@
 package com.dermaseer.dermaseer.adapter
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.ItemArticleBinding
 
-class ArticleAdapter(
-    private var articles: List<ArticleResponse.Data>,
-) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+class ArticleAdapter :
+    ListAdapter<ArticleResponse.Data, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
 
     class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -44,14 +44,22 @@ class ArticleAdapter(
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.bind(articles[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = articles.size
+    class ArticleDiffCallback : DiffUtil.ItemCallback<ArticleResponse.Data>() {
+        override fun areItemsTheSame(
+            oldItem: ArticleResponse.Data,
+            newItem: ArticleResponse.Data
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newArticles: List<ArticleResponse.Data>) {
-        articles = newArticles
-        notifyDataSetChanged()
+        override fun areContentsTheSame(
+            oldItem: ArticleResponse.Data,
+            newItem: ArticleResponse.Data
+        ): Boolean {
+            return oldItem == newItem
+        }
     }
 }
