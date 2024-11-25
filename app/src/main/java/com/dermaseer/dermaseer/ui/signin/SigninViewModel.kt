@@ -38,15 +38,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SigninViewModel @Inject constructor(
-<<<<<<< Updated upstream
-   private val authPreferences: AuthPreferences,
-   private val auth: FirebaseAuth,
-   private val credentialManager: CredentialManager,
-   private val userRepository: UserRepository
-): ViewModel() {
-   private var _signinState = MutableLiveData<SigninState>()
-   val signinState: LiveData<SigninState> = _signinState
-=======
     private val authPreferences: AuthPreferences,
     private val auth: FirebaseAuth,
     private val credentialManager: CredentialManager,
@@ -54,85 +45,10 @@ class SigninViewModel @Inject constructor(
 ) : ViewModel() {
     private var _signinState = MutableLiveData<SigninState>()
     val signinState: LiveData<SigninState> = _signinState
->>>>>>> Stashed changes
 
     private var _checkUserResponse = MutableLiveData<UserResponse>()
     val checkUserResponse: LiveData<UserResponse> = _checkUserResponse
 
-<<<<<<< Updated upstream
-   private fun checkCurrentUser() {
-      viewModelScope.launch {
-         try {
-            _checkUserResponse.value = userRepository.getCurrentUser()
-         } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = errorBody?.let {
-               Gson().fromJson(it, UserResponse::class.java)
-            } ?: UserResponse(success = false, data = null, message = null)
-            _checkUserResponse.value = errorResponse
-            Log.e("LoginError", "HTTP error: ${e.message}")
-         }
-      }
-   }
-
-   @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-   fun signInWithCredentialManager(context: Context) {
-      viewModelScope.launch {
-        try {
-           val credentialManager = androidx.credentials.CredentialManager.create(context)
-
-           val googleOption = GetGoogleIdOption.Builder()
-              .setFilterByAuthorizedAccounts(false)
-              .setServerClientId(context.getString(R.string.your_web_client_id))
-              .build()
-
-           val request = GetCredentialRequest.Builder()
-              .addCredentialOption(googleOption)
-              .build()
-
-           val result = credentialManager.getCredential(context, request)
-           val idToken = extractToken(result)
-           firebaseAuthWithGoogle(idToken)
-        } catch (e: GetCredentialException) {
-           _signinState.value = SigninState.Error(e.message ?: "Unknown error")
-        }
-      }
-   }
-
-   fun signInWithGoogleSignInSDK(context: Context, activity: Activity) {
-      val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-         .requestIdToken(context.getString(R.string.your_web_client_id))
-         .requestEmail()
-         .build()
-
-      val googleSignInClient = GoogleSignIn.getClient(activity, googleSignInOptions)
-      _signinState.value = SigninState.LaunchIntent(googleSignInClient.signInIntent)
-   }
-
-   fun handleGoogleSignInResult(task: Task<GoogleSignInAccount>) {
-      try {
-         val account = task.getResult(ApiException::class.java)
-         firebaseAuthWithGoogle(account.idToken!!)
-      } catch (e: ApiException) {
-         _signinState.value = SigninState.Error(e.message ?: "Sign-in failed")
-      }
-   }
-
-   private fun firebaseAuthWithGoogle(idToken: String) {
-      val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
-      auth.signInWithCredential(credential)
-         .addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-               Log.d(TAG, "signInWithCredential:success")
-               val user: FirebaseUser? = auth.currentUser
-               user?.getIdToken(true)?.addOnSuccessListener { result ->
-                  val refreshToken = result.token
-                  saveToken(refreshToken)
-               }
-               _signinState.value = SigninState.Success(user)
-            } else {
-               Log.w(TAG, "signInWithCredential:failure", task.exception)
-=======
     private fun checkCurrentUser() {
         viewModelScope.launch {
             try {
@@ -144,25 +60,15 @@ class SigninViewModel @Inject constructor(
                 } ?: UserResponse(success = false, data = null, message = null)
                 _checkUserResponse.value = errorResponse
                 Log.e("LoginError", "HTTP error: ${e.message}")
->>>>>>> Stashed changes
             }
         }
     }
 
-<<<<<<< Updated upstream
-   private fun saveToken(refreshToken: String?) {
-      viewModelScope.launch {
-         authPreferences.saveAuthToken(refreshToken)
-         checkCurrentUser()
-      }
-   }
-=======
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     fun signInWithCredentialManager(context: Context) {
         viewModelScope.launch {
             try {
                 val credentialManager = androidx.credentials.CredentialManager.create(context)
->>>>>>> Stashed changes
 
                 val googleOption = GetGoogleIdOption.Builder()
                     .setFilterByAuthorizedAccounts(false)
