@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
+import com.dermaseer.dermaseer.data.remote.models.UserResponse
 import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.dermaseer.dermaseer.ui.signin.SigninFragment.Companion.TAG
 import com.dermaseer.dermaseer.utils.SigninState
