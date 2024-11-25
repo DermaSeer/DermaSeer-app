@@ -1,23 +1,27 @@
 package com.dermaseer.dermaseer.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ArticleHomeAdapter
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.FragmentHomeBinding
 import com.dermaseer.dermaseer.databinding.ItemProductTypeBinding
-import com.dermaseer.dermaseer.ui.article.ArticleViewModel
 import com.dermaseer.dermaseer.utils.ResultState
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -27,8 +31,9 @@ class HomeFragment : Fragment() {
    private var _binding: FragmentHomeBinding? = null
    private val binding get() = _binding!!
    private lateinit var navController: NavController
-   private val viewModel: ArticleViewModel by viewModels()
+   private val homeViewModel: HomeViewModel by viewModels()
    private lateinit var articleHomeAdapter: ArticleHomeAdapter
+   private val auth = FirebaseAuth.getInstance()
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -48,8 +53,9 @@ class HomeFragment : Fragment() {
       navController = Navigation.findNavController(view)
       setProductType()
       setupRecyclerViewArticle()
+      getUserData()
 
-      viewModel.articleState.observe(viewLifecycleOwner){ result ->
+      homeViewModel.homeState.observe(viewLifecycleOwner){ result ->
          when (result) {
             is ResultState.Loading -> binding.progressBar.visibility = View.VISIBLE
             is ResultState.Success -> {
@@ -62,10 +68,9 @@ class HomeFragment : Fragment() {
             }
          }
       }
-      viewModel.articles.observe(viewLifecycleOwner) { articles ->
+      homeViewModel.articles.observe(viewLifecycleOwner) { articles ->
          articles?.let { updateRecyclerViewArticle(it) }
       }
-      viewModel.getArticles()
    }
 
    private fun setupRecyclerViewArticle() {
@@ -115,6 +120,21 @@ class HomeFragment : Fragment() {
             val selectedCategory = listProductType[i].productTitle
             val action = HomeFragmentDirections.actionHomeFragmentToProductListFragment(selectedCategory)
             navController.navigate(action)
+         }
+      }
+   }
+
+   @SuppressLint("SetTextI18n")
+   private fun getUserData() {
+      viewLifecycleOwner.lifecycleScope.launch {
+         homeViewModel.userData.observe(viewLifecycleOwner) { user ->
+            with(binding) {
+               Glide.with(ivUserPhoto)
+                  .load(auth.currentUser?.photoUrl)
+                  .error(R.drawable.unknownperson)
+                  .into(ivUserPhoto)
+               tvHelloUser.text = "Hello, ${user.data?.user?.name}!"
+            }
          }
       }
    }

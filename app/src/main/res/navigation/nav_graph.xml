@@ -116,7 +116,14 @@
         android:id="@+id/editProfileFragment"
         android:name="com.dermaseer.dermaseer.ui.edit_profile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/editProfileFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+    </fragment>
     <fragment
         android:id="@+id/cameraFragment"
         android:name="com.dermaseer.dermaseer.ui.camera.CameraFragment"

@@ -28,6 +28,7 @@ class ProfileFragment : Fragment() {
    private val binding get() = _binding!!
    private lateinit var navController: NavController
    private val profileViewModel: ProfileViewModel by viewModels()
+   private val auth = FirebaseAuth.getInstance()
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -87,7 +88,7 @@ class ProfileFragment : Fragment() {
             with(binding) {
                Log.d("CheckPhoto", user.data?.user?.profilePicture.toString())
                Glide.with(ivUserPhoto)
-                  .load(user.data?.user?.profilePicture)
+                  .load(auth.currentUser?.photoUrl)
                   .error(R.drawable.unknownperson)
                   .into(ivUserPhoto)
                tvUserName.text = user.data?.user?.name

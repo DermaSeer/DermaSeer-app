@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_user_photo"
-        android:text="Halo, fufufafa!"
+        tools:text="Halo, fufufafa!"
         android:fontFamily="@font/poppins_bold"
         android:textSize="16sp"
         android:textColor="@color/white"
