@@ -80,4 +80,17 @@
     <string name="serum">Serum</string>
     <string name="facewash">Facewash</string>
     <string name="sunscreen">Sunscreen</string>
+    <string name="scan_reslut_appbar_title">Analysis Result</string>
+    <string name="diagnose">Diagnoses</string>
+    <string name="diganose_result">Diganose Result</string>
+    <string name="select_the_product_recommendation_type">Select the Product recommendation type:</string>
+    <string name="choose_your_skin_problem">Choose your skin problem :</string>
+    <string name="dry">Dry</string>
+    <string name="oily">Oily</string>
+    <string name="sensitive">Sensitive</string>
+    <string name="see_recommendations">See Recommendations</string>
+    <string name="treatment_recommendations">Treatment Recommendations : </string>
+    <string name="recommendation_result">Recommendation Result</string>
+    <string name="product_recommendations">Product Recommendations : </string>
+    <string name="our_recommendations">Our Recommendations</string>
 </resources>

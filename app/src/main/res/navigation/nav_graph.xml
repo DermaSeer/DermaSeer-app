@@ -176,6 +176,9 @@
         <action
             android:id="@+id/action_scanResultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_scanResultFragment_to_scanResultRecomendationFragment2"
+            app:destination="@id/scanResultRecomendationFragment2" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -186,5 +189,17 @@
             android:name="product"
             app:argType="string" />
 
+        tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/scanResultRecomendationFragment2"
+        android:name="com.dermaseer.dermaseer.ui.scan_result.ScanResultRecomendationFragment"
+        android:label="fragment_scan_result_recomendation"
+        tools:layout="@layout/fragment_scan_result_recomendation" >
+        <action
+            android:id="@+id/action_scanResultRecomendationFragment2_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/scanResultRecomendationFragment2"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
     </fragment>
 </navigation>

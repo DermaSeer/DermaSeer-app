@@ -80,4 +80,17 @@
     <string name="serum">세럼</string>
     <string name="facewash">세안제</string>
     <string name="sunscreen">자외선 차단제</string>
+    <string name="scan_reslut_appbar_title">분석 결과</string>
+    <string name="diagnose">진단</string>
+    <string name="diganose_result">진단 결과</string>
+    <string name="select_the_product_recommendation_type">제품 추천 유형을 선택하세요:</string>
+    <string name="choose_your_skin_problem">당신의 피부 문제를 선택하세요:</string>
+    <string name="dry">건조</string>
+    <string name="oily">지성</string>
+    <string name="sensitive">민감</string>
+    <string name="see_recommendations">추천 보기</string>
+    <string name="treatment_recommendations">치료 추천:</string>
+    <string name="recommendation_result">추천 결과</string>
+    <string name="product_recommendations">제품 추천:</string>
+    <string name="our_recommendations">우리의 추천</string>
 </resources>

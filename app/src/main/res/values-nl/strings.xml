@@ -80,4 +80,17 @@
     <string name="serum">Serum</string>
     <string name="facewash">Gezichtsreiniger</string>
     <string name="sunscreen">Zonnebrandcrème</string>
+    <string name="scan_reslut_appbar_title">Analyse Resultaat</string>
+    <string name="diagnose">Diagnoses</string>
+    <string name="diganose_result">Diagnose Resultaat</string>
+    <string name="select_the_product_recommendation_type">Selecteer het type productaanbeveling:</string>
+    <string name="choose_your_skin_problem">Kies je huidprobleem:</string>
+    <string name="dry">Droog</string>
+    <string name="oily">Vettig</string>
+    <string name="sensitive">Gevoelig</string>
+    <string name="see_recommendations">Zie Aanbevelingen</string>
+    <string name="treatment_recommendations">Behandelingsaanbevelingen:</string>
+    <string name="recommendation_result">Aanbevelingsresultaat</string>
+    <string name="product_recommendations">Productaanbevelingen:</string>
+    <string name="our_recommendations">Onze Aanbevelingen</string>
 </resources>

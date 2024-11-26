@@ -80,4 +80,17 @@
     <string name="serum">Serum</string>
     <string name="facewash">Pencuci Muka</string>
     <string name="sunscreen">Pelindung Matahari</string>
+    <string name="scan_reslut_appbar_title">Hasil Analisis</string>
+    <string name="diagnose">Diagnosa</string>
+    <string name="diganose_result">Hasil Diagnosa</string>
+    <string name="select_the_product_recommendation_type">Pilih jenis cadangan produk:</string>
+    <string name="choose_your_skin_problem">Pilih masalah kulit anda:</string>
+    <string name="dry">Kering</string>
+    <string name="oily">Berminyak</string>
+    <string name="sensitive">Sensitif</string>
+    <string name="see_recommendations">Lihat Cadangan</string>
+    <string name="treatment_recommendations">Cadangan Rawatan:</string>
+    <string name="recommendation_result">Hasil Cadangan</string>
+    <string name="product_recommendations">Cadangan Produk:</string>
+    <string name="our_recommendations">Cadangan Kami</string>
 </resources>

@@ -80,4 +80,17 @@
     <string name="serum">سيروم</string>
     <string name="facewash">غسول الوجه</string>
     <string name="sunscreen">واقي الشمس</string>
+    <string name="scan_reslut_appbar_title">نتيجة التحليل</string>
+    <string name="diagnose">التشخيصات</string>
+    <string name="diganose_result">نتيجة التشخيص</string>
+    <string name="select_the_product_recommendation_type">اختر نوع التوصية بالمنتجات:</string>
+    <string name="choose_your_skin_problem">اختر مشكلتك الجلدية:</string>
+    <string name="dry">جاف</string>
+    <string name="oily">دهني</string>
+    <string name="sensitive">حساس</string>
+    <string name="see_recommendations">عرض التوصيات</string>
+    <string name="treatment_recommendations">توصيات العلاج:</string>
+    <string name="recommendation_result">نتيجة التوصية</string>
+    <string name="product_recommendations">توصيات المنتجات:</string>
+    <string name="our_recommendations">توصياتنا</string>
 </resources>

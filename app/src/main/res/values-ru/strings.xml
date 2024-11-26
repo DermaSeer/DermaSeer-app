@@ -80,4 +80,17 @@
     <string name="serum">Сыворотка</string>
     <string name="facewash">Очищающее средство для лица</string>
     <string name="sunscreen">Солнцезащитный крем</string>
+    <string name="scan_reslut_appbar_title">Результат анализа</string>
+    <string name="diagnose">Диагнозы</string>
+    <string name="diganose_result">Результат диагностики</string>
+    <string name="select_the_product_recommendation_type">Выберите тип рекомендации продукта:</string>
+    <string name="choose_your_skin_problem">Выберите вашу проблему с кожей:</string>
+    <string name="dry">Сухая</string>
+    <string name="oily">Жирная</string>
+    <string name="sensitive">Чувствительная</string>
+    <string name="see_recommendations">Посмотреть рекомендации</string>
+    <string name="treatment_recommendations">Рекомендации по лечению:</string>
+    <string name="recommendation_result">Результат рекомендации</string>
+    <string name="product_recommendations">Рекомендации по продуктам:</string>
+    <string name="our_recommendations">Наши рекомендации</string>
 </resources>

@@ -80,4 +80,17 @@
     <string name="serum">Suero</string>
     <string name="facewash">Limpiador facial</string>
     <string name="sunscreen">Protector solar</string>
+    <string name="scan_reslut_appbar_title">Resultado del análisis</string>
+    <string name="diagnose">Diagnósticos</string>
+    <string name="diganose_result">Resultado del diagnóstico</string>
+    <string name="select_the_product_recommendation_type">Seleccione el tipo de recomendación de producto:</string>
+    <string name="choose_your_skin_problem">Elija su problema de piel:</string>
+    <string name="dry">Seco</string>
+    <string name="oily">Graso</string>
+    <string name="sensitive">Sensible</string>
+    <string name="see_recommendations">Ver recomendaciones</string>
+    <string name="treatment_recommendations">Recomendaciones de tratamiento:</string>
+    <string name="recommendation_result">Resultado de la recomendación</string>
+    <string name="product_recommendations">Recomendaciones de productos:</string>
+    <string name="our_recommendations">Nuestras recomendaciones</string>
 </resources>

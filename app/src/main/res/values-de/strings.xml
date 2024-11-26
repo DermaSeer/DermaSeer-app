@@ -80,4 +80,17 @@
     <string name="serum">Serum</string>
     <string name="facewash">Gesichtswäsche</string>
     <string name="sunscreen">Sonnencreme</string>
+    <string name="scan_reslut_appbar_title">Analyseergebnis</string>
+    <string name="diagnose">Diagnosen</string>
+    <string name="diganose_result">Diagnoseergebnis</string>
+    <string name="select_the_product_recommendation_type">Wählen Sie den Produktempfehlungstyp:</string>
+    <string name="choose_your_skin_problem">Wählen Sie Ihr Hautproblem:</string>
+    <string name="dry">Trocken</string>
+    <string name="oily">Ölig</string>
+    <string name="sensitive">Empfindlich</string>
+    <string name="see_recommendations">Empfehlungen anzeigen</string>
+    <string name="treatment_recommendations">Behandlungsempfehlungen:</string>
+    <string name="recommendation_result">Empfehlungsergebnis</string>
+    <string name="product_recommendations">Produktempfehlungen:</string>
+    <string name="our_recommendations">Unsere Empfehlungen</string>
 </resources>

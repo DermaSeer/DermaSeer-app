@@ -80,4 +80,17 @@
     <string name="serum">セラム</string>
     <string name="facewash">洗顔料</string>
     <string name="sunscreen">日焼け止め</string>
+    <string name="scan_reslut_appbar_title">分析結果</string>
+    <string name="diagnose">診断</string>
+    <string name="diganose_result">診断結果</string>
+    <string name="select_the_product_recommendation_type">製品推奨タイプを選択してください：</string>
+    <string name="choose_your_skin_problem">あなたの肌の問題を選んでください：</string>
+    <string name="dry">乾燥</string>
+    <string name="oily">油っぽい</string>
+    <string name="sensitive">敏感</string>
+    <string name="see_recommendations">推奨を表示</string>
+    <string name="treatment_recommendations">治療の推奨：</string>
+    <string name="recommendation_result">推奨結果</string>
+    <string name="product_recommendations">製品推奨：</string>
+    <string name="our_recommendations">私たちの推奨</string>
 </resources>

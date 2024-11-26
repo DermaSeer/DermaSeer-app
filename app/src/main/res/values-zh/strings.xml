@@ -80,4 +80,17 @@
     <string name="serum">精华液</string>
     <string name="facewash">洗面奶</string>
     <string name="sunscreen">防晒霜</string>
+    <string name="scan_reslut_appbar_title">分析结果</string>
+    <string name="diagnose">诊断</string>
+    <string name="diganose_result">诊断结果</string>
+    <string name="select_the_product_recommendation_type">选择产品推荐类型：</string>
+    <string name="choose_your_skin_problem">选择您的皮肤问题：</string>
+    <string name="dry">干性</string>
+    <string name="oily">油性</string>
+    <string name="sensitive">敏感性</string>
+    <string name="see_recommendations">查看推荐</string>
+    <string name="treatment_recommendations">治疗推荐：</string>
+    <string name="recommendation_result">推荐结果</string>
+    <string name="product_recommendations">产品推荐：</string>
+    <string name="our_recommendations">我们的推荐</string>
 </resources>
