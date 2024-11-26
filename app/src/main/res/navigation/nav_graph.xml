@@ -188,8 +188,8 @@
         <argument
             android:name="product"
             app:argType="string" />
+    </fragment>
 
-        tools:layout="@layout/fragment_product_detail" />
     <fragment
         android:id="@+id/scanResultRecomendationFragment2"
         android:name="com.dermaseer.dermaseer.ui.scan_result.ScanResultRecomendationFragment"

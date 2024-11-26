@@ -1,11 +1,12 @@
 package com.dermaseer.dermaseer.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.remote.models.ProductResponse
@@ -21,23 +22,23 @@ class ProductListAdapter :
     class ProductViewHolder(private val binding: ItemProductListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n", "DefaultLocale")
         fun bind(product: ProductResponse.Data) {
-            binding.productName.text = product.name
-            val formattedPrice = product.price?.let {
-                NumberFormat.getCurrencyInstance(Locale.getDefault()).format(it)
-            } ?: "Price not available"
-            binding.productPrice.text = formattedPrice
-
-            Glide.with(binding.root.context)
-                .load(product.imageUrl)
-                .placeholder(R.drawable.noimage)
-                .into(binding.ivProduct)
-
-            binding.root.setOnClickListener {
-                val productJson = Gson().toJson(product)
-                val action = ProductListFragmentDirections
-                    .actionProductListFragmentToProductDetailFragment(productJson)
-                it.findNavController().navigate(action)
+            with(binding) {
+                tvProductName.text = product.name
+                val formattedPrice = NumberFormat.getNumberInstance(Locale("id", "ID")).format(product.price)
+                tvProductPrice.text = "Rp$formattedPrice"
+                tvProductRating.text = String.format("%.1f", product.productRating)
+                Glide.with(root.context)
+                    .load(product.imageUrl)
+                    .placeholder(R.drawable.noimage)
+                    .into(ivProduct)
+                root.setOnClickListener {
+                    val productJson = Gson().toJson(product)
+                    val action = ProductListFragmentDirections
+                        .actionProductListFragmentToProductDetailFragment(productJson)
+                    it.findNavController().navigate(action)
+                }
             }
         }
     }

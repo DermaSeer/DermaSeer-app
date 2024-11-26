@@ -47,6 +47,8 @@ class ProductListFragment : Fragment() {
 
       productListViewModel.getProductList(selectedCategory)
 
+      binding.topAppBar.setTitle(selectedCategory)
+
       val navController = findNavController()
 
       (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
