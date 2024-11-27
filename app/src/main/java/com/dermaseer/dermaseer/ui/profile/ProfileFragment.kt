@@ -47,17 +47,27 @@ class ProfileFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
       binding.btnSignout.setOnClickListener {
-         profileViewModel.signOut(
-            onSignOutSuccess = {
-               navigatePage()
-               Snackbar.make(binding.root, "Sign out Success", Snackbar.LENGTH_SHORT).show()
-            },
-            onSignOutFailure = {
-               Log.e("TestLogout", "${it?.message}")
-            },
-            context = requireContext()
-         )
+         AlertDialog.Builder(requireContext())
+            .setTitle("Konfirmasi LogOut")
+            .setMessage("Apakah Anda yakin LogOut dari akun sekarang?")
+            .setPositiveButton("Ya") { _, _ ->
+               profileViewModel.signOut(
+                  onSignOutSuccess = {
+                     navigatePage()
+                     Snackbar.make(binding.root, "Sign out Success", Snackbar.LENGTH_SHORT).show()
+                  },
+                  onSignOutFailure = {
+                     // cancel logout
+                  },
+                  context = requireContext()
+               )
+            }
+            .setNegativeButton("Batal") { dialog, _ ->
+               dialog.dismiss()
+            }
+            .show()
       }
+
       binding.cardDeleteAccount.setOnClickListener { showAlertDialog() }
       getUserData()
       editProfile()
