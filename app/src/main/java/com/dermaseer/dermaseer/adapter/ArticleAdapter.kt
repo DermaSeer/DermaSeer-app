@@ -19,33 +19,33 @@ class ArticleAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(article: ArticleResponse.Data) {
-            binding.tvArticleTitle.text = article.title ?: "Untitled"
-            binding.tvArticleDescription.text = article.content ?: "No description available"
-            Glide.with(binding.ivArticleImage.context)
-                .load(article.imageUrl)
-                .into(binding.ivArticleImage)
+            with(binding) {
+                tvArticleTitle.text = article.title ?: "Untitled"
+                Glide.with(ivArticleImage.context)
+                    .load(article.imageUrl)
+                    .into(ivArticleImage)
 
-            binding.icArrow.setOnClickListener {
-                article.url?.let { url ->
-                    val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                        "https://$url"
-                    } else {
-                        url
-                    }
+                icArrow.setOnClickListener {
+                    article.url?.let { url ->
+                        val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                            "https://$url"
+                        } else {
+                            url
+                        }
 
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
-                    try {
-                        binding.root.context.startActivity(intent)
-                    } catch (e: Exception) {
-                        Toast.makeText(
-                            binding.root.context,
-                            "Tidak dapat membuka tautan",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
+                        try {
+                            root.context.startActivity(intent)
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                root.context,
+                                "Tidak dapat membuka tautan",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
-
         }
     }
 
