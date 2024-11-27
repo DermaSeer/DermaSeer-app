@@ -12,10 +12,10 @@ import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.ItemArticleBinding
 
-class ArticleAdapter :
+class ArticleAdapter(private val onItemClick: (String) -> Unit) :
     ListAdapter<ArticleResponse.Data, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
 
-    class ArticleViewHolder(private val binding: ItemArticleBinding) :
+    class ArticleViewHolder(private val binding: ItemArticleBinding, private val onItemClick: (String) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(article: ArticleResponse.Data) {
@@ -24,6 +24,10 @@ class ArticleAdapter :
                 Glide.with(ivArticleImage.context)
                     .load(article.imageUrl)
                     .into(ivArticleImage)
+
+                root.setOnClickListener {
+                    article.url?.let(onItemClick)
+                }
 
                 icArrow.setOnClickListener {
                     article.url?.let { url ->
@@ -55,7 +59,7 @@ class ArticleAdapter :
     ): ArticleViewHolder {
         val binding =
             ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleViewHolder(binding)
+        return ArticleViewHolder(binding, onItemClick)
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
