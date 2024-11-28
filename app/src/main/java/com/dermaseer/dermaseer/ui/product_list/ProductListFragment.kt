@@ -78,7 +78,7 @@ class ProductListFragment : Fragment() {
                }
                is ResultState.Error -> {
                   binding.progressBar.visibility = View.GONE
-                  Toast.makeText(context, result.errorMessage, Toast.LENGTH_SHORT).show()
+                  binding.ivNoData.visibility = View.VISIBLE
                }
             }
          }

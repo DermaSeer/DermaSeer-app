@@ -1,11 +1,17 @@
 package com.dermaseer.dermaseer
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -83,8 +89,35 @@ class MainActivity : AppCompatActivity() {
          R.id.articleFragment,
          R.id.historyFragment,
          R.id.profileFragment,
-         R.id.onBoardingFragment -> { finish() }
+         R.id.onBoardingFragment,
+         R.id.scanResultRecomendationFragment2 -> { showAlertDialog() }
          else -> super.onBackPressed()
       }
+   }
+
+   @SuppressLint("SetTextI18n")
+   private fun showAlertDialog() {
+      val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(this)
+      val customView = inflater.inflate(R.layout.custom_alert_dialog, null)
+
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val messageView = customView.findViewById<TextView>(R.id.dialog_message)
+      val positiveBtn = customView.findViewById<Button>(R.id.btn_positive)
+      val negativeBtn = customView.findViewById<Button>(R.id.btn_negative)
+
+      titleView.text = "Confirm exit"
+      messageView.text = "Are you sure you want to exit the app?"
+      positiveBtn.text = "YES"
+      negativeBtn.text = "NO"
+
+      val dialog = builder.setView(customView).create()
+      positiveBtn.setOnClickListener {
+         finish()
+         dialog.dismiss()
+      }
+      negativeBtn.setOnClickListener { dialog.dismiss() }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
    }
 }

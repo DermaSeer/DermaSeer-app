@@ -33,13 +33,13 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_image"
-            android:layout_width="280dp"
+            android:layout_width="240dp"
             android:layout_height="0dp"
             android:layout_marginVertical="32dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
@@ -49,29 +49,20 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_preview_foto"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/noimage" />
+                android:src="@drawable/noimage" />
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_image">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/diganose_result"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/backgroundresult" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,20 +89,18 @@
 
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
-
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentPaddingBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
             android:paddingBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +119,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@string/select_the_product_recommendation_type"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,7 +140,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/moisturizer"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -164,7 +153,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/toner"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -177,7 +166,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/serum"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -190,7 +179,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/facewash"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -203,7 +192,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/sunscreen"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -219,7 +208,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@string/choose_your_skin_problem"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -243,7 +232,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/dry"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -256,7 +245,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/oily"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -269,7 +258,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/sensitive"
                         android:textColor="@color/text_black"
-                        android:textSize="8sp"
+                        android:textSize="11sp"
                         app:chipBackgroundColor="@color/grey"
                         app:chipCornerRadius="100dp"
                         app:chipStrokeColor="@color/transparent"
@@ -278,6 +267,7 @@
                 </com.google.android.material.chip.ChipGroup>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_recommendation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"

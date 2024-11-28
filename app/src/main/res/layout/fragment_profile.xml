@@ -46,12 +46,23 @@
                 android:layout_height="wrap_content"
                 android:padding="12dp">
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivUserPhoto"
                     android:layout_width="92dp"
                     android:layout_height="92dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/unknownperson"
+                    tools:src="@drawable/unknownperson"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -193,7 +204,7 @@
                     android:layout_marginStart="8dp"
                     android:text="@string/language"
                     android:textColor="@color/text_black"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -202,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/change_language_button"
-                    android:src="@drawable/arrow_right_02_stroke_rounded" />
+                    android:src="@drawable/arrow_right_01_stroke_rounded" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -245,7 +256,7 @@
                     android:layout_marginStart="8dp"
                     android:text="@string/delete_account"
                     android:textColor="@color/text_black"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -254,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/delete_account_button"
-                    android:src="@drawable/arrow_right_02_stroke_rounded" />
+                    android:src="@drawable/arrow_right_01_stroke_rounded" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

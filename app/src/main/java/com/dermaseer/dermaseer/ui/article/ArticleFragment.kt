@@ -59,12 +59,11 @@ class ArticleFragment : Fragment() {
 
                 is ResultState.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
                 }
 
                 is ResultState.Error -> {
+                    binding.ivNoData.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, result.errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -45,4 +45,9 @@
         <item name="cornerSize">12dp</item>
     </style>
 
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+    </style>
+
 </resources>

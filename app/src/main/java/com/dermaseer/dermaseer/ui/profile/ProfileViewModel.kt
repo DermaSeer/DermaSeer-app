@@ -13,6 +13,7 @@ import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
 import com.dermaseer.dermaseer.data.remote.models.DeleteUserResponse
 import com.dermaseer.dermaseer.data.remote.models.UserResponse
 import com.dermaseer.dermaseer.data.repository.user.UserRepository
+import com.dermaseer.dermaseer.utils.ResultState
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,9 @@ class ProfileViewModel @Inject constructor(
    private val userRepository: UserRepository
 ): ViewModel() {
 
+   private var _state = MutableLiveData<ResultState>()
+   val state: LiveData<ResultState> = _state
+
    private var _userData = MutableLiveData<UserResponse>()
    val userData: LiveData<UserResponse> = _userData
 
@@ -41,9 +45,12 @@ class ProfileViewModel @Inject constructor(
 
    private fun getUserData() {
       viewModelScope.launch {
+         _state.value = ResultState.Loading
          try {
             _userData.value = userRepository.getCurrentUser()
+            _state.value = ResultState.Success("Success get user data")
          } catch (e: HttpException) {
+            _state.value = ResultState.Error(e.message())
             Log.e("GetUser", "Error")
          }
       }

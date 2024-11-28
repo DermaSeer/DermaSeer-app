@@ -60,7 +60,6 @@ class HomeFragment : Fragment() {
             is ResultState.Loading -> binding.progressBar.visibility = View.VISIBLE
             is ResultState.Success -> {
                binding.progressBar.visibility = View.GONE
-               Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
             }
             is ResultState.Error -> {
                binding.progressBar.visibility = View.GONE
