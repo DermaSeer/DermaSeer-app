@@ -194,6 +194,9 @@
             app:popUpTo="@id/scanResultFragment"
             app:popUpToInclusive="true"
             app:launchSingleTop="true" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -216,5 +219,8 @@
             app:popUpTo="@id/scanResultRecomendationFragment2"
             app:popUpToInclusive="true"
             app:launchSingleTop="true" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
     </fragment>
 </navigation>

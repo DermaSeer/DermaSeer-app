@@ -81,7 +81,7 @@ class ProfileFragment : Fragment() {
                viewLifecycleOwner.lifecycleScope.launch {
                   profileViewModel.deleteUserAccount()
                   profileViewModel.deleteUserResponse.observe(viewLifecycleOwner) { response ->
-                     Snackbar.make(binding.root, "${response.message}", Snackbar.LENGTH_SHORT).show()
+                     Snackbar.make(binding.root, "Delete account success", Snackbar.LENGTH_SHORT).show()
                   }
                   profileViewModel.signOut(
                      onSignOutSuccess = { navigatePage() },

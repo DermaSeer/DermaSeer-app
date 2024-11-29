@@ -64,7 +64,13 @@ class PhotoPreviewFragment : Fragment() {
    }
 
    private fun analyzePhoto() {
-      binding.btnAnalyze.setOnClickListener { navController.navigate(R.id.action_photoPreviewFragment_to_scanResultFragment) }
+      binding.btnAnalyze.setOnClickListener {
+         currentImageUri?.let { uri ->
+            val action = PhotoPreviewFragmentDirections
+               .actionPhotoPreviewFragmentToScanResultFragment(uri.toString())
+            navController.navigate(action)
+         }
+      }
    }
 
    @SuppressLint("SetTextI18n")

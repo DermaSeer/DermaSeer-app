@@ -1,5 +1,6 @@
 package com.dermaseer.dermaseer.ui.scan_result
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentScanResultRecomendationBinding
 
@@ -15,6 +17,7 @@ class ScanResultRecomendationFragment : Fragment() {
     private var _binding: FragmentScanResultRecomendationBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private val args: ScanResultRecomendationFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,8 @@ class ScanResultRecomendationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         binding.topAppBar.setNavigationOnClickListener { navController.navigate(R.id.action_scanResultRecomendationFragment2_to_homeFragment) }
+        val image = args.imageUri
+        binding.ivRecomendationAnalyze.setImageURI(Uri.parse(image))
     }
 
     override fun onDestroyView() {
