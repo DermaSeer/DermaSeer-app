@@ -6,17 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dermaseer.dermaseer.R
+import com.dermaseer.dermaseer.adapter.LoadingStateAdapter
 import com.dermaseer.dermaseer.adapter.ProductListAdapter
 import com.dermaseer.dermaseer.databinding.FragmentProductListBinding
-import com.dermaseer.dermaseer.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProductListFragment : Fragment() {
@@ -41,47 +45,46 @@ class ProductListFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
 
       binding.rvProductList.layoutManager = GridLayoutManager(context, 2)
-      binding.rvProductList.adapter = productListAdapter
+      binding.rvProductList.adapter = productListAdapter.withLoadStateFooter(
+         footer = LoadingStateAdapter { productListAdapter.retry() }
+      )
 
       val selectedCategory = args.selectedCategory
 
-      productListViewModel.getProductList(selectedCategory)
-
-      binding.topAppBar.setTitle(selectedCategory)
-
-      val navController = findNavController()
-
-      (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-      binding.topAppBar.setNavigationOnClickListener {
-         navController.navigate(R.id.action_productListFragment_to_homeFragment)
-      }
-
-      binding.rvProductList.setOnClickListener {
-         navController.navigate(R.id.action_productListFragment_to_productDetailFragment)
+      viewLifecycleOwner.lifecycleScope.launch {
+         productListViewModel.getProductList(selectedCategory)
       }
 
       lifecycleScope.launchWhenStarted {
-         productListViewModel.productListState.collect { result ->
-            when (result) {
-               is ResultState.Loading -> {
-                  binding.progressBar.visibility = View.VISIBLE
-               }
-               is ResultState.Success -> {
-                  binding.progressBar.visibility = View.GONE
-                  val productList = productListViewModel.productList.value
-                  if (productList.isNotEmpty()) {
-                     productListAdapter.submitList(productList)
-                  } else {
-                     Toast.makeText(context, "No products found in this category", Toast.LENGTH_SHORT).show()
-                  }
-               }
-               is ResultState.Error -> {
-                  binding.progressBar.visibility = View.GONE
-                  binding.ivNoData.visibility = View.VISIBLE
-               }
-            }
+         productListViewModel.productList?.collectLatest { pagingData ->
+            productListAdapter.submitData(pagingData)
          }
+      }
+
+      productListAdapter.addLoadStateListener { loadState ->
+         binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+
+         val errorState = loadState.source.append as? LoadState.Error
+            ?: loadState.source.prepend as? LoadState.Error
+            ?: loadState.refresh as? LoadState.Error
+
+         errorState?.let {
+            Toast.makeText(
+               context,
+               it.error.localizedMessage ?: "Failed to load products.",
+               Toast.LENGTH_SHORT
+            ).show()
+         }
+
+         binding.ivNoData.isVisible =
+            loadState.source.refresh is LoadState.NotLoading && productListAdapter.itemCount == 0
+      }
+
+      binding.topAppBar.title = selectedCategory
+      (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+      binding.topAppBar.setNavigationOnClickListener {
+         findNavController().navigate(R.id.action_productListFragment_to_homeFragment)
       }
    }
 
@@ -90,3 +93,4 @@ class ProductListFragment : Fragment() {
       _binding = null
    }
 }
+

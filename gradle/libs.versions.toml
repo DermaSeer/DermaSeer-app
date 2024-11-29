@@ -28,6 +28,7 @@ navigationUiKtx = "2.8.4"
 playServicesAuth = "21.2.0"
 credentials = "1.2.2"
 googleid = "1.1.1"
+pagingRuntimeKtx = "3.3.4"
 
 [libraries]
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraLifecycle" }
@@ -68,6 +69,7 @@ play-services-auth = { module = "com.google.android.gms:play-services-auth", ver
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
+androidx-paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

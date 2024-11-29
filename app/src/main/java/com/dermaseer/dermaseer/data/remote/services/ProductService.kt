@@ -10,6 +10,8 @@ interface ProductService {
    @GET(ApiConstant.GET_PRODUCT_BY_CATEGORY)
    suspend fun getProductByCategory(
       @Header("Authorization") token: String,
-      @Query("category") category: String
+      @Query("category") category: String,
+      @Query("page") page: Int,
+      @Query("size") size: Int = 10
    ): ProductResponse
 }

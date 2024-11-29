@@ -4,8 +4,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.paging.LoadState
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
@@ -17,7 +18,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class ProductListAdapter :
-    ListAdapter<ProductResponse.Data, ProductListAdapter.ProductViewHolder>(ProductDiffCallback()) {
+    PagingDataAdapter<ProductResponse.Data, ProductListAdapter.ProductViewHolder>(ProductDiffCallback()) {
 
     class ProductViewHolder(private val binding: ItemProductListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -53,7 +54,7 @@ class ProductListAdapter :
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        getItem(position)?.let { holder.bind(it) }
     }
 
     class ProductDiffCallback : DiffUtil.ItemCallback<ProductResponse.Data>() {

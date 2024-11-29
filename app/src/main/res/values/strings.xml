@@ -93,4 +93,6 @@
     <string name="recommendation_result">Recommendation Result</string>
     <string name="product_recommendations">Product Recommendations : </string>
     <string name="our_recommendations">Our Recommendations</string>
+    <string name="retry">Retry</string>
+    <string name="timeout">Timeout</string>
 </resources>
