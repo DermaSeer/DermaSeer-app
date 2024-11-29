@@ -1,10 +1,15 @@
 package com.dermaseer.dermaseer.ui.complete_profile
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -79,7 +84,7 @@ class CompleteProfileFragment : Fragment() {
                      } catch (e: IllegalArgumentException) {
                         Log.e("NavigationError", "${e.message}")
                      } finally {
-                        Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
+                        showStateDialog(R.drawable.check, "Success")
                      }
                   }
                }
@@ -88,6 +93,29 @@ class CompleteProfileFragment : Fragment() {
       } else {
          Snackbar.make(binding.root, "Fill out all fields!", Snackbar.LENGTH_SHORT).show()
       }
+   }
+
+   private fun showStateDialog(
+      icon: Int,
+      title: String,
+   ) {
+      val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(requireContext())
+      val customView = inflater.inflate(R.layout.state_dialog, null)
+
+      val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+      titleView.text = title
+      iconView.setImageResource(icon)
+
+      val dialog = builder.setView(customView).create()
+      btnDismiss.setOnClickListener {
+         dialog.dismiss()
+      }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
    }
 
    override fun onDestroyView() {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -60,10 +61,10 @@ class ProfileFragment : Fragment() {
                profileViewModel.signOut(
                   onSignOutSuccess = {
                      navigatePage()
-                     Snackbar.make(binding.root, "Sign out Success", Snackbar.LENGTH_SHORT).show()
+                     showStateDialog(R.drawable.check, "Sign out success")
                   },
                   onSignOutFailure = {
-                     // cancel logout
+                     showStateDialog(R.drawable.remove, "Sign out failed")
                   },
                   context = requireContext()
                )
@@ -80,12 +81,15 @@ class ProfileFragment : Fragment() {
             onPositiveAction = {
                viewLifecycleOwner.lifecycleScope.launch {
                   profileViewModel.deleteUserAccount()
-                  profileViewModel.deleteUserResponse.observe(viewLifecycleOwner) { response ->
-                     Snackbar.make(binding.root, "Delete account success", Snackbar.LENGTH_SHORT).show()
+                  profileViewModel.deleteUserResponse.observe(viewLifecycleOwner) {
+                     showStateDialog(R.drawable.check, "Delete account success")
                   }
                   profileViewModel.signOut(
-                     onSignOutSuccess = { navigatePage() },
-                     onSignOutFailure = { },
+                     onSignOutSuccess = {
+                        navigatePage()
+                        showStateDialog(R.drawable.check, "Delete account success")
+                     },
+                     onSignOutFailure = { showStateDialog(R.drawable.remove, "Delete account failed") },
                      context = requireContext()
                   )
                }
@@ -138,7 +142,7 @@ class ProfileFragment : Fragment() {
                }
                is ResultState.Error -> {
                   binding.progressBar.visibility = View.GONE
-                  Snackbar.make(binding.root, state.errorMessage, Snackbar.LENGTH_SHORT).show()
+                  showStateDialog(R.drawable.remove, "Error! please close the app")
                }
             }
          }
@@ -172,6 +176,29 @@ class ProfileFragment : Fragment() {
          dialog.dismiss()
       }
       negativeBtn.setOnClickListener {
+         dialog.dismiss()
+      }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
+   }
+
+   private fun showStateDialog(
+      icon: Int,
+      title: String,
+   ) {
+      val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(requireContext())
+      val customView = inflater.inflate(R.layout.state_dialog, null)
+
+      val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+      titleView.text = title
+      iconView.setImageResource(icon)
+
+      val dialog = builder.setView(customView).create()
+      btnDismiss.setOnClickListener {
          dialog.dismiss()
       }
       dialog.window?.setBackgroundDrawable(ColorDrawable(0))
