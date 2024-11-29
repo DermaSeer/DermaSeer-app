@@ -1,12 +1,17 @@
 package com.dermaseer.dermaseer.ui.signin
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -15,7 +20,6 @@ import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentSigninBinding
 import com.dermaseer.dermaseer.utils.SigninState
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -71,7 +75,7 @@ class SigninFragment : Fragment() {
                navigatePage(state.user)
             }
             is SigninState.Error -> {
-               Snackbar.make(binding.root, "Sign in Failed, try again!", Snackbar.LENGTH_SHORT).show()
+               showStateDialog(R.drawable.remove, "Sign in Failed, try again!")
             }
          }
       }
@@ -95,9 +99,32 @@ class SigninFragment : Fragment() {
             } else {
                navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
             }
-            Snackbar.make(binding.root, "Sign in success", Snackbar.LENGTH_SHORT).show()
+            showStateDialog(R.drawable.check, "Sign in success")
          }
       }
+   }
+
+   private fun showStateDialog(
+      icon: Int,
+      title: String,
+   ) {
+      val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(requireContext())
+      val customView = inflater.inflate(R.layout.state_dialog, null)
+
+      val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+      titleView.text = title
+      iconView.setImageResource(icon)
+
+      val dialog = builder.setView(customView).create()
+      btnDismiss.setOnClickListener {
+         dialog.dismiss()
+      }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
    }
 
    override fun onDestroyView() {
