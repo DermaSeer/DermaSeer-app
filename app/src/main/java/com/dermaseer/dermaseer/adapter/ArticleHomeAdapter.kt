@@ -5,17 +5,18 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.ItemArticleHomeBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class ArticleHomeAdapter :
-    ListAdapter<ArticleResponse.Data, ArticleHomeAdapter.ArticleHomeViewHolder>(ArticleDiffCallback()) {
+    PagingDataAdapter<ArticleResponse.Data, ArticleHomeAdapter.ArticleHomeViewHolder>(
+        ArticleDiffCallback()
+    ) {
 
     class ArticleHomeViewHolder(private val binding: ItemArticleHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,10 +24,12 @@ class ArticleHomeAdapter :
         fun bindArticle(article: ArticleResponse.Data) {
             Glide.with(binding.ivArticle.context)
                 .load(article.imageUrl)
+                .error(R.drawable.noimage)
                 .into(binding.ivArticle)
 
             binding.ivArticle.setOnClickListener {
-                article.url?.let { url ->
+                val url = article.url
+                if (url != null) {
                     val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
                         "https://$url"
                     } else {
@@ -54,23 +57,9 @@ class ArticleHomeAdapter :
     }
 
     override fun onBindViewHolder(holder: ArticleHomeViewHolder, position: Int) {
-        val sortedArticles = currentList.sortedByDescending { article ->
-            val publishDateStr = article.publishDate?.toString()
-            try {
-                if (!publishDateStr.isNullOrEmpty()) {
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(
-                        publishDateStr
-                    )
-                } else {
-                    null
-                }
-            } catch (e: Exception) {
-                null
-            }
-        }.take(3)
-
-        if (position < sortedArticles.size) {
-            holder.bindArticle(sortedArticles[position])
+        val currentArticle = getItem(position)
+        if (currentArticle != null) {
+            holder.bindArticle(currentArticle)
         }
     }
 

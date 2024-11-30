@@ -1,25 +1,29 @@
 package com.dermaseer.dermaseer.data.repository.article
 
-import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.data.remote.services.ArticleService
-import kotlinx.coroutines.flow.first
+import com.dermaseer.dermaseer.paging.ArticlePagingSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ArticleRepositoryImpl @Inject constructor(
-   private val apiService: ArticleService,
-   private val authPreferences: AuthPreferences
+   private val authPreferences: AuthPreferences,
+   private val apiService: ArticleService
 ) : ArticleRepository {
 
-   override suspend fun getAllArticle(): ArticleResponse {
-      val token = authPreferences.authToken.first()
-
-      return if (token.isNullOrEmpty()) {
-         throw IllegalStateException("Token is null or empty")
-      } else {
-         apiService.getAllArticle("Bearer $token")
-      }
+   override suspend fun getAllArticle(): Flow<PagingData<ArticleResponse.Data>> {
+    return Pager(
+       config = PagingConfig(
+          pageSize = 10,
+          enablePlaceholders = false
+       ),
+       pagingSourceFactory = {
+          ArticlePagingSource(authPreferences, apiService)
+       }
+    ).flow
    }
-
 }

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.ItemArticleBinding
 
 class ArticleAdapter(private val onItemClick: (String) -> Unit) :
-    ListAdapter<ArticleResponse.Data, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
+    PagingDataAdapter<ArticleResponse.Data, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallback()) {
 
     class ArticleViewHolder(private val binding: ItemArticleBinding, private val onItemClick: (String) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
@@ -63,7 +64,7 @@ class ArticleAdapter(private val onItemClick: (String) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     class ArticleDiffCallback : DiffUtil.ItemCallback<ArticleResponse.Data>() {

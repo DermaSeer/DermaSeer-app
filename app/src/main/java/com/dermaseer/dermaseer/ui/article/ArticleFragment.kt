@@ -3,26 +3,35 @@ package com.dermaseer.dermaseer.ui.article
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dermaseer.dermaseer.adapter.ArticleAdapter
-import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
+import com.dermaseer.dermaseer.adapter.LoadingStateAdapter
 import com.dermaseer.dermaseer.databinding.FragmentArticleBinding
 import com.dermaseer.dermaseer.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ArticleFragment : Fragment() {
 
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ArticleViewModel by viewModels()
-    private lateinit var articleAdapter: ArticleAdapter
+    private val articleViewModel: ArticleViewModel by viewModels()
+
+    private val articlePagingAdapter = ArticleAdapter { url -> openArticleUrl(url) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,41 +45,61 @@ class ArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeViewModel()
-        viewModel.getArticles()
+        observeArticleList()
+        observeResultState()
     }
 
     private fun setupRecyclerView() {
-        articleAdapter = ArticleAdapter { url ->
-            openArticleUrl(url)
-        }
-        binding.rvArticle.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = articleAdapter
+        binding.rvArticle.layoutManager = LinearLayoutManager(context)
+        binding.rvArticle.adapter = articlePagingAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter { articlePagingAdapter.retry() }
+        )
+
+        articlePagingAdapter.addLoadStateListener { loadState ->
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+
+            val errorState = loadState.source.refresh as? LoadState.Error
+            errorState?.let {
+                Toast.makeText(
+                    context,
+                    it.error.localizedMessage ?: "Failed to load articles.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            binding.ivNoData.isVisible =
+                loadState.source.refresh is LoadState.NotLoading && articlePagingAdapter.itemCount == 0
         }
     }
 
-    private fun observeViewModel() {
-        viewModel.articleState.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is ResultState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
+    private fun observeArticleList() {
+        lifecycleScope.launch {
+            if (articleViewModel.articleList == null) {
+                articleViewModel.getArticles()
+            }
 
-                is ResultState.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                }
-
-                is ResultState.Error -> {
-                    binding.ivNoData.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-                }
+            articleViewModel.articleList?.collectLatest { pagingData ->
+                articlePagingAdapter.submitData(pagingData)
             }
         }
+    }
 
-        viewModel.articles.observe(viewLifecycleOwner) { articles ->
-            articles?.let {
-                articleAdapter.submitList(it)
+    private fun observeResultState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                articleViewModel.articleState.collectLatest { resultState ->
+                    when (resultState) {
+                        is ResultState.Loading -> {
+                            Log.d(TAG, "Loading...")
+                        }
+                        is ResultState.Success -> {
+                            Log.d(TAG, resultState.message)
+                        }
+                        is ResultState.Error -> {
+                            Log.d(TAG, resultState.message)
+                        }
+                    }
+                }
             }
         }
     }
@@ -88,7 +117,7 @@ class ArticleFragment : Fragment() {
         } catch (e: Exception) {
             Toast.makeText(
                 requireContext(),
-                "Tidak dapat membuka tautan",
+                "Unable to open the link.",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -97,5 +126,9 @@ class ArticleFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "ArticleFragment"
     }
 }
