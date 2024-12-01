@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
@@ -45,6 +47,7 @@ class ProductDetailFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
       binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
+      requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) { navController.navigateUp()}
       binding.btnBuy.setOnClickListener {
          val productJson = args.product
          val product = Gson().fromJson(productJson, ProductResponse.Data::class.java)
