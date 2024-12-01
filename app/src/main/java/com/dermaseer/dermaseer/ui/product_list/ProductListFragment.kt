@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -81,6 +82,10 @@ class ProductListFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.topAppBar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_productListFragment_to_homeFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().navigate(R.id.action_productListFragment_to_homeFragment)
         }
 
