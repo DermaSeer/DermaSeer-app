@@ -18,7 +18,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentSigninBinding
+import com.dermaseer.dermaseer.utils.ResultState
 import com.dermaseer.dermaseer.utils.SigninState
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -91,15 +94,32 @@ class SigninFragment : Fragment() {
    }
 
    private fun navigatePage(currentUser: FirebaseUser?) {
-      if (currentUser != null) {
-         signinViewModel.checkUserResponse.observe(viewLifecycleOwner) { user ->
-            Log.d("CheckUserData", "${user.success}")
-            if (user.success == true) {
-               navController.navigate(R.id.action_signinFragment_to_homeFragment)
-            } else {
-               navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
+      signinViewModel.state.observe(viewLifecycleOwner) { response ->
+         when(response) {
+            is ResultState.Loading -> {
+               binding.btnSignin.showProgress {
+                  progressColor = resources.getColor(R. color. text_black)
+                  buttonTextRes = R.string.please_wait
+               }
             }
-            showStateDialog(R.drawable.check, "Sign in success")
+            is ResultState.Success -> {
+               if (currentUser != null) {
+                  binding.btnSignin.hideProgress(R.string.sign_in_with_google)
+                  signinViewModel.checkUserResponse.observe(viewLifecycleOwner) { user ->
+                     Log.d("CheckUserData", "${user.success}")
+                     if (user.success == true) {
+                        navController.navigate(R.id.action_signinFragment_to_homeFragment)
+                     } else {
+                        navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
+                     }
+                     showStateDialog(R.drawable.check, "Sign in success")
+                  }
+               }
+            }
+            is ResultState.Error -> {
+               binding.btnSignin.hideProgress(R.string.sign_in_with_google)
+               showStateDialog(R.drawable.remove, "Sign in failed")
+            }
          }
       }
    }

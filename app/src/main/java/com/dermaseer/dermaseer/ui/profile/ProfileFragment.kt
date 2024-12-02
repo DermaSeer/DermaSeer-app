@@ -123,9 +123,13 @@ class ProfileFragment : Fragment() {
       viewLifecycleOwner.lifecycleScope.launch {
          profileViewModel.state.observe(viewLifecycleOwner) { state ->
             when(state) {
-               is ResultState.Loading -> { binding.progressBar.visibility = View.VISIBLE }
+               is ResultState.Loading -> {
+                  binding.lottieLoading.visibility = View.VISIBLE
+                  binding.lottieLoading.playAnimation()
+               }
                is ResultState.Success -> {
-                  binding.progressBar.visibility = View.GONE
+                  binding.lottieLoading.visibility = View.GONE
+                  binding.lottieLoading.cancelAnimation()
                   profileViewModel.userData.observe(viewLifecycleOwner) { user ->
                      with(binding) {
                         Log.d("CheckPhoto", user.data?.user?.profilePicture.toString())
@@ -141,7 +145,8 @@ class ProfileFragment : Fragment() {
                   }
                }
                is ResultState.Error -> {
-                  binding.progressBar.visibility = View.GONE
+                  binding.lottieLoading.visibility = View.GONE
+                  binding.lottieLoading.cancelAnimation()
                   showStateDialog(R.drawable.remove, "Error! please close the app")
                }
             }

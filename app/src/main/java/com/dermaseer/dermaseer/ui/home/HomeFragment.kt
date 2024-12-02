@@ -1,11 +1,16 @@
 package com.dermaseer.dermaseer.ui.home
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -55,24 +60,8 @@ class HomeFragment : Fragment() {
         setProductType()
         setupRecyclerViewArticle()
         getUserData()
-
-        homeViewModel.homeState.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is ResultState.Loading -> binding.progressBar.visibility = View.VISIBLE
-                is ResultState.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                }
-
-                is ResultState.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, result.errorMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        homeViewModel.articles.observe(viewLifecycleOwner) { pagingData ->
-            articleHomeAdapter.submitData(lifecycle, pagingData)
-        }
+        getArticles()
+        homeState()
     }
 
     private fun setupRecyclerViewArticle() {
@@ -144,6 +133,73 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getArticles() {
+        homeViewModel.articles.observe(viewLifecycleOwner) { pagingData ->
+            articleHomeAdapter.submitData(lifecycle, pagingData)
+        }
+    }
+
+    private fun homeState() {
+        homeViewModel.homeState.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is ResultState.Loading -> {
+                    with(binding) {
+                        ivLogo.visibility = View.GONE
+                        ivUserPhoto.visibility = View.GONE
+                        tvHelloUser.visibility = View.GONE
+                        tvArticle.visibility = View.GONE
+                        tvProduct.visibility = View.GONE
+                        tvLatestHistory.visibility = View.GONE
+                        containerProduct.visibility = View.GONE
+                        lottieLoading.visibility = View.VISIBLE
+                        lottieLoading.playAnimation()
+                    }
+                }
+                is ResultState.Success -> {
+                    with(binding) {
+                        ivLogo.visibility = View.VISIBLE
+                        ivUserPhoto.visibility = View.VISIBLE
+                        tvHelloUser.visibility = View.VISIBLE
+                        tvArticle.visibility = View.VISIBLE
+                        tvProduct.visibility = View.VISIBLE
+                        tvLatestHistory.visibility = View.VISIBLE
+                        containerProduct.visibility = View.VISIBLE
+                        lottieLoading.visibility = View.GONE
+                        lottieLoading.cancelAnimation()
+                    }
+                }
+                is ResultState.Error -> {
+                    binding.lottieLoading.visibility = View.GONE
+                    binding.lottieLoading.cancelAnimation()
+                    showStateDialog(R.drawable.remove, result.errorMessage)
+                }
+            }
+        }
+    }
+
+    private fun showStateDialog(
+        icon: Int,
+        title: String,
+    ) {
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+        val inflater = LayoutInflater.from(requireContext())
+        val customView = inflater.inflate(R.layout.state_dialog, null)
+
+        val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+        val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+        val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+        titleView.text = title
+        iconView.setImageResource(icon)
+
+        val dialog = builder.setView(customView).create()
+        btnDismiss.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+        dialog.show()
     }
 
     override fun onDestroyView() {

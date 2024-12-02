@@ -19,6 +19,9 @@ import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentEditProfileBinding
 import com.dermaseer.dermaseer.databinding.FragmentProfileBinding
+import com.dermaseer.dermaseer.utils.ResultState
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,44 +81,61 @@ class EditProfileFragment : Fragment() {
    }
 
    private fun updateUserData() {
-      val name = binding.etName.text.toString()
-      val birthday = binding.etAge.text.toString()
-      val gender = if (binding.radioMan.isChecked) {
-         "Male"
-      } else if (binding.radioWoman.isChecked){
-         "Female"
-      } else {
-         ""
-      }
-      val profilePicture = auth.currentUser?.photoUrl.toString()
-      if (name.isNotEmpty() && birthday.isNotEmpty() && gender.isNotEmpty()) {
-         val nameToRequestBody = name.toRequestBody("text/plain".toMediaType())
-         val birthdayToRequestBody = birthday.toRequestBody("text/plain".toMediaType())
-         val genderToRequestBody = gender.toRequestBody("text/plain".toMediaType())
-         val profilePictureToRequestBody = profilePicture.toRequestBody("text/plain".toMediaType())
-         viewLifecycleOwner.lifecycleScope.launch {
-            editProfileViewModel.updateUserData(
-               nameToRequestBody,
-               birthdayToRequestBody,
-               genderToRequestBody,
-               profilePictureToRequestBody
-            )
-            editProfileViewModel.newUserData.observe(viewLifecycleOwner) { user ->
-               user?.let {
-                  if (user.success == true) {
-                     try {
-                        navController.navigate(R.id.action_editProfileFragment_to_profileFragment)
-                     } catch (e: IllegalArgumentException) {
-                        Log.e("NavigationError", "${e.message}")
-                     } finally {
-                        showStateDialog(R.drawable.check, "Update data success")
-                     }
-                  }
+      editProfileViewModel.state.observe(viewLifecycleOwner) { state ->
+         when(state) {
+            is ResultState.Loading -> {
+               binding.btnSave.showProgress {
+                  progressColor = resources.getColor(R.color.white)
+                  buttonTextRes = R.string.please_wait
                }
             }
+            is ResultState.Success -> {
+               val name = binding.etName.text.toString()
+               val birthday = binding.etAge.text.toString()
+               val gender = if (binding.radioMan.isChecked) {
+                  "Male"
+               } else if (binding.radioWoman.isChecked){
+                  "Female"
+               } else {
+                  ""
+               }
+               val profilePicture = auth.currentUser?.photoUrl.toString()
+               if (name.isNotEmpty() && birthday.isNotEmpty() && gender.isNotEmpty()) {
+                  val nameToRequestBody = name.toRequestBody("text/plain".toMediaType())
+                  val birthdayToRequestBody = birthday.toRequestBody("text/plain".toMediaType())
+                  val genderToRequestBody = gender.toRequestBody("text/plain".toMediaType())
+                  val profilePictureToRequestBody = profilePicture.toRequestBody("text/plain".toMediaType())
+                  viewLifecycleOwner.lifecycleScope.launch {
+                     editProfileViewModel.updateUserData(
+                        nameToRequestBody,
+                        birthdayToRequestBody,
+                        genderToRequestBody,
+                        profilePictureToRequestBody
+                     )
+                     editProfileViewModel.newUserData.observe(viewLifecycleOwner) { user ->
+                        user?.let {
+                           if (user.success == true) {
+                              try {
+                                 navController.navigate(R.id.action_editProfileFragment_to_profileFragment)
+                              } catch (e: IllegalArgumentException) {
+                                 Log.e("NavigationError", "${e.message}")
+                              } finally {
+                                 showStateDialog(R.drawable.check, "Update data success")
+                              }
+                           }
+                        }
+                     }
+                     binding.btnSave.hideProgress(R.string.save)
+                  }
+               } else {
+                  Snackbar.make(binding.root, "Fill out all fields!", Snackbar.LENGTH_SHORT).show()
+               }
+            }
+            is ResultState.Error -> {
+               binding.btnSave.hideProgress(R.string.save)
+               showStateDialog(R.drawable.remove, "Edit data failed")
+            }
          }
-      } else {
-         Snackbar.make(binding.root, "Fill out all fields!", Snackbar.LENGTH_SHORT).show()
       }
    }
 

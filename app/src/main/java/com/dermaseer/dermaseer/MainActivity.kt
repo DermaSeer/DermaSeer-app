@@ -90,7 +90,8 @@ class MainActivity : AppCompatActivity() {
          R.id.historyFragment,
          R.id.profileFragment,
          R.id.onBoardingFragment,
-         R.id.scanResultRecomendationFragment2 -> { showAlertDialog() }
+         R.id.scanResultRecomendationFragment2,
+         R.id.completeProfileFragment -> { showAlertDialog() }
          else -> super.onBackPressed()
       }
    }

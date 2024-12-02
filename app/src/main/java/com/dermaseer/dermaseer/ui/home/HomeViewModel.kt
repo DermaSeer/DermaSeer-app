@@ -42,11 +42,10 @@ class HomeViewModel @Inject constructor(
       _homeState.value = ResultState.Loading
       viewModelScope.launch {
          try {
-            articleRepository.getAllArticle()
-               .collectLatest { pagingData ->
+            articleRepository.getAllArticle().collectLatest { pagingData ->
                   _articles.value = pagingData // Directly assign PagingData
-                  _homeState.value = ResultState.Success("Data loaded successfully")
-               }
+            }
+            _homeState.value = ResultState.Success("Data loaded successfully")
          } catch (e: Exception) {
             _homeState.value = ResultState.Error("Failed to load data: ${e.message}")
          }
@@ -54,11 +53,14 @@ class HomeViewModel @Inject constructor(
    }
 
    private fun getUser() {
+      _homeState.value = ResultState.Loading
       viewModelScope.launch {
          try {
             _userData.value = userRepository.getCurrentUser()
+            _homeState.value = ResultState.Success("Data loaded successfully")
          } catch (e: HttpException) {
             Log.e("GetUser", "Error fetching user: ${e.message}")
+            _homeState.value = ResultState.Error("Failed to load data: ${e.message}")
          }
       }
    }

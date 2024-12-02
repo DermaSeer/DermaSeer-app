@@ -18,6 +18,7 @@ import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
 import com.dermaseer.dermaseer.data.remote.models.UserResponse
 import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.dermaseer.dermaseer.ui.signin.SigninFragment.Companion.TAG
+import com.dermaseer.dermaseer.utils.ResultState
 import com.dermaseer.dermaseer.utils.SigninState
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -46,19 +47,25 @@ class SigninViewModel @Inject constructor(
     private var _signinState = MutableLiveData<SigninState>()
     val signinState: LiveData<SigninState> = _signinState
 
+    private var _state = MutableLiveData<ResultState>()
+    val state: LiveData<ResultState> = _state
+
     private var _checkUserResponse = MutableLiveData<UserResponse>()
     val checkUserResponse: LiveData<UserResponse> = _checkUserResponse
 
     private fun checkCurrentUser() {
+        _state.value = ResultState.Loading
         viewModelScope.launch {
             try {
                 _checkUserResponse.value = userRepository.getCurrentUser()
+                _state.value = ResultState.Success("Success")
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 val errorResponse = errorBody?.let {
                     Gson().fromJson(it, UserResponse::class.java)
                 } ?: UserResponse(success = false, data = null, message = null)
                 _checkUserResponse.value = errorResponse
+                _state.value = ResultState.Success("Success")
                 Log.e("LoginError", "HTTP error: ${e.message}")
             }
         }

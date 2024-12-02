@@ -111,4 +111,10 @@ dependencies {
    implementation(libs.androidx.credentials)
    implementation(libs.androidx.credentials.play.services.auth)
    implementation(libs.googleid)
+
+   // ProgressButton
+   implementation(libs.progressbutton)
+
+   // Lottie
+   implementation(libs.lottie)
 }

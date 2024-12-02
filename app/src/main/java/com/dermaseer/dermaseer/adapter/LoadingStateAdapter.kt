@@ -34,13 +34,15 @@ class LoadingStateAdapter(private val retry: () -> Unit) :
 
         fun bind(loadState: LoadState) {
             binding.apply {
-                progressBar.isVisible = loadState is LoadState.Loading
+                lottieLoading.isVisible = loadState is LoadState.Loading
+                lottieLoading.playAnimation()
                 retryButton.isVisible = loadState is LoadState.Error
                 tvErrorMessage.isVisible = loadState is LoadState.Error
 
                 if (loadState is LoadState.Error) {
                     tvErrorMessage.text = loadState.error.localizedMessage
                 }
+                lottieLoading.cancelAnimation()
             }
         }
     }

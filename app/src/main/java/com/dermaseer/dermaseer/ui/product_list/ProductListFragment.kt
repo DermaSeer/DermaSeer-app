@@ -61,7 +61,8 @@ class ProductListFragment : Fragment() {
         )
 
         productListAdapter.addLoadStateListener { loadState ->
-            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.lottieLoading.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.lottieLoading.playAnimation()
 
             val errorState = loadState.source.refresh as? LoadState.Error
             errorState?.let {
@@ -75,6 +76,7 @@ class ProductListFragment : Fragment() {
             binding.ivNoData.isVisible =
                 loadState.source.refresh is LoadState.NotLoading && productListAdapter.itemCount == 0
         }
+        binding.lottieLoading.cancelAnimation()
     }
 
     private fun observeProductList() {
