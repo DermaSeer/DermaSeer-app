@@ -93,4 +93,8 @@
     <string name="recommendation_result">Aanbevelingsresultaat</string>
     <string name="product_recommendations">Productaanbevelingen:</string>
     <string name="our_recommendations">Onze Aanbevelingen</string>
+    <string name="retry">Opnieuw proberen</string>
+    <string name="timeout">Time-out</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">Even geduld…</string>
 </resources>

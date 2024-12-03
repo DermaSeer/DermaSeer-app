@@ -93,4 +93,8 @@
     <string name="recommendation_result">Hasil Cadangan</string>
     <string name="product_recommendations">Cadangan Produk:</string>
     <string name="our_recommendations">Cadangan Kami</string>
+    <string name="retry">Cuba Lagi</string>
+    <string name="timeout">Masa Tamat</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">Sila tunggu…</string>
 </resources>

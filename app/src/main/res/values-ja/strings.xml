@@ -93,4 +93,8 @@
     <string name="recommendation_result">推奨結果</string>
     <string name="product_recommendations">製品推奨：</string>
     <string name="our_recommendations">私たちの推奨</string>
+    <string name="retry">再試行</string>
+    <string name="timeout">タイムアウト</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">お待ちください…</string>
 </resources>

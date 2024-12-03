@@ -93,4 +93,8 @@
     <string name="recommendation_result">Resultado de la recomendación</string>
     <string name="product_recommendations">Recomendaciones de productos:</string>
     <string name="our_recommendations">Nuestras recomendaciones</string>
+    <string name="retry">Reintentar</string>
+    <string name="timeout">Tiempo de espera agotado</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">Por favor, espera…</string>
 </resources>

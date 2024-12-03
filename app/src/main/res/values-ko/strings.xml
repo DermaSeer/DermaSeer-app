@@ -93,4 +93,8 @@
     <string name="recommendation_result">추천 결과</string>
     <string name="product_recommendations">제품 추천:</string>
     <string name="our_recommendations">우리의 추천</string>
+    <string name="retry">재시도</string>
+    <string name="timeout">시간 초과</string>
+    <string name="ok">확인</string>
+    <string name="please_wait">기다려 주세요…</string>
 </resources>

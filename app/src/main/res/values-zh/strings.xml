@@ -93,4 +93,8 @@
     <string name="recommendation_result">推荐结果</string>
     <string name="product_recommendations">产品推荐：</string>
     <string name="our_recommendations">我们的推荐</string>
+    <string name="retry">重试</string>
+    <string name="timeout">超时</string>
+    <string name="ok">确定</string>
+    <string name="please_wait">请稍候…</string>
 </resources>

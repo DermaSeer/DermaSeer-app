@@ -93,4 +93,8 @@
     <string name="recommendation_result">Hasil Rekomendasi</string>
     <string name="product_recommendations">Rekomendasi Produk:</string>
     <string name="our_recommendations">Rekomendasi Kami</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="timeout">Waktu Habis</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">Harap tunggu…</string>
 </resources>

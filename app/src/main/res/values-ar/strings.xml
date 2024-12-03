@@ -93,4 +93,8 @@
     <string name="recommendation_result">نتيجة التوصية</string>
     <string name="product_recommendations">توصيات المنتجات:</string>
     <string name="our_recommendations">توصياتنا</string>
+    <string name="retry">أعد المحاولة</string>
+    <string name="timeout">انتهى الوقت</string>
+    <string name="ok">حسنًا</string>
+    <string name="please_wait">يرجى الانتظار…</string>
 </resources>

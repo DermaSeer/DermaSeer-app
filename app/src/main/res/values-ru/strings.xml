@@ -93,4 +93,8 @@
     <string name="recommendation_result">Результат рекомендации</string>
     <string name="product_recommendations">Рекомендации по продуктам:</string>
     <string name="our_recommendations">Наши рекомендации</string>
+    <string name="retry">Повторить</string>
+    <string name="timeout">Тайм-аут</string>
+    <string name="ok">ОК</string>
+    <string name="please_wait">Пожалуйста, подождите…</string>
 </resources>
