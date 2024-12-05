@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ArticleAdapter
 import com.dermaseer.dermaseer.adapter.LoadingStateAdapter
 import com.dermaseer.dermaseer.databinding.FragmentArticleBinding
@@ -118,7 +119,7 @@ class ArticleFragment : Fragment() {
         } catch (e: Exception) {
             Toast.makeText(
                 requireContext(),
-                "Unable to open the link.",
+                requireContext().getString(R.string.unable_open_link),
                 Toast.LENGTH_SHORT
             ).show()
         }

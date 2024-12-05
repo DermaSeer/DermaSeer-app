@@ -107,10 +107,10 @@ class MainActivity : AppCompatActivity() {
       val positiveBtn = customView.findViewById<Button>(R.id.btn_positive)
       val negativeBtn = customView.findViewById<Button>(R.id.btn_negative)
 
-      titleView.text = "Confirm exit"
-      messageView.text = "Are you sure you want to exit the app?"
-      positiveBtn.text = "YES"
-      negativeBtn.text = "NO"
+      titleView.text = this.getString(R.string.confirm_exit)
+      messageView.text = this.getString(R.string.are_you_sure_exit)
+      positiveBtn.text = this.getString(R.string.yes)
+      negativeBtn.text = this.getString(R.string.no)
 
       val dialog = builder.setView(customView).create()
       positiveBtn.setOnClickListener {

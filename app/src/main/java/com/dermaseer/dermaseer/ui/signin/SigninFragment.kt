@@ -78,7 +78,7 @@ class SigninFragment : Fragment() {
                navigatePage(state.user)
             }
             is SigninState.Error -> {
-               showStateDialog(R.drawable.remove, "Sign in Failed, try again!")
+               showStateDialog(R.drawable.remove, requireContext().getString(R.string.sign_in_failed))
             }
          }
       }
@@ -112,13 +112,13 @@ class SigninFragment : Fragment() {
                      } else {
                         navController.navigate(R.id.action_signinFragment_to_completeProfileFragment)
                      }
-                     showStateDialog(R.drawable.check, "Sign in success")
+                     showStateDialog(R.drawable.check, requireContext().getString(R.string.sign_in_success))
                   }
                }
             }
             is ResultState.Error -> {
                binding.btnSignin.hideProgress(R.string.sign_in_with_google)
-               showStateDialog(R.drawable.remove, "Sign in failed")
+               showStateDialog(R.drawable.remove, requireContext().getString(R.string.sign_in_failed))
             }
          }
       }

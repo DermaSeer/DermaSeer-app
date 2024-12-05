@@ -46,14 +46,14 @@ class EditProfileViewModel @Inject constructor(
 
    fun updateUserData(
       name: RequestBody,
-      birthday: RequestBody,
+      age: RequestBody,
       gender: RequestBody,
       profilePicture: RequestBody
    ) {
       _state.value = ResultState.Loading
       viewModelScope.launch {
          try {
-            _newUserData.value = userRepository.updateUser(name, birthday, gender, profilePicture)
+            _newUserData.value = userRepository.updateUser(name, age, gender, profilePicture)
             _state.value = ResultState.Success("Success")
          } catch (e: Exception) {
             Log.e("EditUserData", "${e.message}")

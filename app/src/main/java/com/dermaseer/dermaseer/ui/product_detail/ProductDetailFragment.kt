@@ -61,7 +61,7 @@ class ProductDetailFragment : Fragment() {
             try {
                startActivity(intent)
             } catch (e: Exception) {
-               Toast.makeText(requireContext(), "Tidak dapat membuka tautan", Toast.LENGTH_SHORT).show()
+               Toast.makeText(requireContext(), requireContext().getString(R.string.unable_open_link), Toast.LENGTH_SHORT).show()
             }
          }
       }

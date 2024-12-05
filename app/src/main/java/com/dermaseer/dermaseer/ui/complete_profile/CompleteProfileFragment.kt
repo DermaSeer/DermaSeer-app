@@ -67,7 +67,7 @@ class CompleteProfileFragment : Fragment() {
             }
             is ResultState.Success -> {
                val name = binding.etName.text.toString()
-               val birthday = binding.etAge.text.toString()
+               val age = binding.etAge.text.toString().toInt()
                val gender = if (binding.radioMan.isChecked) {
                   "Male"
                } else if (binding.radioWoman.isChecked){
@@ -76,9 +76,9 @@ class CompleteProfileFragment : Fragment() {
                   ""
                }
                val profilePicture = auth.currentUser?.photoUrl.toString()
-               if (name.isNotEmpty() && birthday.isNotEmpty() && gender.isNotEmpty()) {
+               if (name.isNotEmpty() && age.toString().isNotEmpty() && gender.isNotEmpty()) {
                   val nameToRequestBody = name.toRequestBody("text/plain".toMediaType())
-                  val birthdayToRequestBody = birthday.toRequestBody("text/plain".toMediaType())
+                  val birthdayToRequestBody = age.toString().toRequestBody("text/plain".toMediaType())
                   val genderToRequestBody = gender.toRequestBody("text/plain".toMediaType())
                   val profilePictureToRequestBody = profilePicture.toRequestBody("text/plain".toMediaType())
                   viewLifecycleOwner.lifecycleScope.launch {
@@ -96,7 +96,7 @@ class CompleteProfileFragment : Fragment() {
                               } catch (e: IllegalArgumentException) {
                                  Log.e("NavigationError", "${e.message}")
                               } finally {
-                                 showStateDialog(R.drawable.check, "Welcome to DermaSeer!")
+                                 showStateDialog(R.drawable.check, requireContext().getString(R.string.welcome_to_dermaseer))
                               }
                            }
                         }
@@ -104,12 +104,12 @@ class CompleteProfileFragment : Fragment() {
                      binding.btnSave.hideProgress(R.string.save)
                   }
                } else {
-                  Snackbar.make(binding.root, "Fill out all fields!", Snackbar.LENGTH_SHORT).show()
+                  Snackbar.make(binding.root, requireContext().getString(R.string.fill_out_all_fields), Snackbar.LENGTH_SHORT).show()
                }
             }
             is ResultState.Error -> {
                binding.btnSave.hideProgress(R.string.save)
-               showStateDialog(R.drawable.remove, "Complete data failed")
+               showStateDialog(R.drawable.remove, requireContext().getString(R.string.complete_data_failed))
             }
          }
       }

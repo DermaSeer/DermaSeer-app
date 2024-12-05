@@ -23,7 +23,7 @@ interface UserService {
    suspend fun updateUser(
       @Header("Authorization") token: String,
       @Part("name") name: RequestBody,
-      @Part("birthday") birthday: RequestBody,
+      @Part("age") age: RequestBody,
       @Part("gender") gender: RequestBody,
       @Part("profile_picture") profilePicture: RequestBody
    ): UserResponse

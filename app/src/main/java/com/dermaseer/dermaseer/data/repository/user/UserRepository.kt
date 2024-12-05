@@ -10,7 +10,7 @@ interface UserRepository {
 
    suspend fun updateUser(
       name: RequestBody,
-      birthday: RequestBody,
+      age: RequestBody,
       gender: RequestBody,
       profilePicture: RequestBody
    ): UserResponse

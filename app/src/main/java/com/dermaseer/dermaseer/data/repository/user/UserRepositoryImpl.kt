@@ -35,7 +35,7 @@ class UserRepositoryImpl @Inject constructor(
 
    override suspend fun updateUser(
       name: RequestBody,
-      birthday: RequestBody,
+      age: RequestBody,
       gender: RequestBody,
       profilePicture: RequestBody
    ): UserResponse {
@@ -45,7 +45,7 @@ class UserRepositoryImpl @Inject constructor(
             userService.updateUser(
                "Bearer $token",
                name,
-               birthday,
+               age,
                gender,
                profilePicture
             )

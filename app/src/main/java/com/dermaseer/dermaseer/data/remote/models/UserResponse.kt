@@ -16,8 +16,8 @@ data class UserResponse(
         val user: User?
     ) {
         data class User(
-            @SerializedName("birthday")
-            val birthday: String?,
+            @SerializedName("age")
+            val age: Int?,
             @SerializedName("email")
             val email: String?,
             @SerializedName("gender")
@@ -25,7 +25,7 @@ data class UserResponse(
             @SerializedName("name")
             val name: String?,
             @SerializedName("profile_picture")
-            val profilePicture: String?
+            val profilePicture: Any?
         )
     }
 }

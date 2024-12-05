@@ -84,10 +84,10 @@ class PhotoPreviewFragment : Fragment() {
       val positiveBtn = customView.findViewById<Button>(R.id.btn_positive)
       val negativeBtn = customView.findViewById<Button>(R.id.btn_negative)
 
-      titleView.text = "Cancel scan"
-      messageView.text = "Are you sure you to cancel scan right now?"
-      positiveBtn.text = "YES"
-      negativeBtn.text = "NO"
+      titleView.text = requireContext().getString(R.string.cancel_scan)
+      messageView.text = requireContext().getString(R.string.are_you_sure_cancel_scan)
+      positiveBtn.text = requireContext().getString(R.string.yes)
+      negativeBtn.text = requireContext().getString(R.string.no)
 
       val dialog = builder.setView(customView).create()
       positiveBtn.setOnClickListener {

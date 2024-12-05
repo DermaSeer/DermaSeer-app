@@ -53,18 +53,18 @@ class ProfileFragment : Fragment() {
       navController = Navigation.findNavController(view)
       binding.btnSignout.setOnClickListener {
          showAlertDialog(
-            "Confirm Sign out",
-            "Are you sure to sign out?",
-            "YES",
-            "NO",
+            requireContext().getString(R.string.confirm_sign_out),
+            requireContext().getString(R.string.are_you_sure_sign_out),
+            requireContext().getString(R.string.yes),
+            requireContext().getString(R.string.no),
             onPositiveAction = {
                profileViewModel.signOut(
                   onSignOutSuccess = {
                      navigatePage()
-                     showStateDialog(R.drawable.check, "Sign out success")
+                     showStateDialog(R.drawable.check, requireContext().getString(R.string.sign_out_success))
                   },
                   onSignOutFailure = {
-                     showStateDialog(R.drawable.remove, "Sign out failed")
+                     showStateDialog(R.drawable.remove, requireContext().getString(R.string.sign_out_failed))
                   },
                   context = requireContext()
                )
@@ -74,22 +74,22 @@ class ProfileFragment : Fragment() {
 
       binding.cardDeleteAccount.setOnClickListener {
          showAlertDialog(
-            "Confirm delete account",
-            "Are you sure to delete this account?",
-            "DELETE",
-            "CANCEL",
+            requireContext().getString(R.string.confirm_delete_account),
+            requireContext().getString(R.string.are_you_sure_delete_account),
+            requireContext().getString(R.string.delete),
+            requireContext().getString(R.string.cancel),
             onPositiveAction = {
                viewLifecycleOwner.lifecycleScope.launch {
                   profileViewModel.deleteUserAccount()
                   profileViewModel.deleteUserResponse.observe(viewLifecycleOwner) {
-                     showStateDialog(R.drawable.check, "Delete account success")
+                     showStateDialog(R.drawable.check, requireContext().getString(R.string.delete_account_success))
                   }
                   profileViewModel.signOut(
                      onSignOutSuccess = {
                         navigatePage()
-                        showStateDialog(R.drawable.check, "Delete account success")
+                        showStateDialog(R.drawable.check, requireContext().getString(R.string.delete_account_success))
                      },
-                     onSignOutFailure = { showStateDialog(R.drawable.remove, "Delete account failed") },
+                     onSignOutFailure = { showStateDialog(R.drawable.remove, requireContext().getString(R.string.delete_account_failed)) },
                      context = requireContext()
                   )
                }
@@ -139,7 +139,7 @@ class ProfileFragment : Fragment() {
                            .into(ivUserPhoto)
                         tvUserName.text = user.data?.user?.name
                         tvUserEmail.text = user.data?.user?.email
-                        tvUserAge.text = user.data?.user?.birthday
+                        tvUserAge.text = user.data?.user?.age.toString()
                         tvUserGender.text = user.data?.user?.gender
                      }
                   }
