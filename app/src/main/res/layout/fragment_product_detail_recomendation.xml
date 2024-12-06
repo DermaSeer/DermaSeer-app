@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.product_detail.ProductDetailFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_blue"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/arrow_left_02_stroke_rounded"
+            app:title="Detail"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/CustomToolbarTitle" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_constraintBottom_toTopOf="@+id/card_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_product"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                tools:src="@drawable/noimage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Rp145.000"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_product"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp" />
+
+            <ImageView
+                android:id="@+id/ic_star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/star_stroke_rounded"
+                app:layout_constraintEnd_toStartOf="@id/tv_product_rating"
+                app:layout_constraintTop_toBottomOf="@id/iv_product"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_product_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="4.9"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_product"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Azarine Toner Sejuta Umat for All Skin Types Untuk Kulit Kusam Kombinasi Anti Aging Berminyak Berjerawat 90 ml"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_price"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="16dp" />
+
+            <ImageView
+                android:id="@+id/ic_store"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/store_01_stroke_rounded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_product_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Azarine Cosmetic Official Shop"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/ic_store"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="4dp"/>
+
+            <TextView
+                android:id="@+id/tv_product_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product_description"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_store"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/tv_product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
+                android:textColor="@color/text_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_description_title"
+                android:layout_marginTop="6dp"
+                android:paddingHorizontal="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="0dp"
+        android:backgroundTint="@color/white"
+        app:strokeWidth="1dp"
+        app:strokeColor="#D5D5D5">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/buy_now"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
