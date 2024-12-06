@@ -12,7 +12,7 @@
         android:layout_width="92dp"
         android:layout_height="92dp"
         android:contentDescription="App Logo"
-        android:src="@drawable/dermaseerlogo"
+        android:src="@drawable/dermaseer_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

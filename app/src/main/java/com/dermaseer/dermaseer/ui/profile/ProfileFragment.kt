@@ -139,7 +139,7 @@ class ProfileFragment : Fragment() {
                            .into(ivUserPhoto)
                         tvUserName.text = user.data?.user?.name
                         tvUserEmail.text = user.data?.user?.email
-                        tvUserAge.text = user.data?.user?.age.toString()
+                        tvUserAge.text = user.data?.user?.age.toString() + " Years old"
                         tvUserGender.text = user.data?.user?.gender
                      }
                   }

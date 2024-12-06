@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.credentials.CredentialManager
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dermaseer.dermaseer.data.remote.services.ArticleService
+import com.dermaseer.dermaseer.data.remote.services.HistoryService
+import com.dermaseer.dermaseer.data.remote.services.IngredientService
+import com.dermaseer.dermaseer.data.remote.services.PredictService
+import com.dermaseer.dermaseer.data.remote.services.ProductRecommendationService
 import com.dermaseer.dermaseer.data.remote.services.ProductService
 import com.dermaseer.dermaseer.data.remote.services.UserService
 import com.dermaseer.dermaseer.utils.ApiConstant
@@ -65,6 +69,30 @@ object NetworkModule {
    @Singleton
    fun provideUserService(retrofit: Retrofit): UserService {
       return retrofit.create(UserService::class.java)
+   }
+
+   @Provides
+   @Singleton
+   fun provideHistoryService(retrofit: Retrofit): HistoryService {
+      return retrofit.create(HistoryService::class.java)
+   }
+
+   @Provides
+   @Singleton
+   fun provideIngredientService(retrofit: Retrofit): IngredientService {
+      return retrofit.create(IngredientService::class.java)
+   }
+
+   @Provides
+   @Singleton
+   fun providePredictService(retrofit: Retrofit): PredictService {
+      return retrofit.create(PredictService::class.java)
+   }
+
+   @Provides
+   @Singleton
+   fun provideProductRecommendationService(retrofit: Retrofit): ProductRecommendationService {
+      return retrofit.create(ProductRecommendationService::class.java)
    }
 
    @Provides

@@ -42,7 +42,7 @@
         android:layout_height="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_user_photo"
-        android:src="@drawable/dermaseerlogo"
+        android:src="@drawable/dermaseer_logo"
         android:layout_marginEnd="16dp"
         tools:ignore="ContentDescription" />
 
