@@ -11,8 +11,8 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 
 | Name                        | Bangkit-ID     | Github-Profile                                       | LinkedIn                                          |
 |-----------------------------|----------------|-----------------------------------------------------|--------------------------------------------------|
-| Yazid Bintang Fathurrahman   | A622B4KY4524   | [@yazid](https://github.com/YazidBintang27)         | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/firman-ardiansyah04/) |
-| Firman Ardiansyah            | A132B4KY1524   | [@firman](https://github.com/Zephhyyrr)             | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yazid-bintang-fathurrahman/) |
+| Yazid Bintang Fathurrahman   | A622B4KY4524   | [@yazid](https://github.com/YazidBintang27)         | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yazid-bintang-fathurrahman/) |
+| Firman Ardiansyah            | A132B4KY1524   | [@firman](https://github.com/Zephhyyrr)             | [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/firman-ardiansyah04/) |
 
 ## **Table of Contents**
 
@@ -23,7 +23,7 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 - [Deployment Link APK DermaSeer](#deployment-link-apk-dermaseer)
 - [How to Instal](#how-to-install)
 - [Languages and Tools](#languages-and-tools)
-- [Project Structure](#priject-structure)
+- [Project Structure](#project-structure)
 
 ## **Features**
 
