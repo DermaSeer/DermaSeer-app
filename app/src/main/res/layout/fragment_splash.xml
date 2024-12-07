@@ -7,17 +7,18 @@
     tools:context=".ui.splash.SplashFragment"
     android:background="@color/white">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/iv_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription="App Logo"
-        android:src="@drawable/dermaseer_logo_blue"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="HardcodedText" />
+        app:lottie_rawRes="@raw/splashanimation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/tv_app_name"

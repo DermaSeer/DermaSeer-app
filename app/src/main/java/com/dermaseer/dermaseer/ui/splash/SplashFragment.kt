@@ -42,6 +42,7 @@ class SplashFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
       auth = FirebaseAuth.getInstance()
+      binding.ivLogo.playAnimation()
       viewLifecycleOwner.lifecycleScope.launch {
          delay(4000)
          navigatePage()
@@ -63,6 +64,7 @@ class SplashFragment : Fragment() {
 
    override fun onDestroyView() {
       super.onDestroyView()
+      binding.ivLogo.cancelAnimation()
       _binding = null
    }
 }
