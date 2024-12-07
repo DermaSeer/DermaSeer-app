@@ -62,6 +62,9 @@ dependencies {
    androidTestImplementation(libs.androidx.junit)
    androidTestImplementation(libs.androidx.espresso.core)
 
+   // flexbox
+   implementation (libs.flexbox)
+
    // Paging
    implementation(libs.androidx.paging.runtime.ktx)
 
