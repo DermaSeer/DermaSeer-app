@@ -222,5 +222,14 @@
         <argument
             android:name="imageUri"
             app:argType="string" />
+        <argument
+            android:name="predictId"
+            app:argType="string" />
+        <argument
+            android:name="skinType"
+            app:argType="string" />
+        <argument
+            android:name="productCategory"
+            app:argType="string" />
     </fragment>
 </navigation>
