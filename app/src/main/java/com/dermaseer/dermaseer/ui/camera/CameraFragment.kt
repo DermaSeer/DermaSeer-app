@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -16,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentCameraBinding
 import com.dermaseer.dermaseer.utils.createCustomTempFile
@@ -46,6 +48,10 @@ class CameraFragment : Fragment() {
       navController = Navigation.findNavController(view)
       startCamera()
       binding.btnTakePhoto.setOnClickListener { takePhoto() }
+
+      requireActivity().onBackPressedDispatcher.addCallback {
+         findNavController().navigate(R.id.action_cameraFragment_to_homeFragment)
+      }
    }
 
    private fun startCamera() {

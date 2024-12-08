@@ -135,6 +135,9 @@
             app:popUpTo="@id/cameraFragment"
             app:popUpToInclusive="true"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_cameraFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyDetailFragment"
@@ -234,6 +237,21 @@
             app:argType="string" />
         <argument
             android:name="productCategory"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailRecomendationFragment"
+        android:name="com.dermaseer.dermaseer.ui.product_detail.ProductDetailRecomendationFragment"
+        android:label="fragment_product_detail_recomendation"
+        tools:layout="@layout/fragment_product_detail_recomendation" >
+        <action
+            android:id="@+id/action_productDetailRecomendationFragment_to_scanResultRecomendationFragment2"
+            app:destination="@id/scanResultRecomendationFragment2"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+
+        <argument
+            android:name="predictId"
             app:argType="string" />
     </fragment>
 </navigation>
