@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_blue"
-            app:navigationIcon="@drawable/cancel_01_stroke_rounded"
+            app:navigationIcon="@drawable/arrow_left_02_stroke_rounded"
             app:title="History Detail"
             app:titleCentered="true"
             app:titleTextAppearance="@style/CustomToolbarTitle" />
@@ -40,12 +40,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_image"
-                android:layout_width="240dp"
-                android:layout_height="0dp"
+                android:layout_width="260dp"
+                android:layout_height="320dp"
                 app:cardCornerRadius="20dp"
                 android:layout_marginTop="32dp"
                 app:cardElevation="0dp"
-                app:layout_constraintHeight_percent="0.4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -92,9 +91,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="Jenis jerawat: Kista"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:layout_marginTop="4dp"
-                        android:fontFamily="@font/poppins_semibold" />
+                        android:fontFamily="@font/poppins_bold" />
 
                 </LinearLayout>
 
@@ -125,7 +124,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/treatment_recommendations"
                         android:textColor="@color/text_black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -171,7 +170,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="@string/recommendation_result"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/chip_group" />
 

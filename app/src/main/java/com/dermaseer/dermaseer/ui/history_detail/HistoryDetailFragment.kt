@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
@@ -46,12 +48,15 @@ class HistoryDetailFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
-      binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
-//      getHistoryDetail()
+      requireActivity().onBackPressedDispatcher.addCallback {
+         findNavController().navigate(R.id.action_historyDetailFragment_to_homeFragment)
+      }
+      binding.topAppBar.setNavigationOnClickListener { navController.navigate(R.id.action_historyDetailFragment_to_homeFragment) }
+      getHistoryDetail()
    }
 
    private fun getHistoryDetail() {
-      historyDetailViewModel.getHistoryByIndex(args.index)
+      historyDetailViewModel.getDummyHistoryByIndex(args.index)
       historyDetailViewModel.state.observe(viewLifecycleOwner) { state ->
          when (state) {
             is ResultState.Loading -> {

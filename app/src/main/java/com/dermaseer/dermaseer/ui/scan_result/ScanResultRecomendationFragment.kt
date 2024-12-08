@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ProductRecommendationAdapter
 import com.dermaseer.dermaseer.databinding.FragmentScanResultRecomendationBinding
@@ -47,6 +49,8 @@ class ScanResultRecomendationFragment : Fragment() {
         binding.topAppBar.setNavigationOnClickListener { navController.navigate(R.id.action_scanResultRecomendationFragment2_to_homeFragment) }
         val image = args.imageUri
         binding.ivRecomendationAnalyze.setImageURI(Uri.parse(image))
+        getRecommendations()
+        getProductDetail()
     }
 
     private fun getRecommendations() {
@@ -54,7 +58,7 @@ class ScanResultRecomendationFragment : Fragment() {
         val skinType = args.skinType
         val productCategory = args.productCategory
 
-        scanResultRecomendationViewModel.fetchAllRecommendations(predictId, skinType, productCategory)
+        scanResultRecomendationViewModel.fetchDummyAllRecommendations()
         scanResultRecomendationViewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResultState.Loading -> {
@@ -71,7 +75,7 @@ class ScanResultRecomendationFragment : Fragment() {
                         rvProductRecommendations.apply {
                             adapter = productRecommendationAdapter
                             setHasFixedSize(true)
-                            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
                             productRecommendationAdapter.setData(scanResultRecomendationViewModel.productRecommendationResponse.value?.data)
                         }
                     }
@@ -85,6 +89,15 @@ class ScanResultRecomendationFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getProductDetail() {
+        productRecommendationAdapter.setOnItemClickCallback(object: ProductRecommendationAdapter.OnItemClickCallback {
+            override fun onItemClicked(predictId: String) {
+                val toDetail = ScanResultRecomendationFragmentDirections.actionScanResultRecomendationFragment2ToProductDetailRecomendationFragment(predictId)
+                navController.navigate(toDetail)
+            }
+        })
     }
 
     override fun onDestroyView() {

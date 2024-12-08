@@ -9,7 +9,10 @@ import com.dermaseer.dermaseer.data.remote.models.ProductRecommendationResponse
 import com.dermaseer.dermaseer.data.repository.predict.IngredientRepository
 import com.dermaseer.dermaseer.data.repository.predict.ProductRecommendationRepository
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyIngredientResponse
+import com.dermaseer.dermaseer.utils.getDummyProductRecommendationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -50,4 +53,17 @@ class ScanResultRecomendationViewModel @Inject constructor(
         }
     }
 
+    fun fetchDummyAllRecommendations() {
+        viewModelScope.launch {
+            _state.value = ResultState.Loading
+            try {
+                delay(1500)
+                _ingredientsResponse.value = getDummyIngredientResponse()
+                _productRecommendationResponse.value = getDummyProductRecommendationResponse()
+                _state.value = ResultState.Success("Recommendations fetched successfully")
+            } catch (e: Exception) {
+                _state.value = ResultState.Error("${e.message}")
+            }
+        }
+    }
 }

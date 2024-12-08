@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +24,7 @@ import com.dermaseer.dermaseer.adapter.LatestHistoryAdapter
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.FragmentHomeBinding
 import com.dermaseer.dermaseer.databinding.ItemProductTypeBinding
+import com.dermaseer.dermaseer.ui.history.HistoryFragmentDirections
 import com.dermaseer.dermaseer.utils.ResultState
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,6 +63,8 @@ class HomeFragment : Fragment() {
         setupRecyclerViewArticle()
         getUserData()
         getArticles()
+        getLatestHistory()
+        getHistoryDetail()
         homeState()
     }
 
@@ -150,7 +152,6 @@ class HomeFragment : Fragment() {
             } else {
                 binding.rvLatestHistory.apply {
                     adapter = latestHistoryAdapter
-                    setHasFixedSize(true)
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     latestHistoryAdapter.setData(response.data)
                 }
@@ -194,6 +195,15 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getHistoryDetail() {
+        latestHistoryAdapter.setOnItemClickCallback(object: LatestHistoryAdapter.OnItemClickCallback {
+            override fun onItemClicked(index: Int) {
+                val toDetail = HomeFragmentDirections.actionHomeFragmentToHistoryDetailFragment(index)
+                navController.navigate(toDetail)
+            }
+        })
     }
 
     private fun showStateDialog(

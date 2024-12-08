@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.data.remote.models.ProductRecommendationResponse
-import com.dermaseer.dermaseer.databinding.ItemProductListBinding
+import com.dermaseer.dermaseer.databinding.ItemProductRecommendationBinding
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -17,10 +17,10 @@ class ProductRecommendationAdapter: RecyclerView.Adapter<ProductRecommendationAd
    private lateinit var onItemClickCallback: OnItemClickCallback
 
    interface OnItemClickCallback {
-      fun onItemClicked(index: Int)
+      fun onItemClicked(predictId: String)
    }
 
-   class ViewHolder(val binding: ItemProductListBinding): RecyclerView.ViewHolder(binding.root) {
+   class ViewHolder(val binding: ItemProductRecommendationBinding): RecyclerView.ViewHolder(binding.root) {
       @SuppressLint("SetTextI18n", "DefaultLocale")
       fun bind(product: ProductRecommendationResponse.Data?) {
          with(binding) {
@@ -38,7 +38,7 @@ class ProductRecommendationAdapter: RecyclerView.Adapter<ProductRecommendationAd
 
    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
       val layoutInflater = LayoutInflater.from(parent.context)
-      val binding = ItemProductListBinding.inflate(layoutInflater, parent, false)
+      val binding = ItemProductRecommendationBinding.inflate(layoutInflater, parent, false)
       return ViewHolder(binding)
    }
 
@@ -47,7 +47,7 @@ class ProductRecommendationAdapter: RecyclerView.Adapter<ProductRecommendationAd
    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       holder.bind(productRecommendationList?.get(position))
       holder.itemView.setOnClickListener {
-         onItemClickCallback.onItemClicked(position)
+         onItemClickCallback.onItemClicked(productRecommendationList?.get(position)?.id ?: "")
       }
    }
 

@@ -147,6 +147,9 @@
         <argument
             android:name="index"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_historyDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
@@ -238,6 +241,9 @@
         <argument
             android:name="productCategory"
             app:argType="string" />
+        <action
+            android:id="@+id/action_scanResultRecomendationFragment2_to_productDetailRecomendationFragment"
+            app:destination="@id/productDetailRecomendationFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailRecomendationFragment"

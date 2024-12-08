@@ -56,9 +56,9 @@ class ScanResultFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
-//      scanPhoto()
-//      getScanResult()
-//      getRecommendation()
+      scanPhoto()
+      getScanResult()
+      getRecommendation()
       setupChipGroup()
    }
 
@@ -72,7 +72,7 @@ class ScanResultFragment : Fragment() {
          imageFile.name,
          requestImageFile
       )
-      scanResultViewModel.fetchPrediction(multipartBody)
+      scanResultViewModel.fetchDummyPrediction()
    }
 
    private fun getScanResult() {
@@ -83,6 +83,7 @@ class ScanResultFragment : Fragment() {
                   cardImage.visibility = View.GONE
                   cardView.visibility = View.GONE
                   cardView2.visibility = View.GONE
+                  lottieLoading.visibility = View.VISIBLE
                }
             }
             is ResultState.Success -> {
@@ -94,6 +95,7 @@ class ScanResultFragment : Fragment() {
                   cardImage.visibility = View.VISIBLE
                   cardView.visibility = View.VISIBLE
                   cardView2.visibility = View.VISIBLE
+                  lottieLoading.visibility = View.GONE
                }
             }
             is ResultState.Error -> {
@@ -101,6 +103,7 @@ class ScanResultFragment : Fragment() {
                   cardImage.visibility = View.VISIBLE
                   cardView.visibility = View.VISIBLE
                   cardView2.visibility = View.VISIBLE
+                  lottieLoading.visibility = View.GONE
                }
                showStateDialog(R.drawable.remove, "Error")
             }

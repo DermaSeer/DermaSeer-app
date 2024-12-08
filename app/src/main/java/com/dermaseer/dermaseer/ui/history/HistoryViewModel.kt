@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.repository.predict.HistoryRepository
 import com.dermaseer.dermaseer.data.remote.models.HistoryResponse
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyHistoryResponse
 import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +25,8 @@ class HistoryViewModel @Inject constructor(
     val state: LiveData<ResultState> = _state
 
     init {
-       getHistory()
+//       getHistory()
+        getDummyHistory()
     }
 
     private fun getHistory() {
@@ -31,6 +34,19 @@ class HistoryViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _historyData.value = historyRepository.getHistory()
+                _state.value = ResultState.Success("Success")
+            } catch (e: Exception) {
+                _state.value = ResultState.Error("Error")
+            }
+        }
+    }
+
+    private fun getDummyHistory() {
+        _state.value = ResultState.Loading
+        viewModelScope.launch {
+            try {
+                delay(1500)
+                _historyData.value = getDummyHistoryResponse()
                 _state.value = ResultState.Success("Success")
             } catch (e: Exception) {
                 _state.value = ResultState.Error("Error")

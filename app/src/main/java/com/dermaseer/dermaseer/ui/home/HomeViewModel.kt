@@ -14,7 +14,9 @@ import com.dermaseer.dermaseer.data.repository.article.ArticleRepository
 import com.dermaseer.dermaseer.data.repository.predict.HistoryRepository
 import com.dermaseer.dermaseer.data.repository.user.UserRepository
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyHistoryResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -42,7 +44,7 @@ class HomeViewModel @Inject constructor(
    init {
       getArticles()
       getUser()
-      getLatestHistory()
+      getDummyLatestHistory()
    }
 
    private fun getArticles() {
@@ -77,6 +79,19 @@ class HomeViewModel @Inject constructor(
       viewModelScope.launch {
          try {
             _latestHistory.value = historyRepository.getHistory()
+            _homeState.value = ResultState.Success("Success")
+         } catch (e: Exception) {
+            _homeState.value = ResultState.Error("Please, close the app: ${e.message}")
+         }
+      }
+   }
+
+   private fun getDummyLatestHistory() {
+      _homeState.value = ResultState.Loading
+      viewModelScope.launch {
+         try {
+            delay(1500)
+            _latestHistory.value = getDummyHistoryResponse()
             _homeState.value = ResultState.Success("Success")
          } catch (e: Exception) {
             _homeState.value = ResultState.Error("Error")

@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.remote.models.PredictResponse
 import com.dermaseer.dermaseer.data.repository.predict.PredictRepository
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyPredictResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import javax.inject.Inject
@@ -28,6 +30,20 @@ class ScanResultViewModel @Inject constructor(
             _state.value = ResultState.Loading
             try {
                 val response = predictRepository.predictModel(image)
+                _predictResponse.value = response
+                _state.value = ResultState.Success("Success")
+            } catch (e: Exception) {
+                _state.value = ResultState.Error("${e.message}")
+            }
+        }
+    }
+
+    fun fetchDummyPrediction() {
+        viewModelScope.launch {
+            _state.value = ResultState.Loading
+            try {
+                delay(1500)
+                val response = getDummyPredictResponse()
                 _predictResponse.value = response
                 _state.value = ResultState.Success("Success")
             } catch (e: Exception) {

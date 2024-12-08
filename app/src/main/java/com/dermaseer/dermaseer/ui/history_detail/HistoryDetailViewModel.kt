@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.remote.models.HistoryResponse
 import com.dermaseer.dermaseer.data.repository.predict.HistoryRepository
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyHistoryResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +27,18 @@ class HistoryDetailViewModel @Inject constructor(
       viewModelScope.launch {
          try {
             _historyData.value = historyRepository.getHistory().data?.get(index)
+            _state.value = ResultState.Success("Success")
+         } catch (e: Exception) {
+            _state.value = ResultState.Error("Error")
+         }
+      }
+   }
+
+   fun getDummyHistoryByIndex(index: Int) {
+      _state.value = ResultState.Loading
+      viewModelScope.launch {
+         try {
+            _historyData.value = getDummyHistoryResponse().data?.get(index)
             _state.value = ResultState.Success("Success")
          } catch (e: Exception) {
             _state.value = ResultState.Error("Error")
