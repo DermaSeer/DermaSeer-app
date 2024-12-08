@@ -77,7 +77,6 @@ class ProductDetailRecomendationFragment : Fragment() {
         }
 
         setupRecyclerViewIngredient()
-
         lifecycleScope.launch {
             viewModel.fetchProductDetailRecommendation(args.predictId)
         }
@@ -95,20 +94,16 @@ class ProductDetailRecomendationFragment : Fragment() {
         viewModel.productDetailRecommendation.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ResultState.Loading -> showLoading(true)
-                is ResultState.Success -> {
-                    showLoading(false)
-                    val productRecommendationResponse = Gson().fromJson(
-                        result.successMessage,
-                        ProductRecommendationResponse::class.java
-                    )
-                    updateUI(productRecommendationResponse)
-                }
-
+                is ResultState.Success -> showLoading(false)
                 is ResultState.Error -> {
                     showLoading(false)
-                    Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        viewModel.productRecommendation.observe(viewLifecycleOwner) { productRecommendationResponse ->
+            productRecommendationResponse?.let { updateUI(it) }
         }
     }
 
