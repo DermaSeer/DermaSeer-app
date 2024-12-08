@@ -6,37 +6,34 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.repository.predict.HistoryRepository
 import com.dermaseer.dermaseer.data.remote.models.HistoryResponse
+import com.dermaseer.dermaseer.utils.ResultState
 import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HistoryViewModel @Inject constructor(private val historyRepository: HistoryRepository) :
-    ViewModel() {
+class HistoryViewModel @Inject constructor(
+    private val historyRepository: HistoryRepository
+): ViewModel() {
 
-    private val _historyData = MutableLiveData<List<HistoryResponse.Data>?>()
-    val historyData: LiveData<List<HistoryResponse.Data>?> = _historyData
+    private val _historyData = MutableLiveData<HistoryResponse>()
+    val historyData: LiveData<HistoryResponse> = _historyData
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
+    private var _state = MutableLiveData<ResultState>()
+    val state: LiveData<ResultState> = _state
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    init {
+       getHistory()
+    }
 
-    fun getHistory() {
-        _isLoading.value = true
+    private fun getHistory() {
+        _state.value = ResultState.Loading
         viewModelScope.launch {
             try {
-                val response = historyRepository.getHistory()
-                if (response.success == true) {
-                    _historyData.value = response.data?.filterNotNull()
-                } else {
-                    _errorMessage.value = response.message ?: "Unknown error"
-                }
+                _historyData.value = historyRepository.getHistory()
+                _state.value = ResultState.Success("Success")
             } catch (e: Exception) {
-                _errorMessage.value = e.localizedMessage ?: "An error occurred"
-            } finally {
-                _isLoading.value = false
+                _state.value = ResultState.Error("Error")
             }
         }
     }

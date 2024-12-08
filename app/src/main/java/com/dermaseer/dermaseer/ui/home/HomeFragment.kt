@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ArticleHomeAdapter
+import com.dermaseer.dermaseer.adapter.LatestHistoryAdapter
 import com.dermaseer.dermaseer.data.remote.models.ArticleResponse
 import com.dermaseer.dermaseer.databinding.FragmentHomeBinding
 import com.dermaseer.dermaseer.databinding.ItemProductTypeBinding
@@ -39,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var navController: NavController
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var articleHomeAdapter: ArticleHomeAdapter
+    private val latestHistoryAdapter: LatestHistoryAdapter = LatestHistoryAdapter()
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -138,6 +140,21 @@ class HomeFragment : Fragment() {
     private fun getArticles() {
         homeViewModel.articles.observe(viewLifecycleOwner) { pagingData ->
             articleHomeAdapter.submitData(lifecycle, pagingData)
+        }
+    }
+
+    private fun getLatestHistory() {
+        homeViewModel.latestHistory.observe(viewLifecycleOwner) { response ->
+            if (response.data?.isEmpty() == true) {
+                binding.tvNoLatestHistory.visibility = View.VISIBLE
+            } else {
+                binding.rvLatestHistory.apply {
+                    adapter = latestHistoryAdapter
+                    setHasFixedSize(true)
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    latestHistoryAdapter.setData(response.data)
+                }
+            }
         }
     }
 

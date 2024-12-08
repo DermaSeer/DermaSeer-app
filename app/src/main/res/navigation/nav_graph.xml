@@ -140,7 +140,11 @@
         android:id="@+id/historyDetailFragment"
         android:name="com.dermaseer.dermaseer.ui.history_detail.HistoryDetailFragment"
         android:label="fragment_history_detail"
-        tools:layout="@layout/fragment_history_detail" />
+        tools:layout="@layout/fragment_history_detail" >
+        <argument
+            android:name="index"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/productListFragment"
         android:name="com.dermaseer.dermaseer.ui.product_list.ProductListFragment"

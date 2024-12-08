@@ -56,4 +56,8 @@ class ProductRecommendationAdapter: RecyclerView.Adapter<ProductRecommendationAd
       this.productRecommendationList = productRecommendationList
       notifyDataSetChanged()
    }
+
+   fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+      this.onItemClickCallback = onItemClickCallback
+   }
 }
