@@ -121,10 +121,6 @@
     <string name="are_you_sure_cancel_scan">您确定要现在取消扫描吗？</string>
     <string name="confirm_exit">确认退出</string>
     <string name="are_you_sure_exit">您确定要退出应用程序吗？</string>
-<<<<<<< Updated upstream
-    <string name="matched_ingredients">匹配的食材:</string>
-    <string name="ingredient">食材</string>
-=======
     <string name="age_format">%1$d 岁</string>
     <string name="matched_ingredients">匹配的食材:</string>
     <string name="ingredient">食材</string>

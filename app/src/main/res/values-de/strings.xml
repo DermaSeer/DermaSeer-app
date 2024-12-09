@@ -121,10 +121,6 @@
     <string name="are_you_sure_cancel_scan">Möchten Sie den Scan wirklich jetzt abbrechen?</string>
     <string name="confirm_exit">Beenden bestätigen</string>
     <string name="are_you_sure_exit">Möchten Sie die App wirklich beenden?</string>
-<<<<<<< Updated upstream
-    <string name="matched_ingredients">Abgestimmte Zutaten:</string>
-    <string name="ingredient">Zutat</string>
-=======
     <string name="age_format">%1$d Jahre alt</string>
     <string name="matched_ingredients">Übereinstimmende Zutaten:</string>
     <string name="ingredient">Zutat</string>

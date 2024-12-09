@@ -121,10 +121,6 @@
     <string name="are_you_sure_cancel_scan">هل أنت متأكد أنك تريد إلغاء الفحص الآن؟</string>
     <string name="confirm_exit">تأكيد الخروج</string>
     <string name="are_you_sure_exit">هل أنت متأكد أنك تريد الخروج من التطبيق؟</string>
-<<<<<<< Updated upstream
-    <string name="matched_ingredients">المكونات المطابقة:</string>
-    <string name="ingredient">المكون</string>
-=======
     <string name="age_format">%1$d سنة</string>
     <string name="matched_ingredients">المكونات المتطابقة:</string>
     <string name="ingredient">مكون</string>

@@ -121,10 +121,6 @@
     <string name="are_you_sure_cancel_scan">スキャンを今キャンセルしてもよろしいですか？</string>
     <string name="confirm_exit">終了の確認</string>
     <string name="are_you_sure_exit">アプリを終了してもよろしいですか？</string>
-<<<<<<< Updated upstream
-    <string name="matched_ingredients">一致する食材:</string>
-    <string name="ingredient">食材</string>
-=======
     <string name="age_format">%1$d 歳</string>
     <string name="matched_ingredients">一致する材料:</string>
     <string name="ingredient">材料</string>
