@@ -23,7 +23,7 @@ class IngredientRepositoryImpl @Inject constructor(
          val token = authPreferences.authToken.first()
          Log.d(TAG, "Token in repo: $token")
          if (token != null) {
-            ingredientService.ingredientRecommendation(token, predictId, skinType, productCategory)
+            ingredientService.ingredientRecommendation("Bearer $token", predictId, skinType, productCategory)
          } else {
             throw IllegalStateException("Token is not available")
          }

@@ -19,7 +19,7 @@ class ProductRecommendationRepositoryImpl @Inject constructor(
          val token = authPreferences.authToken.first()
          Log.d(TAG, "Token in repo: $token")
          if (token != null) {
-            productRecommendationService.getProductRecommendation(token, resultId)
+            productRecommendationService.getProductRecommendation("Bearer $token", resultId)
          } else {
             throw IllegalStateException("Token is not available")
          }

@@ -20,7 +20,7 @@ class PredictRepositoryImpl @Inject constructor(
          val token = authPreferences.authToken.first()
          Log.d(TAG, "Token in repo: $token")
          if (token != null) {
-            predictService.predictModel(token, userPhoto)
+            predictService.predictModel("Bearer $token", userPhoto)
          } else {
             throw IllegalStateException("Token is not available")
          }

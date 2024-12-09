@@ -19,7 +19,7 @@ class HistoryRepositoryImpl @Inject constructor(
          val token = authPreferences.authToken.first()
          Log.d(TAG, "Token in repo: $token")
          if (token != null) {
-            historyService.getHistory(token)
+            historyService.getHistory("Bearer $token")
          } else {
             throw IllegalStateException("Token is not available")
          }
