@@ -22,7 +22,7 @@ class ProductDetailRecomendationViewModel @Inject constructor(private val produc
     private val _productRecommendation = MutableLiveData<ProductRecommendationResponse?>()
     val productRecommendation: LiveData<ProductRecommendationResponse?> get() = _productRecommendation
 
-    fun fetchProductDetailRecommendation(resultId: String) {
+    fun fetchProductDetailRecommendation(predictId: String, resultId: String) {
         _productDetailRecommendation.value = ResultState.Loading
         viewModelScope.launch {
             try {

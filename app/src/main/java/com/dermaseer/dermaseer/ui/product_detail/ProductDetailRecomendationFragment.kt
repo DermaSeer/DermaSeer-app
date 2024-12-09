@@ -82,7 +82,7 @@ class ProductDetailRecomendationFragment : Fragment() {
 
         setupRecyclerViewIngredient()
         lifecycleScope.launch {
-            viewModel.fetchProductDetailRecommendation(args.predictId)
+            viewModel.fetchProductDetailRecommendation(args.predictId, args.resultId)
         }
 
 //        lifecycleScope.launch {

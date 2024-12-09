@@ -94,6 +94,7 @@ class ScanResultRecomendationFragment : Fragment() {
                         scrollView.visibility = View.VISIBLE
                         scanResultRecomendationViewModel.ingredientsResponse.observe(viewLifecycleOwner) { response ->
                             resultRecommendation.text = response?.data?.message
+                            resultId = response?.data?.resultId ?: ""
                         }
                         rvProductRecommendations.apply {
                             adapter = productRecommendationAdapter
@@ -118,7 +119,7 @@ class ScanResultRecomendationFragment : Fragment() {
     private fun getProductDetail() {
         productRecommendationAdapter.setOnItemClickCallback(object: ProductRecommendationAdapter.OnItemClickCallback {
             override fun onItemClicked(predictId: String) {
-                val toDetail = ScanResultRecomendationFragmentDirections.actionScanResultRecomendationFragment2ToProductDetailRecomendationFragment(predictId)
+                val toDetail = ScanResultRecomendationFragmentDirections.actionScanResultRecomendationFragment2ToProductDetailRecomendationFragment(predictId, resultId)
                 navController.navigate(toDetail)
             }
         })

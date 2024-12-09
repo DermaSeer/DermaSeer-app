@@ -259,5 +259,8 @@
         <argument
             android:name="predictId"
             app:argType="string" />
+        <argument
+            android:name="resultId"
+            app:argType="string" />
     </fragment>
 </navigation>
