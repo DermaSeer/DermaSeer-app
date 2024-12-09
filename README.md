@@ -56,15 +56,15 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 - [Paging](https://developer.android.com/topic/libraries/architecture/paging)
 
 ## **Prerequisites**
-
+```bash
 1. Android Studio, at least version LadyBug
 2. JRE (Java Runtime Environment) or JDK (Java Development Kit)
 3. Firebase Authentication
+```
 
 ## **Deployment Link APK DermaSeer**
 
-Download Link apk DermaSeer :
-[DermaSeer](#)
+Download Link apk [DermaSeer](#)
 
 ## **How to Install and Run the Project**
 
