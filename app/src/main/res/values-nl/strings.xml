@@ -121,4 +121,6 @@
     <string name="are_you_sure_cancel_scan">Weet u zeker dat u de scan nu wilt annuleren?</string>
     <string name="confirm_exit">Afsluiten bevestigen</string>
     <string name="are_you_sure_exit">Weet u zeker dat u de app wilt afsluiten?</string>
+    <string name="matched_ingredients">Overeenkomende Ingrediënten:</string>
+    <string name="ingredient">Ingrediënt</string>
 </resources>

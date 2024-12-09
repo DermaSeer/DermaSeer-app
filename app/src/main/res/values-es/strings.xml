@@ -121,4 +121,6 @@
     <string name="are_you_sure_cancel_scan">¿Estás seguro de cancelar el escaneo ahora?</string>
     <string name="confirm_exit">Confirmar salida</string>
     <string name="are_you_sure_exit">¿Estás seguro de que deseas salir de la aplicación?</string>
+    <string name="matched_ingredients">Ingredientes Coincidentes:</string>
+    <string name="ingredient">Ingrediente</string>
 </resources>

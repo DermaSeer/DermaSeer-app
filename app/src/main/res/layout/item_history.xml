@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvDate"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cardHistory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/line"
@@ -25,22 +25,25 @@
         android:layout_marginStart="28dp"
         android:background="#4D4D4D"
         app:layout_constraintBottom_toTopOf="@id/cardHistory"
+        app:layout_constraintStart_toEndOf="@id/tvDate"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvDate" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardHistory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:strokeWidth="0dp"
         app:contentPadding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate">
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -65,10 +68,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/poppins_semibold"
+                android:paddingHorizontal="8dp"
                 android:text="@string/acne_type_title"
                 android:textColor="@color/text_black"
                 android:textSize="12sp"
-                android:paddingHorizontal="8dp"
                 app:layout_constraintStart_toEndOf="@id/image_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/moisturizer"
-                    android:textSize="11sp"
                     android:textColor="@color/primary_blue"
+                    android:textSize="11sp"
                     app:chipBackgroundColor="@color/form_blue"
                     app:chipCornerRadius="100dp"
                     app:chipStrokeColor="@color/transparent"
@@ -111,8 +114,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:text="@string/toner"
-                    android:textSize="11sp"
                     android:textColor="@color/primary_blue"
+                    android:textSize="11sp"
                     app:chipBackgroundColor="@color/form_blue"
                     app:chipCornerRadius="100dp"
                     app:chipStrokeColor="@color/transparent"

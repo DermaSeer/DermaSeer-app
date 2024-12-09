@@ -140,8 +140,16 @@ class ProductDetailRecomendationFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.progressBar.apply {
+            visibility = if (isLoading) View.VISIBLE else View.GONE
+            if (isLoading) {
+                playAnimation()
+            } else {
+                cancelAnimation()
+            }
+        }
     }
+
 
     private fun formatPrice(price: Int?): String {
         val formattedPrice = price?.let {

@@ -121,4 +121,6 @@
     <string name="are_you_sure_cancel_scan">Вы уверены, что хотите отменить сканирование прямо сейчас?</string>
     <string name="confirm_exit">Подтвердите выход</string>
     <string name="are_you_sure_exit">Вы уверены, что хотите выйти из приложения?</string>
+    <string name="matched_ingredients">Совпадающие ингредиенты:</string>
+    <string name="ingredient">Ингредиент</string>
 </resources>

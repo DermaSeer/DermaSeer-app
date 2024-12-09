@@ -121,4 +121,6 @@
     <string name="are_you_sure_cancel_scan">Apakah Anda yakin ingin membatalkan pemindaian sekarang?</string>
     <string name="confirm_exit">Konfirmasi keluar</string>
     <string name="are_you_sure_exit">Apakah Anda yakin ingin keluar dari aplikasi?</string>
+    <string name="matched_ingredients">Bahan yang Cocok:</string>
+    <string name="ingredient">Bahan</string>
 </resources>

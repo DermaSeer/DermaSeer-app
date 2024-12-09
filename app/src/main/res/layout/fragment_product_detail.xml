@@ -8,16 +8,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.product_detail.ProductDetailFragment">
 
-    <ProgressBar
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:indeterminate="true"
-        android:visibility="gone"
+        app:lottie_rawRes="@raw/animation1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:visibility="visible"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

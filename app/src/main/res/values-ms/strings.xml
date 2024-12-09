@@ -121,4 +121,6 @@
     <string name="are_you_sure_cancel_scan">Adakah anda pasti ingin batal imbasan sekarang?</string>
     <string name="confirm_exit">Sahkan Keluar</string>
     <string name="are_you_sure_exit">Adakah anda pasti ingin keluar daripada aplikasi ini?</string>
+    <string name="matched_ingredients">Bahan yang Sepadan:</string>
+    <string name="ingredient">Bahan</string>
 </resources>

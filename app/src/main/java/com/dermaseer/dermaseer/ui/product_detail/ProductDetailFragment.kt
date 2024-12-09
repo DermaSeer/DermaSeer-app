@@ -27,78 +27,92 @@ import java.util.Locale
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
 
-   private var _binding: FragmentProductDetailBinding? = null
-   private val binding get() = _binding!!
-   private lateinit var navController: NavController
-   private val args: ProductDetailFragmentArgs by navArgs()
-   private val viewModel: ProductDetailViewModel by viewModels()
+    private var _binding: FragmentProductDetailBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var navController: NavController
+    private val args: ProductDetailFragmentArgs by navArgs()
+    private val viewModel: ProductDetailViewModel by viewModels()
 
-   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?
-   ): View {
-      _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
-      return binding.root
-   }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-   @SuppressLint("DefaultLocale", "SetTextI18n")
-   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-      super.onViewCreated(view, savedInstanceState)
-      navController = Navigation.findNavController(view)
-      binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
-      requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) { navController.navigateUp()}
-      binding.btnBuy.setOnClickListener {
-         val productJson = args.product
-         val product = Gson().fromJson(productJson, ProductResponse.Data::class.java)
+    @SuppressLint("DefaultLocale", "SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) { navController.navigateUp() }
+        binding.btnBuy.setOnClickListener {
+            val productJson = args.product
+            val product = Gson().fromJson(productJson, ProductResponse.Data::class.java)
 
-         product.url?.let { url ->
-            val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
-               "https://$url"
-            } else {
-               url
+            product.url?.let { url ->
+                val validUrl = if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    "https://$url"
+                } else {
+                    url
+                }
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
+                try {
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireContext(),
+                        requireContext().getString(R.string.unable_open_link),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
-            try {
-               startActivity(intent)
-            } catch (e: Exception) {
-               Toast.makeText(requireContext(), requireContext().getString(R.string.unable_open_link), Toast.LENGTH_SHORT).show()
+        }
+
+        val productJson = args.product
+        viewModel.fetchProductDetails()
+
+        viewModel.productDetails.observe(viewLifecycleOwner) { resultState ->
+            when (resultState) {
+                is ResultState.Loading -> {
+                    binding.progressBar.apply {
+                        visibility = View.VISIBLE
+                        playAnimation()
+                    }
+                }
+
+                is ResultState.Success -> {
+                    binding.progressBar.apply {
+                        visibility = View.GONE
+                        cancelAnimation()
+                    }
+                    val product = Gson().fromJson(productJson, ProductResponse.Data::class.java)
+                    binding.tvProductName.text = product.name
+                    binding.tvProductStore.text = product.shopName
+                    binding.tvProductDescription.text = product.description?.replace("\\n", "\n")
+                    val formattedPrice =
+                        NumberFormat.getNumberInstance(Locale("id", "ID")).format(product.price)
+                    binding.tvProductPrice.text = "Rp$formattedPrice"
+                    binding.tvProductRating.text = String.format("%.1f", product.productRating)
+                    Glide.with(this)
+                        .load(product.imageUrl)
+                        .placeholder(R.drawable.noimage)
+                        .into(binding.ivProduct)
+                }
+
+                is ResultState.Error -> {
+                    binding.progressBar.apply {
+                        visibility = View.GONE
+                        cancelAnimation()
+                    }
+                }
             }
-         }
-      }
+        }
+    }
 
-      val productJson = args.product
-      viewModel.fetchProductDetails()
-
-      viewModel.productDetails.observe(viewLifecycleOwner) { resultState ->
-         when (resultState) {
-            is ResultState.Loading -> {
-               binding.progressBar.visibility = View.VISIBLE
-            }
-            is ResultState.Success -> {
-               binding.progressBar.visibility = View.GONE
-               val product = Gson().fromJson(productJson, ProductResponse.Data::class.java)
-
-               binding.tvProductName.text = product.name
-               binding.tvProductStore.text = product.shopName
-               binding.tvProductDescription.text = product.description?.replace("\\n", "\n")
-               val formattedPrice = NumberFormat.getNumberInstance(Locale("id", "ID")).format(product.price)
-               binding.tvProductPrice.text = "Rp$formattedPrice"
-               binding.tvProductRating.text = String.format("%.1f", product.productRating)
-
-               Glide.with(this)
-                  .load(product.imageUrl)
-                  .placeholder(R.drawable.noimage)
-                  .into(binding.ivProduct)
-            }
-            is ResultState.Error -> {
-               binding.progressBar.visibility = View.GONE
-            }
-         }
-      }
-   }
-
-   override fun onDestroyView() {
-      super.onDestroyView()
-      _binding = null
-   }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
