@@ -22,6 +22,10 @@ import com.dermaseer.dermaseer.adapter.MatchedIngredientsAdapter
 import com.dermaseer.dermaseer.data.remote.models.ProductRecommendationResponse
 import com.dermaseer.dermaseer.databinding.FragmentProductDetailRecomendationBinding
 import com.dermaseer.dermaseer.utils.ResultState
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -77,8 +81,12 @@ class ProductDetailRecomendationFragment : Fragment() {
         }
 
         setupRecyclerViewIngredient()
+//        lifecycleScope.launch {
+//            viewModel.fetchProductDetailRecommendation(args.predictId)
+//        }
+
         lifecycleScope.launch {
-            viewModel.fetchProductDetailRecommendation(args.predictId)
+            viewModel.loadDummyData(args.predictId)
         }
 
         observeProductDetailRecommendation()
@@ -86,7 +94,12 @@ class ProductDetailRecomendationFragment : Fragment() {
 
     private fun setupRecyclerViewIngredient() {
         ingredientsAdapter = MatchedIngredientsAdapter()
-        binding.rvIngredients.layoutManager = LinearLayoutManager(requireContext())
+        val flexboxLayoutManager = FlexboxLayoutManager(context).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+        }
+        binding.rvIngredients.layoutManager = flexboxLayoutManager
         binding.rvIngredients.adapter = ingredientsAdapter
     }
 

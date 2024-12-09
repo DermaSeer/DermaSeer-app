@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.remote.models.ProductRecommendationResponse
 import com.dermaseer.dermaseer.data.repository.predict.ProductRecommendationRepository
 import com.dermaseer.dermaseer.utils.ResultState
+import com.dermaseer.dermaseer.utils.getDummyProductRecommendationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,5 +33,10 @@ class ProductDetailRecomendationViewModel @Inject constructor(private val produc
                 _productDetailRecommendation.value = ResultState.Error("Failed to load product: ${e.message}")
             }
         }
+    }
+
+    fun loadDummyData(resultId: String) {
+        _productRecommendation.value = getDummyProductRecommendationResponse()
+        _productDetailRecommendation.value = ResultState.Success("Dummy product recommendation loaded successfully")
     }
 }
