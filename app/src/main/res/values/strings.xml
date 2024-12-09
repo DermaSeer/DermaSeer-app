@@ -76,7 +76,6 @@
     <string name="produk_perawatan">Care Products</string>
     <string name="riwayat_terbaru">Latest History</string>
     <string name="moisturizer">Moisturizer</string>
-    <string name="toner">Toner</string>
     <string name="serum">Serum</string>
     <string name="facewash">Facewash</string>
     <string name="sunscreen">Sunscreen</string>
@@ -127,4 +126,9 @@
     <string name="enter_your_name">Input your name…</string>
     <string name="enter_your_age">Input your age…</string>
     <string name="switch_camera">Switch Camera</string>
+    <string name="toner">Toner</string>
+    <string name="Pelembab">Pelembab Wajah</string>
+    <string name="essence">Essence Wajah</string>
+    <string name="pembersih">" Pembersih Wajah"</string>
+    <string name="Sunscreen">Sunscreen Wajah</string>
 </resources>

@@ -127,4 +127,8 @@
     <string name="enter_your_name">名前を入力してください…</string>
     <string name="enter_your_age">年齢を入力してください…</string>
     <string name="switch_camera">カメラを切り替える</string>
+    <string name="Pelembab">Pelembab Wajah</string>
+    <string name="essence">Essence Wajah</string>
+    <string name="pembersih">" Pembersih Wajah"</string>
+    <string name="Sunscreen">Sunscreen Wajah</string>
 </resources>

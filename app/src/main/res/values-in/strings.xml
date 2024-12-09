@@ -127,4 +127,8 @@
     <string name="enter_your_name">Masukkan nama Anda…</string>
     <string name="enter_your_age">Masukkan umur Anda…</string>
     <string name="switch_camera">Ganti Kamera</string>
+    <string name="Pelembab">Pelembab Wajah</string>
+    <string name="essence">Essence Wajah</string>
+    <string name="pembersih">" Pembersih Wajah"</string>
+    <string name="Sunscreen">Sunscreen Wajah</string>
 </resources>
