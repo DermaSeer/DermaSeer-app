@@ -22,7 +22,7 @@ class HistoryDetailViewModel @Inject constructor(
    private var _historyData = MutableLiveData<HistoryResponse.Data>()
    val historyData: LiveData<HistoryResponse.Data> = _historyData
 
-   fun getHistoryByIndex(id: String) {
+   fun getHistoryById(id: String) {
       _state.value = ResultState.Loading
       viewModelScope.launch {
          try {
@@ -34,7 +34,7 @@ class HistoryDetailViewModel @Inject constructor(
       }
    }
 
-   fun getDummyHistoryByIndex(id: String) {
+   fun getDummyHistoryById(id: String) {
       _state.value = ResultState.Loading
       viewModelScope.launch {
          try {

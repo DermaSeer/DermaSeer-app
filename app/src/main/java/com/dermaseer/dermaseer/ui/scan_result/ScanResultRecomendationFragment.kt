@@ -58,7 +58,7 @@ class ScanResultRecomendationFragment : Fragment() {
         val skinType = args.skinType
         val productCategory = args.productCategory
 
-        scanResultRecomendationViewModel.fetchDummyAllRecommendations()
+        scanResultRecomendationViewModel.fetchAllRecommendations(predictId, skinType, productCategory)
         scanResultRecomendationViewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResultState.Loading -> {

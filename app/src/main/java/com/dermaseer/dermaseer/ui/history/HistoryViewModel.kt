@@ -25,8 +25,7 @@ class HistoryViewModel @Inject constructor(
     val state: LiveData<ResultState> = _state
 
     init {
-//       getHistory()
-        getDummyHistory()
+       getHistory()
     }
 
     private fun getHistory() {

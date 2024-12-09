@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
    init {
       getArticles()
       getUser()
-      getDummyLatestHistory()
+      getLatestHistory()
    }
 
    private fun getArticles() {

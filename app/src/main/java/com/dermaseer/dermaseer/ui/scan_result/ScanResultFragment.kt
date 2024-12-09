@@ -72,7 +72,7 @@ class ScanResultFragment : Fragment() {
          imageFile.name,
          requestImageFile
       )
-      scanResultViewModel.fetchDummyPrediction()
+      scanResultViewModel.fetchPrediction(multipartBody)
    }
 
    private fun getScanResult() {
@@ -124,7 +124,7 @@ class ScanResultFragment : Fragment() {
                else -> "Essence Wajah"
             }
          } else {
-            productCategory = ""
+            productCategory = "Essence Wajah"
          }
       }
 
@@ -138,7 +138,7 @@ class ScanResultFragment : Fragment() {
                else -> "Kering"
             }
          } else {
-            skinType = ""
+            skinType = "Kering"
          }
       }
    }
