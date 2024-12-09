@@ -41,7 +41,8 @@ object NetworkModule {
    fun provideOkHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
       return OkHttpClient.Builder()
          .addInterceptor(chuckerInterceptor)
-         .connectTimeout(1, TimeUnit.MINUTES)
+         .connectTimeout(5, TimeUnit.MINUTES)
+         .readTimeout(5, TimeUnit.MINUTES)
          .build()
    }
 

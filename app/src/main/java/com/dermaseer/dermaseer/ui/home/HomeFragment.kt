@@ -99,11 +99,11 @@ class HomeFragment : Fragment() {
 
     private fun setProductType() {
         val listProductType = listOf(
-            ProductType(R.drawable.moisturizer, requireContext().getString(R.string.moisturizer)),
+            ProductType(R.drawable.moisturizer, requireContext().getString(R.string.Pelembab)),
             ProductType(R.drawable.toner, requireContext().getString(R.string.toner)),
-            ProductType(R.drawable.serum, requireContext().getString(R.string.serum)),
-            ProductType(R.drawable.facewash, requireContext().getString(R.string.facewash)),
-            ProductType(R.drawable.sunscreen, requireContext().getString(R.string.sunscreen)),
+            ProductType(R.drawable.serum, requireContext().getString(R.string.essence)),
+            ProductType(R.drawable.facewash, requireContext().getString(R.string.pembersih)),
+            ProductType(R.drawable.sunscreen, requireContext().getString(R.string.Sunscreen)),
         )
 
         val listCard: List<ItemProductTypeBinding>
