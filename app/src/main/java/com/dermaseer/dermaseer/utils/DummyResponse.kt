@@ -23,12 +23,12 @@ fun getDummyHistoryResponse(): HistoryResponse {
       message = "Predictions successfully retrieved",
       data = listOf(
          HistoryResponse.Data(
-            id = "cm48u7rqf000ts60dsgvetd6z",
+            id = "xxxxx",
             acneType = "Fulminans",
             imageUrl = "https://storage.googleapis.com/dermaseer/predict/M4JC_245DcYSinCkpDbbd.webp",
             createdAt = "2024-12-03T19:13:39.876Z",
             result = HistoryResponse.Data.Result(
-               id = "cm48u96ym000vs60d569usd4a",
+               id = "xxxxx",
                predictId = "cm48u7rqf000ts60dsgvetd6z",
                skinType = "Kering",
                productCategory = "Toner",
@@ -57,12 +57,12 @@ fun getDummyHistoryResponse(): HistoryResponse {
             )
          ),
          HistoryResponse.Data(
-            id = "cm48u7rqf000ts60dsgvetd6z",
+            id = "zzzzz",
             acneType = "Papula",
             imageUrl = "https://storage.googleapis.com/dermaseer/predict/M4JC_245DcYSinCkpDbbd.webp",
-            createdAt = "2024-12-03T19:13:39.876Z",
+            createdAt = "2024-12-05T19:13:39.876Z",
             result = HistoryResponse.Data.Result(
-               id = "cm48u96ym000vs60d569usd4a",
+               id = "zzzzz",
                predictId = "cm48u7rqf000ts60dsgvetd6z",
                skinType = "Sensitif",
                productCategory = "Toner",
@@ -86,7 +86,7 @@ fun getDummyHistoryResponse(): HistoryResponse {
                   "Bisabolol"
                ),
                msgRecommendation = "Untuk kulit kering dengan jerawat fulminans, gunakan toner dengan kandungan asam glikolat, asam salisilat atau asam azelaic. Gunakan juga toner dengan kandungan niacinamide karena bisa mengurangi minyak berlebih dan mencegah jerawat. Selain itu, tambahkan toner dengan bahan-bahan anti-inflamasi seperti centella asiatica, green tea extract, witch hazel atau licorice root extract. Hindari alkohol dan pewangi yang dapat mengiritasi kulit. Gunakan toner secara lembut dan rutin, serta jangan lupa saat menggunakan toner untuk menyeimbangkan dan menjaga kelembaban kulit.",
-               createdAt = "2024-12-03T19:14:46.271Z",
+               createdAt = "2024-12-05T19:14:46.271Z",
                updatedAt = "2024-12-03T19:14:46.271Z"
             )
          )

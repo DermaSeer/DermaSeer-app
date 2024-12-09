@@ -56,7 +56,7 @@ class HistoryDetailFragment : Fragment() {
    }
 
    private fun getHistoryDetail() {
-      historyDetailViewModel.getDummyHistoryByIndex(args.index)
+      historyDetailViewModel.getDummyHistoryByIndex(args.id)
       historyDetailViewModel.state.observe(viewLifecycleOwner) { state ->
          when (state) {
             is ResultState.Loading -> {

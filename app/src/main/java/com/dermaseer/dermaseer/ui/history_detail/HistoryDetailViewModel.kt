@@ -22,11 +22,11 @@ class HistoryDetailViewModel @Inject constructor(
    private var _historyData = MutableLiveData<HistoryResponse.Data>()
    val historyData: LiveData<HistoryResponse.Data> = _historyData
 
-   fun getHistoryByIndex(index: Int) {
+   fun getHistoryByIndex(id: String) {
       _state.value = ResultState.Loading
       viewModelScope.launch {
          try {
-            _historyData.value = historyRepository.getHistory().data?.get(index)
+            _historyData.value = historyRepository.getHistory().data?.find { it?.id == id }
             _state.value = ResultState.Success("Success")
          } catch (e: Exception) {
             _state.value = ResultState.Error("Error")
@@ -34,11 +34,11 @@ class HistoryDetailViewModel @Inject constructor(
       }
    }
 
-   fun getDummyHistoryByIndex(index: Int) {
+   fun getDummyHistoryByIndex(id: String) {
       _state.value = ResultState.Loading
       viewModelScope.launch {
          try {
-            _historyData.value = getDummyHistoryResponse().data?.get(index)
+            _historyData.value = getDummyHistoryResponse().data?.find { it?.id == id }
             _state.value = ResultState.Success("Success")
          } catch (e: Exception) {
             _state.value = ResultState.Error("Error")

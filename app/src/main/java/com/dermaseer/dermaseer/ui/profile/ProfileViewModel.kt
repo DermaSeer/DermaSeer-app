@@ -20,6 +20,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,8 +50,8 @@ class ProfileViewModel @Inject constructor(
          try {
             _userData.value = userRepository.getCurrentUser()
             _state.value = ResultState.Success("Success get user data")
-         } catch (e: HttpException) {
-            _state.value = ResultState.Error(e.message())
+         } catch (e: Exception) {
+            _state.value = ResultState.Error("${e.message}")
             Log.e("GetUser", "Error")
          }
       }

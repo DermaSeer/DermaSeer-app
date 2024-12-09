@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,6 +36,8 @@ class SplashViewModel @Inject constructor(
             } ?: UserResponse(success = false, data = null, message = null)
             _checkUserResponse.value = errorResponse
             Log.e("LoginError", "HTTP error: ${e.message}")
+         } catch (e: SocketTimeoutException) {
+            Log.e("Timeout", "${e.message}")
          }
       }
    }

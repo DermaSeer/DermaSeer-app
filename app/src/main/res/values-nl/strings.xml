@@ -121,6 +121,14 @@
     <string name="are_you_sure_cancel_scan">Weet u zeker dat u de scan nu wilt annuleren?</string>
     <string name="confirm_exit">Afsluiten bevestigen</string>
     <string name="are_you_sure_exit">Weet u zeker dat u de app wilt afsluiten?</string>
+<<<<<<< Updated upstream
     <string name="matched_ingredients">Overeenkomende Ingrediënten:</string>
     <string name="ingredient">Ingrediënt</string>
+=======
+    <string name="age_format">%1$d Jaar oud</string>
+    <string name="matched_ingredients">Overeenkomende ingrediënten:</string>
+    <string name="ingredient">Ingrediënt</string>
+    <string name="enter_your_name">Voer je naam in…</string>
+    <string name="enter_your_age">Voer je leeftijd in…</string>
+>>>>>>> Stashed changes
 </resources>

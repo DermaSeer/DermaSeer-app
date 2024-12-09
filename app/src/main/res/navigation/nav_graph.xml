@@ -145,8 +145,8 @@
         android:label="fragment_history_detail"
         tools:layout="@layout/fragment_history_detail" >
         <argument
-            android:name="index"
-            app:argType="integer" />
+            android:name="id"
+            app:argType="string" />
         <action
             android:id="@+id/action_historyDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

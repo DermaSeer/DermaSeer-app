@@ -44,7 +44,7 @@ class SplashFragment : Fragment() {
       auth = FirebaseAuth.getInstance()
       binding.ivLogo.playAnimation()
       viewLifecycleOwner.lifecycleScope.launch {
-         delay(4000)
+         delay(2000)
          navigatePage()
       }
    }

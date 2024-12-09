@@ -121,6 +121,14 @@
     <string name="are_you_sure_cancel_scan">지금 스캔을 취소하시겠습니까?</string>
     <string name="confirm_exit">종료 확인</string>
     <string name="are_you_sure_exit">앱을 종료하시겠습니까?</string>
+<<<<<<< Updated upstream
     <string name="matched_ingredients">일치하는 재료:</string>
     <string name="ingredient">재료</string>
+=======
+    <string name="age_format">%1$d 세</string>
+    <string name="matched_ingredients">일치하는 재료:</string>
+    <string name="ingredient">재료</string>
+    <string name="enter_your_name">이름을 입력하세요…</string>
+    <string name="enter_your_age">나이를 입력하세요…</string>
+>>>>>>> Stashed changes
 </resources>

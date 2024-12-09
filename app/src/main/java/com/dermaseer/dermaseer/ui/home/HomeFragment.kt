@@ -199,8 +199,8 @@ class HomeFragment : Fragment() {
 
     private fun getHistoryDetail() {
         latestHistoryAdapter.setOnItemClickCallback(object: LatestHistoryAdapter.OnItemClickCallback {
-            override fun onItemClicked(index: Int) {
-                val toDetail = HomeFragmentDirections.actionHomeFragmentToHistoryDetailFragment(index)
+            override fun onItemClicked(id: String) {
+                val toDetail = HomeFragmentDirections.actionHomeFragmentToHistoryDetailFragment(id)
                 navController.navigate(toDetail)
             }
         })

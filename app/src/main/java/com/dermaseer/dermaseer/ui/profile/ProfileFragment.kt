@@ -139,7 +139,7 @@ class ProfileFragment : Fragment() {
                            .into(ivUserPhoto)
                         tvUserName.text = user.data?.user?.name
                         tvUserEmail.text = user.data?.user?.email
-                        tvUserAge.text = user.data?.user?.age.toString() + " Years old"
+                        tvUserAge.text = getString(R.string.age_format, user.data?.user?.age)
                         tvUserGender.text = user.data?.user?.gender
                      }
                   }

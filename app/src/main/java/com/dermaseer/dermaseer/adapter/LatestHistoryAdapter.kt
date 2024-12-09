@@ -18,7 +18,7 @@ class LatestHistoryAdapter: RecyclerView.Adapter<LatestHistoryAdapter.ViewHolder
    private lateinit var onItemClickCallback: OnItemClickCallback
 
    interface OnItemClickCallback {
-      fun onItemClicked(index: Int)
+      fun onItemClicked(id: String)
    }
 
    class ViewHolder(val binding: ItemLatestHistoryBinding): RecyclerView.ViewHolder(binding.root) {
@@ -53,7 +53,7 @@ class LatestHistoryAdapter: RecyclerView.Adapter<LatestHistoryAdapter.ViewHolder
    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       holder.bind(historyData?.get(position))
       holder.itemView.setOnClickListener {
-         onItemClickCallback.onItemClicked(position)
+         onItemClickCallback.onItemClicked(historyData?.get(position)?.id ?: "")
       }
    }
 

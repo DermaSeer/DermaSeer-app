@@ -121,6 +121,14 @@
     <string name="are_you_sure_cancel_scan">Вы уверены, что хотите отменить сканирование прямо сейчас?</string>
     <string name="confirm_exit">Подтвердите выход</string>
     <string name="are_you_sure_exit">Вы уверены, что хотите выйти из приложения?</string>
+<<<<<<< Updated upstream
     <string name="matched_ingredients">Совпадающие ингредиенты:</string>
     <string name="ingredient">Ингредиент</string>
+=======
+    <string name="age_format">%1$d лет</string>
+    <string name="matched_ingredients">Совпадающие ингредиенты:</string>
+    <string name="ingredient">Ингредиент</string>
+    <string name="enter_your_name">Введите ваше имя…</string>
+    <string name="enter_your_age">Введите ваш возраст…</string>
+>>>>>>> Stashed changes
 </resources>

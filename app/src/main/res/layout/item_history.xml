@@ -31,9 +31,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardHistory"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+<<<<<<< Updated upstream
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="16dp"
@@ -41,6 +42,15 @@
         app:contentPadding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+=======
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="0dp"
+        app:contentPadding="16dp"
+>>>>>>> Stashed changes
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
         app:strokeWidth="0dp">

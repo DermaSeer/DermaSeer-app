@@ -121,6 +121,14 @@
     <string name="are_you_sure_cancel_scan">Adakah anda pasti ingin batal imbasan sekarang?</string>
     <string name="confirm_exit">Sahkan Keluar</string>
     <string name="are_you_sure_exit">Adakah anda pasti ingin keluar daripada aplikasi ini?</string>
+<<<<<<< Updated upstream
     <string name="matched_ingredients">Bahan yang Sepadan:</string>
     <string name="ingredient">Bahan</string>
+=======
+    <string name="age_format">%1$d Tahun</string>
+    <string name="matched_ingredients">Bahan yang sepadan:</string>
+    <string name="ingredient">Bahan</string>
+    <string name="enter_your_name">Masukkan nama anda…</string>
+    <string name="enter_your_age">Masukkan umur anda…</string>
+>>>>>>> Stashed changes
 </resources>

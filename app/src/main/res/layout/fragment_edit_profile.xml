@@ -75,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Masukkan namamu..."
+                android:hint="@string/enter_your_name"
+                android:inputType="text"
                 android:background="@drawable/input_layout_background"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />
@@ -151,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/input_layout_background"
-                android:hint="Masukkan usiamu..."
+                android:hint="@string/enter_your_age"
                 android:inputType="number"
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />

@@ -80,8 +80,8 @@ class HistoryFragment : Fragment() {
 
    private fun getHistoryDetail() {
       historyAdapter.setOnItemClickCallback(object: AllHistoryAdapter.OnItemClickCallback {
-         override fun onItemClicked(index: Int) {
-            val toDetail = HistoryFragmentDirections.actionHistoryFragmentToHistoryDetailFragment(index)
+         override fun onItemClicked(id: String) {
+            val toDetail = HistoryFragmentDirections.actionHistoryFragmentToHistoryDetailFragment(id)
             navController.navigate(toDetail)
          }
       })

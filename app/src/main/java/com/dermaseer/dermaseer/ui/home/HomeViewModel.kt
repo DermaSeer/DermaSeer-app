@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
          try {
             _userData.value = userRepository.getCurrentUser()
             _homeState.value = ResultState.Success("Data loaded successfully")
-         } catch (e: HttpException) {
+         } catch (e: Exception) {
             Log.e("GetUser", "Error fetching user: ${e.message}")
             _homeState.value = ResultState.Error("Failed to load data: ${e.message}")
          }

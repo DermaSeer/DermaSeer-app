@@ -121,6 +121,9 @@
     <string name="are_you_sure_cancel_scan">Are you sure to cancel scan right now?</string>
     <string name="confirm_exit">Confirm Exit</string>
     <string name="are_you_sure_exit">Are you sure you want to exit the app?</string>
+    <string name="age_format">%1$d Years old</string>
     <string name="matched_ingredients">Matched Ingredients:</string>
     <string name="ingredient">Ingredient</string>
+    <string name="enter_your_name">Input your name…</string>
+    <string name="enter_your_age">Input your age…</string>
 </resources>
