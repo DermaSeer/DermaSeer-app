@@ -18,6 +18,8 @@ import com.dermaseer.dermaseer.adapter.ProductRecommendationAdapter
 import com.dermaseer.dermaseer.databinding.FragmentScanResultRecomendationBinding
 import com.dermaseer.dermaseer.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 
 @AndroidEntryPoint
 class ScanResultRecomendationFragment : Fragment() {
@@ -58,20 +60,29 @@ class ScanResultRecomendationFragment : Fragment() {
         val skinType = args.skinType
         val productCategory = args.productCategory
 
-        scanResultRecomendationViewModel.fetchAllRecommendations(predictId, skinType, productCategory)
+        val predictIdToRequestBody = predictId.toRequestBody("text/plain".toMediaType())
+        val skinTypeToRequestBody = skinType.toRequestBody("text/plain".toMediaType())
+        val productCategoryToRequestBody = productCategory.toRequestBody("text/plain".toMediaType())
+
+        scanResultRecomendationViewModel.fetchAllRecommendations(predictIdToRequestBody, skinTypeToRequestBody, productCategoryToRequestBody)
+
         scanResultRecomendationViewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResultState.Loading -> {
                     with(binding) {
                         lottieLoading.visibility = View.VISIBLE
+                        lottieLoading.playAnimation()
                         scrollView.visibility = View.GONE
                     }
                 }
                 is ResultState.Success -> {
                     with(binding) {
                         lottieLoading.visibility = View.GONE
+                        lottieLoading.cancelAnimation()
                         scrollView.visibility = View.VISIBLE
-                        resultRecommendation.text = scanResultRecomendationViewModel.ingredientsResponse.value?.data?.message
+                        scanResultRecomendationViewModel.ingredientsResponse.observe(viewLifecycleOwner) { response ->
+                            resultRecommendation.text = response?.data?.message
+                        }
                         rvProductRecommendations.apply {
                             adapter = productRecommendationAdapter
                             setHasFixedSize(true)
@@ -84,6 +95,7 @@ class ScanResultRecomendationFragment : Fragment() {
                     with(binding) {
                         lottieLoading.visibility = View.GONE
                         scrollView.visibility - View.VISIBLE
+                        lottieLoading.cancelAnimation()
                         resultRecommendation.text = state.message
                     }
                 }

@@ -7,6 +7,7 @@ import com.dermaseer.dermaseer.data.remote.services.IngredientService
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.tasks.await
+import okhttp3.RequestBody
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -15,9 +16,9 @@ class IngredientRepositoryImpl @Inject constructor(
    private val authPreferences: AuthPreferences
 ) : IngredientRepository {
    override suspend fun ingredientRecommendation(
-      predictId: String,
-      skinType: String,
-      productCategory: String
+      predictId: RequestBody,
+      skinType: RequestBody,
+      productCategory: RequestBody
    ): IngredientResponse {
       return safeApiCall {
          val token = authPreferences.authToken.first()

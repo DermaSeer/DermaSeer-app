@@ -36,7 +36,7 @@ class ScanResultFragment : Fragment() {
    private lateinit var navController: NavController
    private val args: ScanResultFragmentArgs by navArgs()
    private val scanResultViewModel: ScanResultViewModel by viewModels()
-   private lateinit var predictId: String
+   private var predictId: String = ""
    private var skinType: String = ""
    private var productCategory: String = ""
 
@@ -68,7 +68,7 @@ class ScanResultFragment : Fragment() {
       imageFile.reduceFileImage()
       val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
       val multipartBody = MultipartBody.Part.createFormData(
-         "photo",
+         "image",
          imageFile.name,
          requestImageFile
       )
@@ -105,7 +105,7 @@ class ScanResultFragment : Fragment() {
                   cardView2.visibility = View.VISIBLE
                   lottieLoading.visibility = View.GONE
                }
-               showStateDialog(R.drawable.remove, "Error")
+               showStateDialog(R.drawable.remove, state.message)
             }
          }
       }

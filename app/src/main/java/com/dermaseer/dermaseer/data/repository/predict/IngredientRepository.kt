@@ -1,11 +1,12 @@
 package com.dermaseer.dermaseer.data.repository.predict
 
 import com.dermaseer.dermaseer.data.remote.models.IngredientResponse
+import okhttp3.RequestBody
 
 interface IngredientRepository {
    suspend fun ingredientRecommendation(
-      predictId: String,
-      skinType: String,
-      productCategory: String
+      predictId: RequestBody,
+      skinType: RequestBody,
+      productCategory: RequestBody
    ): IngredientResponse
 }

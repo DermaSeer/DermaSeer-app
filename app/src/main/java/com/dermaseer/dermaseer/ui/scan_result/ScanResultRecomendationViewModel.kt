@@ -14,6 +14,7 @@ import com.dermaseer.dermaseer.utils.getDummyProductRecommendationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,7 +32,7 @@ class ScanResultRecomendationViewModel @Inject constructor(
     private var _state = MutableLiveData<ResultState>()
     val state: LiveData<ResultState> = _state
 
-    fun fetchAllRecommendations(predictId: String, skinType: String, productCategory: String) {
+    fun fetchAllRecommendations(predictId: RequestBody, skinType: RequestBody, productCategory: RequestBody) {
         viewModelScope.launch {
             _state.value = ResultState.Loading
             try {
@@ -41,11 +42,9 @@ class ScanResultRecomendationViewModel @Inject constructor(
                     productCategory
                 )
                 _ingredientsResponse.value = ingredientResponse
-
                 val resultId = ingredientResponse.data?.resultId ?: throw Exception("Result ID not found")
                 val productResponse = productRecommendationRepository.getProductRecommendation(resultId)
                 _productRecommendationResponse.value = productResponse
-
                 _state.value = ResultState.Success("Recommendations fetched successfully")
             } catch (e: Exception) {
                 _state.value = ResultState.Error("${e.message}")
