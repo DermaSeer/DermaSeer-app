@@ -3,6 +3,7 @@ package com.dermaseer.dermaseer.data.repository.predict
 import android.util.Log
 import com.dermaseer.dermaseer.data.local.datastore.AuthPreferences
 import com.dermaseer.dermaseer.data.remote.models.IngredientResponse
+import com.dermaseer.dermaseer.data.remote.models.IngredientsRequest
 import com.dermaseer.dermaseer.data.remote.services.IngredientService
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.first
@@ -16,15 +17,13 @@ class IngredientRepositoryImpl @Inject constructor(
    private val authPreferences: AuthPreferences
 ) : IngredientRepository {
    override suspend fun ingredientRecommendation(
-      predictId: RequestBody,
-      skinType: RequestBody,
-      productCategory: RequestBody
+      request: RequestBody
    ): IngredientResponse {
       return safeApiCall {
          val token = authPreferences.authToken.first()
          Log.d(TAG, "Token in repo: $token")
          if (token != null) {
-            ingredientService.ingredientRecommendation("Bearer $token", predictId, skinType, productCategory)
+            ingredientService.ingredientRecommendation("Bearer $token", request)
          } else {
             throw IllegalStateException("Token is not available")
          }

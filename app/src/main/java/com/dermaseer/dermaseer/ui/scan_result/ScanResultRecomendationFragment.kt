@@ -15,10 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ProductRecommendationAdapter
+import com.dermaseer.dermaseer.data.remote.models.IngredientsRequest
 import com.dermaseer.dermaseer.databinding.FragmentScanResultRecomendationBinding
 import com.dermaseer.dermaseer.utils.ResultState
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 @AndroidEntryPoint
@@ -55,16 +58,25 @@ class ScanResultRecomendationFragment : Fragment() {
         getProductDetail()
     }
 
+    private fun createJsonRequestBody(predictId: String, skinType: String, productCategory: String): RequestBody {
+        val request = IngredientsRequest(
+            predictId = predictId,
+            skinType = skinType,
+            productCategory = productCategory
+        )
+
+        val json = Gson().toJson(request)
+        return json.toRequestBody("application/json".toMediaType())
+    }
+
     private fun getRecommendations() {
         val predictId = args.predictId
         val skinType = args.skinType
         val productCategory = args.productCategory
 
-        val predictIdToRequestBody = predictId.toRequestBody("text/plain".toMediaType())
-        val skinTypeToRequestBody = skinType.toRequestBody("text/plain".toMediaType())
-        val productCategoryToRequestBody = productCategory.toRequestBody("text/plain".toMediaType())
+        val requestBody = createJsonRequestBody(predictId, skinType, productCategory)
 
-        scanResultRecomendationViewModel.fetchAllRecommendations(predictIdToRequestBody, skinTypeToRequestBody, productCategoryToRequestBody)
+        scanResultRecomendationViewModel.fetchAllRecommendations(requestBody)
 
         scanResultRecomendationViewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {

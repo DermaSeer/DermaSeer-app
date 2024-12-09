@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dermaseer.dermaseer.data.remote.models.IngredientResponse
+import com.dermaseer.dermaseer.data.remote.models.IngredientsRequest
 import com.dermaseer.dermaseer.data.remote.models.ProductRecommendationResponse
 import com.dermaseer.dermaseer.data.repository.predict.IngredientRepository
 import com.dermaseer.dermaseer.data.repository.predict.ProductRecommendationRepository
@@ -32,14 +33,12 @@ class ScanResultRecomendationViewModel @Inject constructor(
     private var _state = MutableLiveData<ResultState>()
     val state: LiveData<ResultState> = _state
 
-    fun fetchAllRecommendations(predictId: RequestBody, skinType: RequestBody, productCategory: RequestBody) {
+    fun fetchAllRecommendations(request: RequestBody) {
         viewModelScope.launch {
             _state.value = ResultState.Loading
             try {
                 val ingredientResponse = ingredientRepository.ingredientRecommendation(
-                    predictId,
-                    skinType,
-                    productCategory
+                    request
                 )
                 _ingredientsResponse.value = ingredientResponse
                 val resultId = ingredientResponse.data?.resultId ?: throw Exception("Result ID not found")
