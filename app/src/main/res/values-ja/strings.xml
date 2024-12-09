@@ -126,5 +126,5 @@
     <string name="ingredient">材料</string>
     <string name="enter_your_name">名前を入力してください…</string>
     <string name="enter_your_age">年齢を入力してください…</string>
->>>>>>> Stashed changes
+    <string name="switch_camera">カメラを切り替える</string>
 </resources>

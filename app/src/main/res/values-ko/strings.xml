@@ -126,5 +126,5 @@
     <string name="ingredient">재료</string>
     <string name="enter_your_name">이름을 입력하세요…</string>
     <string name="enter_your_age">나이를 입력하세요…</string>
->>>>>>> Stashed changes
+    <string name="switch_camera">카메라 전환</string>
 </resources>

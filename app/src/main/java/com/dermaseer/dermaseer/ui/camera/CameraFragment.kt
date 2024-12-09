@@ -48,6 +48,7 @@ class CameraFragment : Fragment() {
       navController = Navigation.findNavController(view)
       startCamera()
       binding.btnTakePhoto.setOnClickListener { takePhoto() }
+      binding.icCameraSwitch.setOnClickListener { switchCamera() }
 
       requireActivity().onBackPressedDispatcher.addCallback {
          findNavController().navigate(R.id.action_cameraFragment_to_homeFragment)
@@ -111,7 +112,16 @@ class CameraFragment : Fragment() {
       )
    }
 
-   override fun onDestroyView() {
+   private fun switchCamera() {
+      cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA) {
+         CameraSelector.DEFAULT_BACK_CAMERA
+      } else {
+         CameraSelector.DEFAULT_FRONT_CAMERA
+      }
+      startCamera()
+   }
+   
+      override fun onDestroyView() {
       super.onDestroyView()
       _binding = null
    }

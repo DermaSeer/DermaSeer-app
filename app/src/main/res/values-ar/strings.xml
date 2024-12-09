@@ -126,5 +126,5 @@
     <string name="ingredient">مكون</string>
     <string name="enter_your_name">أدخل اسمك…</string>
     <string name="enter_your_age">أدخل عمرك…</string>
->>>>>>> Stashed changes
+    <string name="switch_camera">تبديل الكاميرا</string>
 </resources>

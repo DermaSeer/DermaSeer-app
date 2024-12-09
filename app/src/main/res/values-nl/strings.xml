@@ -126,5 +126,5 @@
     <string name="ingredient">Ingrediënt</string>
     <string name="enter_your_name">Voer je naam in…</string>
     <string name="enter_your_age">Voer je leeftijd in…</string>
->>>>>>> Stashed changes
+    <string name="switch_camera">Camera wisselen</string>
 </resources>
