@@ -10,12 +10,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentScanResultBinding
@@ -56,6 +58,9 @@ class ScanResultFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
+      requireActivity().onBackPressedDispatcher.addCallback {
+         findNavController().navigate(R.id.action_scanResultFragment_to_homeFragment)
+      }
       scanPhoto()
       getScanResult()
       getRecommendation()

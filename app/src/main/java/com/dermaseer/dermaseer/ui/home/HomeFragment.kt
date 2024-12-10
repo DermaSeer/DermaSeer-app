@@ -99,11 +99,16 @@ class HomeFragment : Fragment() {
 
     private fun setProductType() {
         val listProductType = listOf(
-            ProductType(R.drawable.moisturizer, requireContext().getString(R.string.Pelembab)),
-            ProductType(R.drawable.toner, requireContext().getString(R.string.toner)),
-            ProductType(R.drawable.serum, requireContext().getString(R.string.essence)),
-            ProductType(R.drawable.facewash, requireContext().getString(R.string.pembersih)),
-            ProductType(R.drawable.sunscreen, requireContext().getString(R.string.Sunscreen)),
+            ProductType(R.drawable.moisturizer, requireContext().getString(R.string.moisturizer),
+                requireContext().getString(R.string.Pelembab)),
+            ProductType(R.drawable.toner, requireContext().getString(R.string.toner),
+                requireContext().getString(R.string.toner)),
+            ProductType(R.drawable.serum, requireContext().getString(R.string.serum),
+                requireContext().getString(R.string.essence)),
+            ProductType(R.drawable.facewash, requireContext().getString(R.string.facewash),
+                requireContext().getString(R.string.pembersih)),
+            ProductType(R.drawable.sunscreen, requireContext().getString(R.string.sunscreen),
+                requireContext().getString(R.string.Sunscreen)),
         )
 
         val listCard: List<ItemProductTypeBinding>
@@ -116,7 +121,7 @@ class HomeFragment : Fragment() {
             listCard[i].tvProductImage.setImageResource(listProductType[i].productImage)
 
             listCard[i].root.setOnClickListener {
-                val selectedCategory = listProductType[i].productTitle
+                val selectedCategory = listProductType[i].productCategory
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToProductListFragment(selectedCategory)
                 navController.navigate(action)
@@ -237,5 +242,6 @@ class HomeFragment : Fragment() {
 
 data class ProductType(
     val productImage: Int,
-    val productTitle: String
+    val productTitle: String,
+    var productCategory: String
 )

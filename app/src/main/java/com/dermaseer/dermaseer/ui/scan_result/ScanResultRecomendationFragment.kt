@@ -38,7 +38,7 @@ class ScanResultRecomendationFragment : Fragment() {
     private val args: ScanResultRecomendationFragmentArgs by navArgs()
     private val scanResultRecomendationViewModel: ScanResultRecomendationViewModel by viewModels()
     private val productRecommendationAdapter: ProductRecommendationAdapter = ProductRecommendationAdapter()
-    private lateinit var resultId: String
+    private var resultId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

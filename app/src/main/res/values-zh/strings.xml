@@ -131,4 +131,6 @@
     <string name="essence">Essence Wajah</string>
     <string name="pembersih">" Pembersih Wajah"</string>
     <string name="Sunscreen">Sunscreen Wajah</string>
+    <string name="not_available">不可用</string>
+    <string name="treatment_not_available">推荐不可用，因为您未请求推荐。</string>
 </resources>

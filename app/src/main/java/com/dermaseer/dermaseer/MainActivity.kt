@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
          ActivityResultContracts.RequestPermission()
       ) { isGranted: Boolean ->
          if (isGranted) {
-            Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Permission granted, open again", Toast.LENGTH_LONG).show()
          } else {
-            Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
          }
       }
 

@@ -36,8 +36,8 @@ class LatestHistoryAdapter: RecyclerView.Adapter<LatestHistoryAdapter.ViewHolder
                .into(imageView)
             tvDate.text = formattedDate
             acneType.text = data?.acneType
-            chipSkinType.text = data?.result?.skinType
-            chipProductType.text = data?.result?.productCategory
+            chipSkinType.text = data?.result?.skinType ?: root.context.getString(R.string.not_available)
+            chipProductType.text = data?.result?.productCategory ?: root.context.getString(R.string.not_available)
          }
       }
    }

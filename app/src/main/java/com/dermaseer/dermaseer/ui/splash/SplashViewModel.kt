@@ -21,6 +21,9 @@ class SplashViewModel @Inject constructor(
    private var _checkUserResponse = MutableLiveData<UserResponse>()
    val checkUserResponse: LiveData<UserResponse> = _checkUserResponse
 
+   private var _isTimeout = MutableLiveData(false)
+   val isTimeOut: LiveData<Boolean> = _isTimeout
+
    init {
       checkCurrentUser()
    }
@@ -37,6 +40,7 @@ class SplashViewModel @Inject constructor(
             _checkUserResponse.value = errorResponse
             Log.e("LoginError", "HTTP error: ${e.message}")
          } catch (e: SocketTimeoutException) {
+            _isTimeout.value = true
             Log.e("Timeout", "${e.message}")
          }
       }

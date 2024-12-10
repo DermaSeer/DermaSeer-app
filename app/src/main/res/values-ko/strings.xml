@@ -131,4 +131,6 @@
     <string name="essence">Essence Wajah</string>
     <string name="pembersih">" Pembersih Wajah"</string>
     <string name="Sunscreen">Sunscreen Wajah</string>
+    <string name="not_available">사용할 수 없음</string>
+    <string name="treatment_not_available">추천을 요청하지 않았기 때문에 추천을 제공할 수 없습니다.</string>
 </resources>

@@ -73,9 +73,9 @@ class HistoryDetailFragment : Fragment() {
                         .error(R.drawable.noimage)
                         .into(ivHistory)
                      tvAcneType.text = response.acneType
-                     chipSkinType.text = response.result?.skinType
-                     chipProductType.text = response.result?.productCategory
-                     tvResultRecommendation.text = response.result?.msgRecommendation
+                     chipSkinType.text = response.result?.skinType ?: requireContext().getString(R.string.not_available)
+                     chipProductType.text = response.result?.productCategory ?: requireContext().getString(R.string.not_available)
+                     tvResultRecommendation.text = response.result?.msgRecommendation ?: requireContext().getString(R.string.treatment_not_available)
                   }
                   lottieLoading.visibility = View.GONE
                   scrollView.visibility = View.VISIBLE

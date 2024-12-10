@@ -1,9 +1,14 @@
 package com.dermaseer.dermaseer.ui.splash
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -45,7 +50,13 @@ class SplashFragment : Fragment() {
       binding.ivLogo.playAnimation()
       viewLifecycleOwner.lifecycleScope.launch {
          delay(2000)
-         navigatePage()
+         splashViewModel.isTimeOut.observe(viewLifecycleOwner) { response ->
+            if (response) {
+               showStateDialog(R.drawable.remove, "Timeout, try again!")
+            } else {
+               navigatePage()
+            }
+         }
       }
    }
 
@@ -60,6 +71,31 @@ class SplashFragment : Fragment() {
             navController.navigate(R.id.action_splashFragment_to_onBoardingFragment)
          }
       }
+   }
+
+   private fun showStateDialog(
+      icon: Int,
+      title: String,
+   ) {
+      val builder = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(requireContext())
+      val customView = inflater.inflate(R.layout.state_dialog, null)
+
+      val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+      titleView.text = title
+      iconView.setImageResource(icon)
+      btnDismiss.text = "Close"
+
+      val dialog = builder.setView(customView).create()
+      btnDismiss.setOnClickListener {
+         requireActivity().finish()
+         dialog.dismiss()
+      }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
    }
 
    override fun onDestroyView() {

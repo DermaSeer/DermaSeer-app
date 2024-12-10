@@ -131,4 +131,6 @@
     <string name="essence">Essence Wajah</string>
     <string name="pembersih">" Pembersih Wajah"</string>
     <string name="Sunscreen">Sunscreen Wajah</string>
+    <string name="not_available">Недоступно</string>
+    <string name="treatment_not_available">Рекомендация недоступна, так как вы не запрашивали рекомендацию.</string>
 </resources>
