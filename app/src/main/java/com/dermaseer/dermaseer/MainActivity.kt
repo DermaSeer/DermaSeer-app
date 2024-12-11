@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
          ActivityResultContracts.RequestPermission()
       ) { isGranted: Boolean ->
          if (isGranted) {
-            Toast.makeText(this, "Permission granted, open again", Toast.LENGTH_LONG).show()
+
          } else {
             Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
          }
@@ -69,12 +69,12 @@ class MainActivity : AppCompatActivity() {
          }
       }
       binding.navView.setupWithNavController(navController)
-
+      requestPermissionLauncher.launch(Manifest.permission.CAMERA)
       binding.fabScan.setOnClickListener {
          if (allPermissionsGranted()) {
             navController.navigate(R.id.cameraFragment)
          } else {
-            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
          }
       }
    }
