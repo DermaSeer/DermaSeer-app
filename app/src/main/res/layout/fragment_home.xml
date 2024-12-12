@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/unknownperson"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:fontFamily="@font/poppins_bold"
         android:maxLines="1"
@@ -63,7 +63,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp" />
+            android:layout_marginTop="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_article_home"
@@ -86,7 +86,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="20dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/container_product"
@@ -162,7 +162,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_latest_history"
@@ -180,7 +180,7 @@
             android:id="@+id/tv_no_latest_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You don't have history yet"
+            android:text="@string/you_don_t_have_history_yet"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="14sp"
             android:layout_marginTop="32dp"

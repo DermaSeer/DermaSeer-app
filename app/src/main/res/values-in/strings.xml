@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">Tidak tersedia</string>
     <string name="treatment_not_available">Rekomendasi tidak tersedia karena Anda tidak meminta rekomendasi.</string>
+    <string name="acne_type_label">Jenis Jerawat: %1$s</string>
+    <string name="you_don_t_have_history_yet">Kamu belum memiliki riwayat</string>
+    <string name="no_internet">Tidak ada koneksi internet</string>
+    <string name="close">Tutup</string>
 </resources>

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dermaseer.dermaseer.databinding.ActivityMainBinding
+import com.dermaseer.dermaseer.utils.NetworkUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,6 +79,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
          }
       }
+      if (!NetworkUtils.isNetworkAvailable(this)) {
+         showStateDialog(R.drawable.remove, this.getString(R.string.no_internet))
+         return
+      }
    }
 
    @Deprecated("Deprecated in Java")
@@ -118,6 +124,31 @@ class MainActivity : AppCompatActivity() {
          dialog.dismiss()
       }
       negativeBtn.setOnClickListener { dialog.dismiss() }
+      dialog.window?.setBackgroundDrawable(ColorDrawable(0))
+      dialog.show()
+   }
+
+   private fun showStateDialog(
+      icon: Int,
+      title: String,
+   ) {
+      val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+      val inflater = LayoutInflater.from(this)
+      val customView = inflater.inflate(R.layout.state_dialog, null)
+
+      val iconView = customView.findViewById<ImageView>(R.id.iv_state)
+      val titleView = customView.findViewById<TextView>(R.id.dialog_title)
+      val btnDismiss = customView.findViewById<Button>(R.id.btn_dismiss)
+
+      titleView.text = title
+      iconView.setImageResource(icon)
+      btnDismiss.text = this.getString(R.string.close)
+
+      val dialog = builder.setView(customView).create()
+      btnDismiss.setOnClickListener {
+         finish()
+         dialog.dismiss()
+      }
       dialog.window?.setBackgroundDrawable(ColorDrawable(0))
       dialog.show()
    }

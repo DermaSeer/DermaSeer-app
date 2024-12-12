@@ -9,11 +9,13 @@
         android:id="@+id/cardHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:strokeWidth="0dp"
+        app:cardElevation="2dp"
         app:contentPadding="16dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -63,7 +65,8 @@
                 android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="0dp"
                 app:layout_constraintStart_toEndOf="@id/image_view"
                 app:layout_constraintTop_toBottomOf="@+id/acneType">
 
@@ -72,8 +75,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/moisturizer"
-                    android:textSize="11sp"
+                    android:text="Tidak tersedia"
+                    android:textSize="9sp"
                     android:textColor="@color/primary_blue"
                     app:chipBackgroundColor="@color/form_blue"
                     app:chipCornerRadius="100dp"
@@ -85,8 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/toner"
-                    android:textSize="11sp"
+                    android:text="Tidak tersedia"
+                    android:textSize="9sp"
                     android:textColor="@color/primary_blue"
                     app:chipBackgroundColor="@color/form_blue"
                     app:chipCornerRadius="100dp"
@@ -94,6 +97,18 @@
                     tools:ignore="SmallSp" />
 
             </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/date_scan"
+                android:textSize="12sp"
+                android:paddingHorizontal="12dp"
+                app:layout_constraintTop_toBottomOf="@id/chip_group"
+                app:layout_constraintStart_toStartOf="@id/chip_group" />
 
             <ImageView
                 android:id="@+id/icon_view"
@@ -108,27 +123,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginVertical="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/date_scan"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/cardHistory"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="170dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="28dp"
-        android:background="#4D4D4D"
-        app:layout_constraintTop_toTopOf="@id/tvDate"
-        app:layout_constraintBottom_toBottomOf="@id/tvDate"
-        app:layout_constraintStart_toEndOf="@id/tvDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="180dp"
+    android:layout_width="320dp"
+    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="300dp"
-        android:layout_height="180dp">
+        android:layout_width="320dp"
+        android:layout_height="200dp">
 
         <ImageView
             android:id="@+id/iv_state"
@@ -27,15 +27,16 @@
             android:id="@+id/dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Update data success"
+            tools:text="Selamat Datang di DermaSeer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_state"
             android:fontFamily="@font/poppins_semibold"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:maxLines="2"
+            android:textAlignment="center"
             android:paddingHorizontal="20dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="8dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_dismiss"

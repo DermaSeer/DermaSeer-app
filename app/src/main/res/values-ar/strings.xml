@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">غير متوفر</string>
     <string name="treatment_not_available">التوصية غير متوفرة لأنك لم تطلب توصية.</string>
+    <string name="acne_type_label">نوع حب الشباب: %1$s</string>
+    <string name="you_don_t_have_history_yet">ليس لديك سجل بعد</string>
+    <string name="no_internet">لا يوجد اتصال بالإنترنت</string>
+    <string name="close">إغلاق</string>
 </resources>

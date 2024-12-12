@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -56,6 +57,7 @@ class EditProfileFragment : Fragment() {
       navController = Navigation.findNavController(view)
       getUserData()
       binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
+      requireActivity().onBackPressedDispatcher.addCallback { navController.navigate(R.id.action_editProfileFragment_to_profileFragment) }
       binding.btnSave.setOnClickListener { updateUserData() }
    }
 

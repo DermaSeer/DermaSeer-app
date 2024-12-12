@@ -122,8 +122,8 @@ class HomeFragment : Fragment() {
 
             listCard[i].root.setOnClickListener {
                 val selectedCategory = listProductType[i].productCategory
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToProductListFragment(selectedCategory)
+                val selectedTitle = listProductType[i].productTitle
+                val action = HomeFragmentDirections.actionHomeFragmentToProductListFragment(selectedCategory, selectedTitle)
                 navController.navigate(action)
             }
         }

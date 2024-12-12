@@ -35,6 +35,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -67,6 +68,8 @@ class SigninViewModel @Inject constructor(
                 _checkUserResponse.value = errorResponse
                 _state.value = ResultState.Success("Success")
                 Log.e("LoginError", "HTTP error: ${e.message}")
+            } catch (e: SocketTimeoutException) {
+                _state.value = ResultState.Error("TIMEOUT")
             }
         }
     }

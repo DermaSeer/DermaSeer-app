@@ -59,7 +59,7 @@ class LatestHistoryAdapter: RecyclerView.Adapter<LatestHistoryAdapter.ViewHolder
 
    @SuppressLint("NotifyDataSetChanged")
    fun setData(historyData: List<HistoryResponse.Data?>?) {
-      this.historyData = historyData?.takeLast(1)
+      this.historyData = historyData?.take(1)
       notifyDataSetChanged()
    }
 

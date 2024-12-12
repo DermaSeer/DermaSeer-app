@@ -11,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.databinding.FragmentPhotoPreviewBinding
 
@@ -43,6 +45,7 @@ class PhotoPreviewFragment : Fragment() {
       retakePhoto()
       analyzePhoto()
       binding.topAppBar.setNavigationOnClickListener { showAlertDialog() }
+      requireActivity().onBackPressedDispatcher.addCallback { showAlertDialog() }
       parentFragmentManager.setFragmentResultListener("cameraRequestKey", viewLifecycleOwner) { _, bundle ->
          val uri = bundle.getParcelable<Uri>("imageUri")
          if (uri != null) {

@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">Niet beschikbaar</string>
     <string name="treatment_not_available">Aanbeveling is niet beschikbaar omdat je geen aanbeveling hebt gevraagd.</string>
+    <string name="acne_type_label">Acnetype: %1$s</string>
+    <string name="you_don_t_have_history_yet">Je hebt nog geen geschiedenis</string>
+    <string name="no_internet">Geen internetverbinding</string>
+    <string name="close">Sluiten</string>
 </resources>

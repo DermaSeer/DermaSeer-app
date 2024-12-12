@@ -80,7 +80,7 @@ class ProductListFragment : Fragment() {
     }
 
     private fun observeProductList() {
-        binding.topAppBar.title = args.selectedCategory
+        binding.topAppBar.title = args.selectedTitle
         (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.topAppBar.setNavigationOnClickListener {

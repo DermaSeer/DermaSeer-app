@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">不可用</string>
     <string name="treatment_not_available">推荐不可用，因为您未请求推荐。</string>
+    <string name="acne_type_label">痤疮类型: %1$s</string>
+    <string name="you_don_t_have_history_yet">您还没有历史记录</string>
+    <string name="no_internet">无互联网连接</string>
+    <string name="close">关闭</string>
 </resources>

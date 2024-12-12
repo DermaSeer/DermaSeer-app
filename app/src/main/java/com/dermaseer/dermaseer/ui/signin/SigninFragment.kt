@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -55,12 +56,9 @@ class SigninFragment : Fragment() {
       super.onViewCreated(view, savedInstanceState)
       navController = Navigation.findNavController(view)
       auth = Firebase.auth
+      requireActivity().onBackPressedDispatcher.addCallback { navController.navigate(R.id.action_signinFragment_to_onBoardingFragment) }
       binding.btnSignin.setOnClickListener {
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            signinViewModel.signInWithCredentialManager(requireContext())
-         } else {
-            signinViewModel.signInWithGoogleSignInSDK(requireContext(), requireActivity())
-         }
+         signinViewModel.signInWithGoogleSignInSDK(requireContext(), requireActivity())
       }
       action()
    }

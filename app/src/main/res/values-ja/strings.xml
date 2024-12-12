@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">利用できません</string>
     <string name="treatment_not_available">推薦をリクエストしなかったため、推薦は利用できません。</string>
+    <string name="acne_type_label">にきびの種類: %1$s</string>
+    <string name="you_don_t_have_history_yet">まだ履歴がありません</string>
+    <string name="no_internet">インターネット接続なし</string>
+    <string name="close">閉じる</string>
 </resources>
