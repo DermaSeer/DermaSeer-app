@@ -30,16 +30,20 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 1. Google Login
    
 2. Skincare Recommendation Based on Acne Type and Skin Problem Using Generative AI
+   
 Get personalized product recommendations from advanced generative AI tailored specifically to your acne and your skin problems. Helping you discover the most effective solutions and treatments that best 
 address your skin's needs, ensuring you achieve a healthier, clearer complexion with products suited to your individual skin type.
 
 3. Produk Exploration
+
 Users can see a list of products related to skincare. The product list consists of 5 categories: Moisturizer, Toner, Serum, Facewash, and Sunscreen.
 
 4. List of Article
+
 Explore various articles to improve your knowledge about health, skincare, and other important topics.
 
 5. History Analysis
+
 Users can review their scan history
 
 ## **Technologies**
