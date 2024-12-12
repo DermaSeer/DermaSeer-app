@@ -133,4 +133,8 @@
     <string name="Sunscreen">Sunscreen Wajah</string>
     <string name="not_available">Not Available</string>
     <string name="treatment_not_available">Recommendation treatment is not available because you didn\'t request a recommendation.</string>
+    <string name="acne_type_label">Acne Type: %1$s</string>
+    <string name="you_don_t_have_history_yet">You don\'t have history yet</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="close">Close</string>
 </resources>

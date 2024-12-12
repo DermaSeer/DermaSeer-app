@@ -93,7 +93,7 @@ class ScanResultFragment : Fragment() {
             }
             is ResultState.Success -> {
                scanResultViewModel.predictResponse.observe(viewLifecycleOwner) { response ->
-                  binding.tvAcneType.text = response?.data?.acneType
+                  binding.tvAcneType.text = getString(R.string.acne_type_label, response?.data?.acneType ?: "")
                   predictId = response?.data?.predictId ?: ""
                }
                with(binding) {
@@ -150,11 +150,15 @@ class ScanResultFragment : Fragment() {
 
    private fun getRecommendation() {
       val image = args.imageUri
+      var imageUrl = ""
       binding.ivAnalyzeResult.setImageURI(Uri.parse(image))
       binding.btnRecommendation.setOnClickListener {
+         scanResultViewModel.predictResponse.observe(viewLifecycleOwner) { response ->
+            imageUrl = response?.data?.imageUrl ?: ""
+         }
          val action = ScanResultFragmentDirections
             .actionScanResultFragmentToScanResultRecomendationFragment2(
-               imageUri = image,
+               imageUri = imageUrl,
                predictId = predictId,
                skinType = skinType,
                productCategory = productCategory

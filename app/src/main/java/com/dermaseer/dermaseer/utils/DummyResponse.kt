@@ -89,6 +89,40 @@ fun getDummyHistoryResponse(): HistoryResponse {
                createdAt = "2024-12-05T19:14:46.271Z",
                updatedAt = "2024-12-03T19:14:46.271Z"
             )
+         ),
+         HistoryResponse.Data(
+            id = "ww",
+            acneType = "Papula",
+            imageUrl = "https://storage.googleapis.com/dermaseer/predict/M4JC_245DcYSinCkpDbbd.webp",
+            createdAt = "2024-12-05T19:13:39.876Z",
+            result = HistoryResponse.Data.Result(
+               id = "ww",
+               predictId = "cm48u7rqf000ts60dsgvetd6z",
+               skinType = null,
+               productCategory = null,
+               ingredient = listOf(
+                  "Glycolic Acid",
+                  "Azelaic Acid",
+                  "Salicylic Acid",
+                  "Niacinamide",
+                  "Centella Asiatica",
+                  "Green Tea Extract",
+                  "Witch Hazel",
+                  "Rose Water",
+                  "Chamomile Extract",
+                  "Aloe Vera",
+                  "Avocado Oil",
+                  "Jojoba Oil",
+                  "Rosehip Oil",
+                  "Hyaluronic Acid",
+                  "Panthenol",
+                  "Licorice Root Extract",
+                  "Bisabolol"
+               ),
+               msgRecommendation = "Untuk kulit kering dengan jerawat fulminans, gunakan toner dengan kandungan asam glikolat, asam salisilat atau asam azelaic. Gunakan juga toner dengan kandungan niacinamide karena bisa mengurangi minyak berlebih dan mencegah jerawat. Selain itu, tambahkan toner dengan bahan-bahan anti-inflamasi seperti centella asiatica, green tea extract, witch hazel atau licorice root extract. Hindari alkohol dan pewangi yang dapat mengiritasi kulit. Gunakan toner secara lembut dan rutin, serta jangan lupa saat menggunakan toner untuk menyeimbangkan dan menjaga kelembaban kulit.",
+               createdAt = "2024-12-05T19:14:46.271Z",
+               updatedAt = "2024-12-03T19:14:46.271Z"
+            )
          )
       )
    )

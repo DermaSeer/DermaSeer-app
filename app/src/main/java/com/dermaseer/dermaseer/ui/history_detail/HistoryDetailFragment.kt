@@ -1,6 +1,7 @@
 package com.dermaseer.dermaseer.ui.history_detail
 
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.LatestHistoryAdapter
 import com.dermaseer.dermaseer.databinding.FragmentHistoryDetailBinding
+import com.dermaseer.dermaseer.ui.scan_result.ScanResultFragmentDirections
 import com.dermaseer.dermaseer.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -72,7 +74,7 @@ class HistoryDetailFragment : Fragment() {
                         .load(response.imageUrl)
                         .error(R.drawable.noimage)
                         .into(ivHistory)
-                     tvAcneType.text = response.acneType
+                     tvAcneType.text = getString(R.string.acne_type_label, response.acneType)
                      chipSkinType.text = response.result?.skinType ?: requireContext().getString(R.string.not_available)
                      chipProductType.text = response.result?.productCategory ?: requireContext().getString(R.string.not_available)
                      tvResultRecommendation.text = response.result?.msgRecommendation ?: requireContext().getString(R.string.treatment_not_available)

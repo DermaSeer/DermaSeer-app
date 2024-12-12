@@ -60,14 +60,20 @@ class ProductDetailRecomendationFragment : Fragment() {
         binding.topAppBar.setNavigationOnClickListener { navController.navigateUp() }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) { navController.navigateUp() }
 
-        binding.btnBuy.setOnClickListener {
-            val productJson = args.predictId
-            val product =
-                Gson().fromJson(productJson, ProductRecommendationResponse.Data::class.java)
+        setupRecyclerViewIngredient()
+        lifecycleScope.launch {
+            viewModel.fetchProductDetailRecommendation(args.predictId, args.resultId)
+        }
 
-            product.url?.let { url ->
-                val validUrl = formatUrl(url)
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(validUrl))
+        observeProductDetailRecommendation()
+        buyProduct()
+    }
+
+    private fun buyProduct() {
+        binding.btnBuy.setOnClickListener {
+            viewModel.productRecommendation.observe(viewLifecycleOwner) { response ->
+                val url = response?.data?.find { it?.id == args.predictId }
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url?.url))
                 try {
                     startActivity(intent)
                 } catch (e: Exception) {
@@ -79,17 +85,6 @@ class ProductDetailRecomendationFragment : Fragment() {
                 }
             }
         }
-
-        setupRecyclerViewIngredient()
-        lifecycleScope.launch {
-            viewModel.fetchProductDetailRecommendation(args.predictId, args.resultId)
-        }
-
-//        lifecycleScope.launch {
-//            viewModel.loadDummyData(args.predictId)
-//        }
-
-        observeProductDetailRecommendation()
     }
 
     private fun setupRecyclerViewIngredient() {
@@ -122,7 +117,7 @@ class ProductDetailRecomendationFragment : Fragment() {
 
     @SuppressLint("DefaultLocale")
     private fun updateUI(product: ProductRecommendationResponse) {
-        val productData = product.data?.firstOrNull()
+        val productData = product.data?.find { it?.id == args.predictId }
         productData?.let { data ->
             binding.tvProductName.text = data.name
             binding.tvProductStore.text = data.shopName
@@ -144,8 +139,18 @@ class ProductDetailRecomendationFragment : Fragment() {
             visibility = if (isLoading) View.VISIBLE else View.GONE
             if (isLoading) {
                 playAnimation()
+                binding.icStar.visibility = View.GONE
+                binding.icStore.visibility = View.GONE
+                binding.tvMathcedIngredients.visibility = View.GONE
+                binding.tvProductDescriptionTitle.visibility = View.GONE
+                binding.btnBuy.isEnabled = false
             } else {
                 cancelAnimation()
+                binding.icStar.visibility = View.VISIBLE
+                binding.icStore.visibility = View.VISIBLE
+                binding.tvMathcedIngredients.visibility = View.VISIBLE
+                binding.tvProductDescriptionTitle.visibility = View.VISIBLE
+                binding.btnBuy.isEnabled = true
             }
         }
     }

@@ -43,7 +43,7 @@
                 android:layout_width="260dp"
                 android:layout_height="320dp"
                 app:cardCornerRadius="20dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

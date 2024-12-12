@@ -19,6 +19,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dermaseer.dermaseer.R
 import com.dermaseer.dermaseer.adapter.ProductRecommendationAdapter
 import com.dermaseer.dermaseer.data.remote.models.IngredientsRequest
@@ -62,7 +63,10 @@ class ScanResultRecomendationFragment : Fragment() {
         navController = Navigation.findNavController(view)
         binding.topAppBar.setNavigationOnClickListener { navController.navigate(R.id.action_scanResultRecomendationFragment2_to_homeFragment) }
         val image = args.imageUri
-        binding.ivRecomendationAnalyze.setImageURI(Uri.parse(image))
+        Glide.with(binding.ivRecomendationAnalyze)
+            .load(image)
+            .error(R.drawable.noimage)
+            .into(binding.ivRecomendationAnalyze)
         if (resultId.isEmpty()) {
             getRecommendations()
         } else {
@@ -110,11 +114,11 @@ class ScanResultRecomendationFragment : Fragment() {
                     is ResultState.Error -> {
                         with(binding) {
                             lottieLoading.visibility = View.GONE
-                            scrollView.visibility = View.VISIBLE
+                            scrollView.visibility = View.GONE
                             lottieLoading.cancelAnimation()
                             resultRecommendation.text = state.message
                         }
-                        showStateDialog(R.drawable.remove, "Something wrong, retry!")
+                        showStateDialog(R.drawable.remove, "Something wrong, Try again!")
                     }
                 }
             }

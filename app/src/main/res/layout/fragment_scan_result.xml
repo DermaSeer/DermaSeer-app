@@ -30,249 +30,265 @@
                 app:titleTextAppearance="@style/CustomToolbarTitle" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_image"
-            android:layout_width="260dp"
-            android:layout_height="320dp"
-            android:layout_marginVertical="32dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
-
-            <ImageView
-                android:id="@+id/ivAnalyzeResult"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/image_preview_foto"
-                android:scaleType="centerCrop"
-                android:src="@drawable/noimage" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
-            android:backgroundTint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_image">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/diagnose"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/poppins_semibold" />
-
-                <TextView
-                    android:id="@+id/tv_acne_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Jenis jerawat: Kista"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/poppins_bold" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentPaddingBottom="16dp"
-            android:layout_marginTop="8dp"
-            android:paddingBottom="16dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
-            android:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/chooseProductLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/select_the_product_recommendation_type"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupProduct"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_image"
+                    android:layout_width="260dp"
+                    android:layout_height="320dp"
+                    android:layout_marginVertical="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chooseProductLabel"
-                    app:singleSelection="true">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMoisturizer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/moisturizer"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                    <ImageView
+                        android:id="@+id/ivAnalyzeResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_preview_foto"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/noimage" />
+                </androidx.cardview.widget.CardView>
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipToner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/toner"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_image">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipSerum"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/serum"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="16dp"
+                        android:gravity="center_horizontal">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipFacewash"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/facewash"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/diagnose"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_semibold" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipSunscreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/sunscreen"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/tv_acne_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Jenis jerawat: Kista"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_bold" />
 
-                </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/chooseProblemLabel"
-                    android:layout_width="wrap_content"
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    app:contentPaddingBottom="16dp"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/choose_your_skin_problem"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chipGroupProduct" />
-
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupProblem"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:paddingBottom="16dp"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chooseProblemLabel"
-                    app:singleSelection="true">
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    app:layout_constraintVertical_bias="0.0">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipDry"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/dry"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipOily"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/oily"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/chooseProductLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/select_the_product_recommendation_type"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipSensitive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/sensitive"
-                        android:textSize="11sp"
-                        style="@style/CustomChipStyle"
-                        app:chipCornerRadius="100dp"
-                        app:chipStrokeColor="@color/transparent"
-                        tools:ignore="SmallSp" />
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupProduct"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/chooseProductLabel"
+                            app:singleSelection="true">
 
-                </com.google.android.material.chip.ChipGroup>
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipMoisturizer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/moisturizer"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_recommendation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/see_recommendations"
-                    android:textSize="14sp"
-                    app:icon="@drawable/arrow_right_02_stroke_rounded"
-                    app:iconGravity="end"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/chipGroupProblem" />
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipToner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/toner"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipSerum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/serum"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipFacewash"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/facewash"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipSunscreen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/sunscreen"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                        </com.google.android.material.chip.ChipGroup>
+
+                        <TextView
+                            android:id="@+id/chooseProblemLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/choose_your_skin_problem"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/chipGroupProduct" />
+
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupProblem"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/chooseProblemLabel"
+                            app:singleSelection="true">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipDry"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/dry"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipOily"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/oily"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipSensitive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/sensitive"
+                                android:textSize="11sp"
+                                style="@style/CustomChipStyle"
+                                app:chipCornerRadius="100dp"
+                                app:chipStrokeColor="@color/transparent"
+                                tools:ignore="SmallSp" />
+
+                        </com.google.android.material.chip.ChipGroup>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_recommendation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/see_recommendations"
+                            android:textSize="14sp"
+                            app:icon="@drawable/arrow_right_02_stroke_rounded"
+                            app:iconGravity="end"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/chipGroupProblem" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieLoading"
