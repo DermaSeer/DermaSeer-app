@@ -1,7 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.DermaSeer" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.DermaSeer" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnBackground">@color/text_black</item>
+        <item name="android:colorBackground">@color/background_white</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="App.Custom.Indicator"
+        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/indicator_blue</item>
+    </style>
+
+    <style name="FabShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomTextAppearance.BottomNavigation" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+    </style>
+
+    <style name="CustomChipStyle" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="checkedIcon">@null</item>
+    </style>
+
 </resources>

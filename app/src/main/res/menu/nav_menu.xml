@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home_09_stroke_rounded"
+        android:title="Home"
+        android:checked="true"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/articleFragment"
+        android:icon="@drawable/news_stroke_rounded"
+        android:title="Article"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/clock_04_stroke_rounded"
+        android:title="History"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/user_stroke_rounded"
+        android:title="Profile"
+        tools:ignore="HardcodedText" />
+</menu>
