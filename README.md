@@ -93,7 +93,7 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 
 
 ## **Project Structure**
-```bash
+
 - adapter
 - data
   - local
@@ -105,7 +105,6 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 - utils
 - App.kt
 - MainActivity.kt
-```
 
 ## 🔥**Supported By**
 <p align="center">
