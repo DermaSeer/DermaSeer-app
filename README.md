@@ -84,12 +84,11 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 
 ## **Languages and Tools**
 
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 
 ## **Project Structure**
+```bash
 - adapter
 - data
   - local
@@ -101,7 +100,10 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 - utils
 - App.kt
 - MainActivity.kt
+```
 
 ## 🔥**Supported By**
-<img src="https://github.com/DermaSeer/.github/blob/main/profile/bangkit.png" width="105" />
-<img src="https://github.com/DermaSeer/.github/blob/main/profile/Kampus%20merdeka.png" width="105" />
+<p align="center">
+  <img src="https://github.com/DermaSeer/.github/blob/main/profile/bangkit.png" width="105" />
+  <img src="https://github.com/DermaSeer/.github/blob/main/profile/Kampus%20merdeka.png" width="105" />
+</p>
