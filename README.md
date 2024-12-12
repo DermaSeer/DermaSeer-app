@@ -28,11 +28,19 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 ## **Features**
 
 1. Google Login
-2. Produk Exploration
-3. List of Article
-4. Acne Type Analysis
-5. Product Rekomendation Base on Acne Type
-6. History Analysis
+   
+2. Skincare Recommendation Based on Acne Type and Skin Problem Using Generative AI
+Get personalized product recommendations from advanced generative AI tailored specifically to your acne and your skin problems. Helping you discover the most effective solutions and treatments that best 
+address your skin's needs, ensuring you achieve a healthier, clearer complexion with products suited to your individual skin type.
+
+3. Produk Exploration
+Users can see a list of products related to skincare. The product list consists of 5 categories: Moisturizer, Toner, Serum, Facewash, and Sunscreen.
+
+4. List of Article
+Explore various articles to improve your knowledge about health, skincare, and other important topics.
+
+5. History Analysis
+Users can review their scan history
 
 ---
 
@@ -64,7 +72,7 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 
 ## **Deployment Link APK DermaSeer**
 
-Download Link apk [DermaSeer](#)
+Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7kvzUe8eQANXjaJQwQIdYFC2)
 
 ## **How to Install and Run the Project**
 
@@ -82,5 +90,18 @@ Download Link apk [DermaSeer](#)
 
 
 ## **Project Structure**
+- adapter
+- data
+  - local
+  - remote
+  - repository
+- di
+- paging
+- ui
+- utils
+- App.kt
+- MainActivity.kt
 
 ## 🔥**Supported By**
+<img src="https://github.com/DermaSeer/.github/blob/main/profile/bangkit.png" width="105" />
+<img src="https://github.com/DermaSeer/.github/blob/main/profile/Kampus%20merdeka.png" width="105" />
