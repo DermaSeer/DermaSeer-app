@@ -42,8 +42,6 @@ Explore various articles to improve your knowledge about health, skincare, and o
 5. History Analysis
 Users can review their scan history
 
----
-
 ## **Technologies**
 
 - [MVVM](https://developer.android.com/topic/architecture)
