@@ -21,7 +21,7 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 - [Dependencies](#dependencies)
 - [Prerequisites](#prerequisites)
 - [Deployment Link APK DermaSeer](#deployment-link-apk-dermaseer)
-- [How to Instal](#how-to-install)
+- [How to Instal](#how-to-install-and-run-the-project)
 - [Languages and Tools](#languages-and-tools)
 - [Project Structure](#project-structure)
 
@@ -29,20 +29,23 @@ Our team aims to reduce the consumptive behavior of skincare users and also redu
 
 1. Google Login
    
-2. Skincare Recommendation Based on Acne Type and Skin Problem Using Generative AI
-Get personalized product recommendations from advanced generative AI tailored specifically to your acne and your skin problems. Helping you discover the most effective solutions and treatments that best 
-address your skin's needs, ensuring you achieve a healthier, clearer complexion with products suited to your individual skin type.
+   Users can sign in securely using their Google account for a seamless experience.
+
+2. Skincare Recommendation Based on Acne Type and Skin Problems Using Generative AI
+   
+   Get personalized product recommendations from advanced generative AI tailored specifically to your acne and skin concerns. This helps you discover the most effective solutions and treatments, ensuring you achieve a healthier, clearer complexion with products suited to your individual skin type.
 
 3. Produk Exploration
-Users can see a list of products related to skincare. The product list consists of 5 categories: Moisturizer, Toner, Serum, Facewash, and Sunscreen.
+   
+   Users can see a list of products related to skincare. The product list consists of 5 categories: Moisturizer, Toner, Serum, Facewash, and Sunscreen.
 
-4. List of Article
-Explore various articles to improve your knowledge about health, skincare, and other important topics.
+4. List of Articles
+   
+   Explore various articles to improve your knowledge about health, skincare, and other important topics.
 
 5. History Analysis
-Users can review their scan history
-
----
+    
+   Users can review their scan history.
 
 ## **Technologies**
 
@@ -52,17 +55,24 @@ Users can review their scan history
 
 ## **Dependencies**
 
+- [Material 3](https://m3.material.io/)
 - [Firebase Authentication](https://firebase.google.com/docs/auth)
-- [Room Database](https://developer.android.com/training/data-storage/room)
 - [Retrofit](https://square.github.io/retrofit/)
 - [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 - [Dagger Hilt](https://dagger.dev/hilt/)
 - [Glide](https://bumptech.github.io/glide/)
 - [CameraX](https://developer.android.com/training/camerax)
 - [Lifecycle & LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
-- [Lottie Loading Animation](https://airbnb.io/lottie/)
 - [Paging](https://developer.android.com/topic/libraries/architecture/paging)
-
+- [Flexbox](https://github.com/google/flexbox-layout)
+- [OkHttp](https://square.github.io/okhttp/)
+- [Chucker](https://github.com/ChuckerTeam/chucker)
+- [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
+- [Jetpack Navigation](https://developer.android.com/guide/navigation)
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
+- [ProgressButtonAnimation](https://github.com/razir/ProgressButton)
+- [Lottie Loading Animation](https://airbnb.io/lottie/)
+  
 ## **Prerequisites**
 ```bash
 1. Android Studio, at least version LadyBug
@@ -84,16 +94,17 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 
 ## **Languages and Tools**
 
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Android](https://img.shields.io/badge/-Android-3DDC84?logo=android&logoColor=white) ![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?logo=kotlin&logoColor=white) ![Figma](https://img.shields.io/badge/-Figma-F24E1E?logo=figma&logoColor=white) ![Git](https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=white)
 
 
 ## **Project Structure**
+
 - adapter
 - data
   - local
   - remote
+    - models
+    - services
   - repository
 - di
 - paging
@@ -103,5 +114,7 @@ Download Link apk [DermaSeer](https://drive.google.com/drive/folders/1jhij40qg7k
 - MainActivity.kt
 
 ## 🔥**Supported By**
-<img src="https://github.com/DermaSeer/.github/blob/main/profile/bangkit.png" width="105" />
-<img src="https://github.com/DermaSeer/.github/blob/main/profile/Kampus%20merdeka.png" width="105" />
+<p align="center">
+  <img src="https://github.com/DermaSeer/.github/blob/main/profile/Kampus%20merdeka.png" width="105" />
+  <img src="https://github.com/DermaSeer/.github/blob/main/profile/bangkit.png" width="105" />
+</p>
